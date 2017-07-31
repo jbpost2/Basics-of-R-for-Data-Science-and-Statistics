@@ -370,7 +370,7 @@ x</pre>
 
 <pre class = 'prettyprint lang-r'>runif(4,min=0,max=1)</pre>
 
-<pre >## [1] 0.9357244 0.5679531 0.3813528 0.2326095</pre>
+<pre >## [1] 0.1111719 0.6469482 0.1531879 0.9887093</pre>
 
 <!--seq and runif are functions. To use functions you call their name followed by parentheses.-->
 
@@ -943,8 +943,9 @@ mat</pre>
 
 <div style="float: left; width: 55%;">
 <pre class = 'prettyprint lang-r'>mat&lt;-matrix(c(1:4,20:17),ncol=2,
-            dimnames=list(NULL,
-              c(&quot;First&quot;,&quot;Second&quot;)))
+<b>        dimnames=list(NULL,
+              c(&quot;First&quot;,&quot;Second&quot;))
+</b>        )
 mat</pre>
 
 <pre >##      First Second
@@ -969,8 +970,8 @@ mat</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>mat&lt;-matrix(c(1:4,20:17),ncol=2)
-dimnames(mat)&lt;-list(NULL,c(&quot;First&quot;,&quot;Second&quot;))
-mat</pre>
+<b>dimnames(mat)&lt;-list(NULL,c(&quot;First&quot;,&quot;Second&quot;))
+</b>mat</pre>
 
 <pre >##      First Second
 ## [1,]     1     20
