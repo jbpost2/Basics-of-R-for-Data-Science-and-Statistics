@@ -1,0 +1,750 @@
+---
+title: "Introduction to Data Science Using R Part II"
+author: "Justin Post"
+date: "August 7-8, 2017"
+output: 
+      ioslides_presentation:
+         css: css/style.css
+transition: faster
+logo: img/logo.png
+---
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+options(dplyr.print_min = 5)
+options(tibble.print_min = 5)
+library(tidyverse)
+library(haven)
+```
+
+## What do we want to be able to do?
+
+- **Read in data**  
+
+- **Manipulate data**  
+
+- Plot data  
+
+- Summarize data  
+
+- Analyze data  
+<!--Don't want to get lost in the details.  What are our goals? what is the point of this?-->
+
+
+## Schedule    
+
+**Day 1**  
+
+- Install R/R studio  
+- R Studio Interface
+- Classes and Objects    
+- Attributes and Basic Data Object Manipulation    
+- **Reading in Data/Writing Out Data**    
+- **Logical Statements and Subsetting/Manipulating Data**  
+
+<!--Next we'll take up getting data into R from external sources.  Then we'll really dive into manipulating it, creating new variables, subsetting by different conditions.  These will all help us to summarize the data nicely and make some beautiful plots.-->
+
+## Reading in Data/Writing Out Data  
+**Data comes in many formats**  
+
+> - 'Delimited' data: Character (such as [','](https://github.com/jbpost2/DataScienceR/blob/master/datasets/scores.csv) , ['>'](https://github.com/jbpost2/DataScienceR/blob/master/datasets/umps2012.txt), or [' ']) separated data  
+
+> - [Fixed field](https://github.com/jbpost2/DataScienceR/blob/master/datasets/cigarettes.txt) data  
+
+> - [Excel](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xls) data  
+
+> - [SPSS formatted](https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav) data  
+ 
+> - [SAS data sets](https://github.com/jbpost2/DataScienceR/blob/master/datasets/smoke2003.sas7bdat)  
+
+> - Many ways to read in the data... How to choose?  
+
+
+## Reading in Data/Writing Out Data
+
+ - Possible methods to read data  
+    <ul>
+      <li> Base R (what comes installed)</li>  
+      <li> Use an R 'package'</li>
+    </ul>
+    
+> - R package  
+    <ul>
+      <li> Collection of functions in one place</li>  
+      <li> Packages exist to do almost anything</li>  
+      <li> [List of CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) approved packages on R's website</li>  
+      <li> Plenty of other packages on places like GitHub</li>
+    </ul>
+<!--Many packages do the same thing.  Some just do it better than others.  Often hard to pick the best one.-->    
+
+
+## Reading in Data/Writing Out Data
+
+- First time using a package  
+    + Must install package (download)  
+    + Can use code or menus
+```{r,eval=FALSE}
+install.packages("readr")
+#can do multiple packages at once
+install.packages(c("readr","readxl","haven","DBI","httr"))
+```
+
+## Reading in Data/Writing Out Data
+
+- First time using a package  
+    + Must install package (download)  
+    + Can use code or menus
+
+```{r, out.width = "800px",echo=FALSE}
+knitr::include_graphics("img/packages.png")
+```
+
+<!--Can also install them from local sources and stuff like that but that isn't usually required unless you are behind a firewall of some kind that keeps R from accessing the internet.-->
+    
+
+## Reading in Data/Writing Out Data
+
+- Once 'installed' on computer, never need to install again  
+
+- **Each session** read the package in using `library()` or `require()`
+
+```{r}
+library("readr")
+require("haven")
+```
+
+## Reading in Data/Writing Out Data
+
+- Difference - if no package  
+     + `library()` throws an error
+     + `require()` returns FALSE
+
+```{r,error=TRUE,warning=TRUE}
+library("notAPackage")
+require("notAPackage")
+```
+<!--require is often used when you write functions that load in packages.  Rather than throwing an error you'd like to just return a warning to the user so they can go and download the package.
+
+Of course, there are ways to load packages by default into your r workspace.  Go to your .Rprofile.site file (usually in C:\Program Files\R\R-***\etc\) and add in options(defaultPackages=c(getOption("defaultPackages"),
+       "mypackage1","mypackage2", ... [etc.]))-->
+
+
+## Reading in Data/Writing Out Data
+- Many packages to read in data  
+
+> - How to choose?  
+     <ul>
+       <li> Want 'fast' code</li>  
+       <li> Want 'easy' syntax</li>  
+       <li> Good default settings on functions</li>  
+     </ul> 
+     
+> - Base R has reasonable defaults and syntax but functions are slow  
+
+> - "[TidyVerse](http://tidyverse.org/)" - collection of R packages that share common philosophies and are designed to work together!  
+    <ul>
+       <li>Very efficient code</li>
+    </ul>
+
+
+## Reading in Data/Writing Out Data
+**Reading in a comma separated value (.csv) file**
+
+- Let's install the `tidyverse` package  
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+
+
+## Reading in Data/Writing Out Data
+**Reading in a comma separated value (.csv) file**
+
+- Let's install the `tidyverse` package  
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+- Load library
+```{r}
+library(tidyverse)
+```
+
+- Once library loaded, check `help(read_csv)`
+- Want to read in scores.csv file using `read_csv()`
+
+<!--Note: There are two conflicts.  This just means functions that are named the same thing.  R uses the most recently loaded function and "masks" the old ones.  You can access specific package functions using "::" for instance, stats::filter(...) will call the filter function that has been masked.
+
+Focus on file argument as everything else has defaults.  Notice a path must be given...-->
+
+
+
+
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+
+
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+    + Can give file *full path name*  
+        * ex: E:/Other/DataScienceR/datasets/data.txt
+
+
+
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+    + Can give file *full path name*  
+        * ex: E:/Other/DataScienceR/datasets/data.txt
+    + Can change *working directory*  
+        * Folder on computer usually
+        * Where R 'looks' for files
+        * Supply abbreviated path name
+
+```{r}
+getwd()
+```
+
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+    + Can change *working directory*  
+
+
+
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+    + Can change *working directory*  
+    + Via code
+
+```{r,eval=FALSE}
+setwd("E:\\Other\\DataScienceR")
+#or
+setwd("E:/Other/DataScienceR")
+```
+<!--Double slash needed because \ is an escape character in R so \\ is really read as \-->
+
+
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+    + Can change *working directory*  
+    + Via menus
+
+```{r, out.width = "800px",echo=FALSE}
+knitr::include_graphics("img/setwd.png")
+```
+
+
+## Reading in Data/Writing Out Data
+**Reading in a comma separated value (.csv) file**
+
+- Often, create a folder with all files for your project  
+
+- Set working directory to that folder  
+
+- Read in data
+
+
+## Reading in Data/Writing Out Data
+**Reading in a comma separated value (.csv) file**
+
+- To avoid dealing with downloading files, we'll pull straight from the web
+
+```{r,eval=FALSE,echo=TRUE}
+scoreData<-read_csv(file="https://raw.githubusercontent.com/
+                    jbpost2/DataScienceR/master/datasets/scores.csv")
+```
+
+```{r,eval=TRUE,echo=FALSE}
+scoreData<-read_csv(file="https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/scores.csv")
+```
+
+
+
+## Reading in Data/Writing Out Data
+
+```{r,echo=TRUE}
+scoreData
+```
+
+
+## Reading in Data/Writing Out Data
+**Reading in a comma separated value (.csv) file**
+
+- Notice: fancy printing!  
+- tidyverse data frames are special class
+- Printing method optimal
+
+```{r}
+attributes(scoreData)$class
+```
+
+
+## Reading in Data/Writing Out Data
+**Reading in a comma separated value (.csv) file**
+
+- Notice: fancy printing!  
+- tidyverse data frames are special class
+- Printing method optimal
+
+```{r}
+attributes(scoreData)$class
+```
+
+ - How did R determine the column types?
+
+<!--check the help on read_csv again.  See col_types.  Checks first 1000 rows of data and figures out character or numeric.  Notice you can read columns in using specifications.  For instance could specify week as integer and use date or date time when applicable.
+--> 
+
+
+## Reading in Data/Writing Out Data  
+  
+- Checking column type is a basic data validation step
+- Check out scoresStub.csv  
+- Look at season column type!
+
+```{r,echo=TRUE,eval=FALSE}
+scoreStub<-read_csv("https://raw.githubusercontent.com/
+                    jbpost2/DataScienceR/master/datasets/scoresStub.csv")
+```
+
+```{r,echo=FALSE}
+scoreStub<-read_csv("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/scoresStub.csv")
+```
+
+
+## Reading in Data/Writing Out Data  
+
+```{r}
+scoreStub
+```
+
+
+----
+
+- Can now make pretty plots (covered tomorrow)  
+```{r}
+ggplot(data=scoreData,aes(x=day,y=AFinal))+geom_boxplot()
+```
+
+## Reading in Data/Writing Out Data
+
+- Base R `read.csv()`  
+    + Reads character variables as "factors"
+> - Factor - special class of vector  
+    <ul>
+      <li> Great for variable with finite number of classes (**levels**) </li>
+      <li> Ex: day or week</li>
+    </ul>
+
+
+## Reading in Data/Writing Out Data
+
+- Base R `read.csv()`  
+    + Reads character variables as "factors"
+> - Factor - special class of vector  
+    <ul>
+      <li> Great for variable with finite number of classes (**levels**) </li>
+      <li> Ex: day or week</li>
+    </ul>
+    
+```{r}
+#overwrite day column with factor version
+scoreData$day<-as.factor(scoreData$day)
+levels(scoreData$day)
+```
+
+## Reading in Data/Writing Out Data
+- Factor - special class of vector  
+    + Great for variable with finite number of classes 
+    + Can now reorder (useful when plotting)
+    + Use `ordered` funtion on a *factor* to order the levels
+
+```{r}
+scoreData$day<-ordered(scoreData$day, 
+                levels = levels(scoreData$day)[c(7,5,1,3,4,2,6)])
+
+levels(scoreData$day)
+```
+
+----
+
+- Plot with reordered levels (remove F, T, W)
+
+```{r,echo=FALSE}
+ggplot(data=filter(scoreData,day %in% c("Mon","Sat","Sun","Thu")),aes(x=day,y=AFinal))+geom_boxplot()
+```
+
+
+## Reading in Data/Writing Out Data
+**Reading in any delimited file**
+
+- Read in umps.txt file (a '>' delimited file)
+- Notice no column names provided  
+    + Year Month Day Home Away HPUmpire  
+
+> - Use `read_delim()` (check help!)
+
+
+----
+
+```{r,eval=FALSE}
+umpData<-read_delim("https://raw.githubusercontent.com/
+                    jbpost2/DataScienceR/master/datasets/umps2012.txt",delim=">",
+### <b>
+          col_names=c("Year","Month","Day","Home","Away","HPUmpire"")
+### </b>
+)
+```
+
+```{r,echo=FALSE}
+umpData<-read_delim("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/umps2012.txt",delim=">",
+          col_names=c("Year","Month","Day","Home","Away","HPUmpire"))
+```
+
+
+## Reading in Data/Writing Out Data
+```{r}
+umpData
+```
+
+## Reading in Data/Writing Out Data
+**Reading in any delimited file**
+
+- Functions from *readr* and their purpose
+
+Delimiter     | Function   
+------------- | -----------------------------
+comma ','     | read_csv() 
+tab           | read_tsv() 
+space ' '     | read_table()
+semi-colon ';'| read_csv2() 
+other         | read_delim(...,delim = ,...)
+
+<!--Note read_table() will do any number of spaces between columns.  read_csv2() is common in countries where , is used as a decimal so ; is used as the delimieter-->
+
+
+## Reading in Data/Writing Out Data
+**Fixed field data**
+
+- Open the cigarettes.txt file: Read using `read_fwf()`
+
+ - Can specify columns in many ways
+
+```{r,eval=FALSE,echo=TRUE}
+#a guess based on reading a few columns
+cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/
+                  DataScienceR/master/datasets/cigarettes.txt",
+### <b>
+                  col_positions=
+                      fwf_empty("https://raw.githubusercontent.com/jbpost2/
+                             DataScienceR/master/datasets/cigarettes.txt",
+                 col_names = c("brand", "tar", "nicotine", "weight", "co"))
+###</b>
+)
+```
+
+```{r,eval=TRUE,echo=FALSE,message=FALSE}
+#a guess based on reading a few columns
+cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
+       fwf_empty("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",
+                 col_names = c("brand", "tar", "nicotine", "weight", "co")))
+```
+
+
+
+## Reading in Data/Writing Out Data
+```{r}
+cigData
+```
+
+## Reading in Data/Writing Out Data
+**Fixed field data**
+
+- Must skip first line!
+
+```{r,eval=FALSE}
+#need to skip first line!
+cigData<-read_fwf("https://raw.githubusercontent.com/
+                  jbpost2/DataScienceR/master/datasets/cigarettes.txt",
+                  col_positions=fwf_empty("https://raw.githubusercontent.com/jbpost2/
+                       DataScienceR/master/datasets/cigarettes.txt",
+                 col_names = c("brand", "tar", "nicotine", "weight", "co")),
+### <b>
+       skip=1
+### </b>
+)
+```
+
+```{r,echo=FALSE,message=FALSE}
+#need to skip first line!
+cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
+       fwf_empty("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",
+                 col_names = c("brand", "tar", "nicotine", "weight", "co")),skip=1)
+```
+
+## Reading in Data/Writing Out Data
+```{r}
+cigData
+```
+
+
+## Reading in Data/Writing Out Data
+**Fixed field data**
+
+- Can specify columns in many ways
+
+```{r,eval=FALSE}
+#another option
+cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/
+                   DataScienceR/master/datasets/cigarettes.txt",
+                   col_positions=
+  ### <b>
+                                 fwf_widths(c(17,4,5,11,4),
+  ### </b>
+                col_names = c("brand", "tar", "nicotine", "weight", "co")),
+                    skip=1
+  )
+```
+
+```{r,echo=FALSE,message=FALSE}
+#another option
+cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
+       fwf_widths(c(17,4,5,11,4),
+                  col_names = c("brand", "tar", "nicotine", "weight", "co")),
+       skip=1)
+```
+
+
+## Reading in Data/Writing Out Data
+
+**Other useful functions for tricky data** 
+
+- read_file()
+     + reads an entire file into a single string
+
+- read_lines() 
+     + reads a file into a character vector with one element per line
+
+
+## Reading in Data/Writing Out Data
+**Excel Data**
+
+- Read in censusEd.xls  
+
+- Unfortunately can't xls from gitHub easily
+
+- Download [censusEd.xls](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xls?raw=true)
+
+- Place in folder called 'datasets' in working directory
+
+
+## Reading in Data/Writing Out Data
+**Excel Data**
+
+- Read in censusEd.xls  
+- Using `read_excel()` from `readxl` package 
+    + Reads both xls and xlsx files
+    + Detects format from extension given
+    + Specify sheet with name or integers (or NULL for 1st)  
+    
+```{r}
+library(readxl)
+#just first sheet
+edData<-read_excel("datasets/censusEd.xls",sheet="EDU01A")
+```
+
+## Reading in Data/Writing Out Data
+```{r}
+edData
+```
+
+
+## Reading in Data/Writing Out Data
+**Excel Data**
+
+- Using `read_excel()` from `readxl` package 
+    + Specify sheet with name or integers (or `NULL` for 1st)  
+    + Look at sheets available
+
+```{r}
+excel_sheets("datasets/censusEd.xls")
+```
+
+
+## Reading in Data/Writing Out Data
+**Excel Data**
+
+- Using `read_excel()` from readxl package 
+    + Specify cells with continguous range 
+    
+```{r,eval=FALSE}
+library(readxl)
+#just first sheet
+edData<-read_excel("datasets/censusEd.xls",sheet="EDU01A", 
+                   ### <b>
+                   range=cell_cols("A:D")
+                   ### </b>
+                   )
+```
+```{r,echo=FALSE}
+library(readxl)
+#just first sheet
+edData<-read_excel("datasets/censusEd.xls",sheet="EDU01A", 
+                   range=cell_cols("A:D"))
+```
+
+
+## Reading in Data/Writing Out Data
+```{r}
+edData
+```
+
+
+## Excel Data Recap
+Using `read_excel()` from `readxl` package 
+
+> - Reads both xls and xlsx files
+> - Specify sheet with name or integers (or `NULL` for 1st)  
+       <ul> <li> Use `sheet = "name"` or `sheet = \#` </li></ul> 
+> - Look at sheets available    
+      <ul> <li>  Use `excel_sheets`</li></ul>    
+> - Specify cells with continguous range  
+        <ul> 
+          <li> `range = cell_cols("...")' </li>
+          <li> `range = cell_rows("...")`</li>
+        </ul>
+> - Specify cells   
+        <ul> <li> `range = "R1C2:R2C5"`</ul> </li>
+      
+      
+## Reading in Data/Writing Out Data
+**SPSS Data**
+
+- SPSS data has extension ".sav"  
+- Read in bodyFat.sav  
+- Use `read_spss()` from `haven` package  
+- Not many options!
+
+```{r,eval=FALSE}
+library(haven)
+bodyFatData<-read_spss("https://github.com/jbpost2/
+                      DataScienceR/blob/master/datasets/
+                      bodyFat.sav?raw=true.sav")
+```
+```{r,echo=FALSE}
+library(haven)
+bodyFatData<-read_spss("https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav?raw=true.sav")
+```
+      
+## Reading in Data/Writing Out Data
+```{r,eval=FALSE}
+bodyFatData
+```
+```{r,echo=FALSE}
+print(bodyFatData,n=5)
+```
+
+
+## Reading in Data/Writing Out Data
+**SAS Data**
+
+- SAS data has extension '.sas7bdat' 
+
+- Read in smoke2003.sas7bdat  
+
+- Use `read_sas()` from haven package  
+
+- Not many options!
+
+```{r,eval=FALSE}
+smokeData<-read_sas("https://github.com/jbpost2/
+                    DataScienceR/blob/master/datasets/
+                    smoke2003.sas7bdat?raw=true")
+```
+```{r,echo=FALSE}
+smokeData<-read_sas("https://github.com/jbpost2/DataScienceR/blob/master/datasets/smoke2003.sas7bdat?raw=true")
+```
+
+
+## Reading in Data/Writing Out Data
+```{r}
+smokeData
+```
+
+## Reading in Data/Writing Out Data
+**SAS Data**
+
+- Note: Variables had SAS labels. Don't show on print!  
+
+    + Will show on View(smokeData) (or click on data from environment)  
+    
+```{r}
+str(smokeData)
+```
+    
+## Reading in Data/Writing Out Data
+**SAS Data**  
+
+- Note: Variables had SAS labels.  Don't show on print!  
+
+    + Will show on View(smokeData) (or click on data from environment)  
+    + Can access via
+
+```{r}
+attr(smokeData$SDDSRVYR,"label")
+```
+
+## Reading in Data/Writing Out Data
+**Writing Data**
+
+- Usually write to .csv (or other delimiter)
+- Use `write_csv()` from `readr` package
+- Check help!
+    + Will write to path or working directory  
+ 
+```{r,eval=FALSE}
+write_csv(x=smokeData,
+          path="E:/Other/DataScienceR/datasets/output/smokeData.csv")
+```
+<!-- Note: Lose lables here... would need to write a function to grab them and then output them to the data set as an extra row. Or create a different data set to hold them.-->
+
+
+## Reading in Data/Writing Out Data
+**Writing Data**
+
+- Usually write to .csv (or other delimiter)
+- Use `write_csv()` from `readr` package
+- Check help!
+    + Will write to path or working directory    
+    + `append` option won't overwrite but structures must match...
+
+```{r,eval=FALSE}
+write_csv(x=bodyFatData,
+          path="E:/Other/DataScienceR/datasets/smokeData.csv",
+          append=TRUE)
+```
+   
+## Recap
+
+- Reading Data
+
+Type of file       | Package   | Function   
+------------------ | --------- | -----------------
+Delimited          | `readr`   | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim(...,delim = ,...)`
+Excel (.xls,.xlsx) | `readxl`  | `read_excel`
+SPSS (.sav)        | `haven`   | `read_spss`
+SAS (.sas7bdat)    | `haven`   | `read_sas`
+
+<br>
+
+- Write data with `write_csv()` from readr  
+
+
+## Activity 
+- [**Reading/Writing Data Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ReadWriteActivity.html) available on web  
+
+- Work in small groups  
+
+- Ask questions!  TAs and I will float about the room  
+
+- Feel free to ask questions about anything you didn't understand as well!   

@@ -699,7 +699,7 @@ attributes(x)$MyAttr
     
     
 ## Activity 
-- [**Attributes and Basic Data Manipulation Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/AttrDataManip.html) available on web  
+- [**Attributes and Basic Data Manipulation Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/AttrDataManipActivity.html) available on web  
 
 - Work in small groups  
 
