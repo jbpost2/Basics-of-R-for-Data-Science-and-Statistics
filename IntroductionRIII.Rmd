@@ -1,0 +1,828 @@
+---
+title: "Introduction to Data Science Using R Part III"
+author: "Justin Post"
+date: "August 7-8, 2017"
+output: 
+      ioslides_presentation:
+         css: css/style.css
+transition: faster
+logo: img/logo.png
+---
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+options(dplyr.print_min = 5)
+library(tidyverse)
+library(haven)
+```
+
+## What do we want to be able to do?
+
+- Read in data 
+
+- **Manipulate data**  
+
+- Plot data  
+
+- Summarize data  
+
+- Analyze data  
+<!--Don't want to get lost in the details.  What are our goals? what is the point of this?-->
+
+
+## Schedule    
+
+**Day 1**  
+
+- Install R/R studio  
+- R Studio Interface
+- Classes and Objects    
+- Attributes and Basic Data Object Manipulation    
+- Reading in Data/Writing Out Data
+- **Logical Statements and Subsetting/Manipulating Data**
+
+<!--For the rest of today and probably the start of tomorrow we will look at logical statements and subsetting/manipulating data.  Very useful!-->
+
+
+## Logical Statements
+
+- Logical statement - comparison of two quantities  
+  + resolves as `TRUE` or `FALSE`  
+
+<div style="float: left; width: 45%;">
+```{r}
+#Use of ==, !=, >=, <=, >, <
+"hi" == " hi"
+"hi" == "hi"
+4 == 1
+```
+</div>
+<div style="float: right; width: 45%;">
+```{r}
+4 >= 3
+4 != 1
+"hi" != "hello"
+```
+</div>
+
+
+## Logical Statements
+
+- Logical statement - comparison of two quantities  
+  + resolves as `TRUE` or `FALSE`  
+
+<div style="float: left; width: 45%;">
+```{r}
+#use of is. functions
+is.numeric("Word")
+is.numeric(10)
+```
+</div>
+<div style="float: right; width: 45%;">
+```{r}
+is.character("10")
+is.na(c(1:2,NA,3))
+
+```
+</div>
+
+## Logical Statements/Subsetting Data
+
+- Useful for indexing a data set
+```{r}
+iris<-tbl_df(iris)
+iris
+```
+
+## Logical Statements/Subsetting Data
+
+- Useful for indexing a vector
+```{r}
+##Obtain a vector that indicates which rows are "setosa" species
+iris$Species=="setosa"
+```
+
+## Logical Statements/Subsetting Data
+
+- Useful for indexing a vector
+- Standard way for subsetting data (or use `subset` function)
+```{r}
+iris[iris$Species=="setosa",]
+```
+
+## Logical Statements/Subsetting Data
+
+- Useful for indexing a vector
+- Standard way for subsetting data (or use `subset` function)
+```{r,eval=FALSE}
+iris[iris$Species=="setosa",]
+```
+
+- Concept:
+    + Feed index a vector of `TRUE`/`FALSE` or `0`/`1` values  
+    + R returns elements where `TRUE` or `1` occurred
+
+
+## Logical Statements/Subsetting Data
+
+- Useful for indexing a vector
+- Better way: `filter()` from `dplyr` (installed with `tidyverse`)
+
+```{r}
+filter(iris,Species=="setosa")
+```
+
+
+## Logical Statements/Subsetting Data
+
+```{r}
+filter(iris,Species!="setosa")
+```
+- We'll spend a good bit of time with dplyr in a bit!
+
+
+## Logical Statements
+**If then, If then else**
+
+- Often want to execute statements conditionally  
+- `if` `then` else concept
+```{r,eval=FALSE}
+if (condition) {
+  then execute code
+} 
+
+#if then else
+if (condition){
+  execute this code  
+} else {
+  execute this code
+}
+```
+
+## Logical Statements
+**If then, If then else**
+
+- Often want to execute statements conditionally  
+- `if` `then` else concept
+```{r,eval=FALSE}
+#Or more if statements
+if (condition){
+  execute this code  
+} else if (condition2) {
+  execute this code
+} else if (condition3){
+  execute this code
+} else {
+  #if no conditions met
+  execute this code
+}
+```
+
+
+## Logical Statements
+**If then, If then else**
+
+<div style="float: left; width: 45%;">
+```{r}
+#silly example
+a<-5
+if (a<10){
+  print("hi")
+}
+```
+</div>
+
+<div style="float: right; width: 45%;">
+```{r}
+if (a<10){
+  print("hi")
+} else if (a<40){
+  print("goodbye")
+} else {
+  print("aloha")
+}
+```
+</div>
+
+
+## Logical Statements
+**If then, If then else**
+
+```{r}
+#silly example
+a<-20
+if (a<10){
+  print("hi")
+}
+
+if (a<10){
+  print("hi")
+} else if (a<40){
+  print("goodbye")
+} else {
+  print("aloha")
+}
+```
+
+
+## Logical Statements
+**If then, If then else**
+
+```{r}
+#silly example
+a<-"string"
+if (a<10){
+  print("hi")
+}
+
+if (a<10){
+  print("hi")
+} else if (a<40){
+  print("goodbye")
+} else {
+  print("aloha")
+}
+```
+
+
+## Logical Statements
+**Aside: Coercion**
+
+- R attempts to coerce data into usable form when necessary  
+- Ex: Atomic vector - all elements must be the same type
+```{r}
+#coerce numeric to string
+c("hi",10)
+#coerce TRUE/FALSE to numeric
+c(TRUE,FALSE)+0
+```
+
+
+## Logical Statements
+**Aside: Coercion**
+
+- R attempts to coerce data into usable form when necessary  
+- Coerce from less flexible to more flexible
+    + Data types from least to most flexible:
+        * logical
+        * integer
+        * double
+        * character.
+```{r}
+#logical to character
+c(TRUE,"hi")
+```
+
+## Logical Statements
+**Aside: Coercion**
+
+- R attempts to coerce data into usable form when necessary  
+- Explicit coercion with `as.` functions
+
+<div style="float: left; width: 48%;">
+```{r}
+as.numeric(c(TRUE,FALSE,TRUE))
+mean(c(TRUE,FALSE,TRUE))
+```
+</div>
+<div style="float: right; width: 48%;">
+```{r}
+as.character(c(1,2,3.5,TRUE))
+```
+</div>
+
+<div style="float: right; width: 50%;">
+- Why does TRUE return "1"?
+</div>
+
+
+## Logical Statements
+**Logical Operators**
+
+- `&` 'and'
+- `|` 'or'
+
+Operator | A,B true       | A true, B false   | A,B false
+---------|----------------|-------------------|--------------
+`&`      | `A & B = TRUE` | `A & B = FALSE`   | `A & B = FALSE`
+`|`      | `A | B = TRUE` | `A | B = TRUE`    | `A | B = FALSE`
+
+
+## Logical Statements
+**Logical Operators**
+
+- `&` 'and'
+- `|` 'or'
+
+Operator | A,B true       | A true, B false   | A,B false
+---------|----------------|-------------------|--------------
+`&`      | `A & B = TRUE` | `A & B = FALSE`   | `A & B = FALSE`
+`|`      | `A | B = TRUE` | `A | B = TRUE`    | `A | B = FALSE`
+
+- `&&` and `||` are alternatives  
+  + Looks at only first comparison if given a vector of comparisons
+  
+
+## Logical Statements
+**Logical Operators**
+
+```{r}
+set.seed(3)
+x<-runif(n=10,min=0,max=1); x
+(x<0.25)|(x>0.75)
+(x<0.25)||(x>0.75)
+```
+
+## Subsetting Data
+
+- Only pull out large petal setosa flowers
+```{r}
+filter(iris,(Petal.Length>1.5)&(Petal.Width>0.3)&(Species=="setosa"))
+```
+
+## Subsetting Data
+
+What's the idea for the filter function?
+
+> - Condition evaluates a vector of `TRUE`/`FALSE`   
+
+> - Returns values where TRUE is present
+
+
+## Subsetting Data
+
+What's the idea for the filter function?
+
+ - Condition evaluates a vector of `TRUE`/`FALSE`  
+ 
+ - Returns values where TRUE is present
+
+
+```{r}
+(iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa")
+```
+
+
+## Manipulating Data
+
+- Logical statments great for data filtering    
+
+> - Quite useful for creating new variables too    
+
+> - Issue: `if` condition can only take in a single comparison  
+
+> - Create new variable for **Large Setosa** flowers
+
+
+## Manipulating Data
+
+- Logical statments great for data filtering    
+
+ - Quite useful for creating new variables too    
+
+ - Issue: `if` condition can only take in a single comparison  
+
+ - Create new variable for **Large Setosa** flowers
+
+```{r,error=TRUE}
+if((iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa")){
+  "Large Setosa"
+}
+```
+
+## Manipulating Data
+
+## Manipulating Data
+
+- Logical statments great for data filtering    
+
+- Quite useful for creating new variables too    
+
+- `ifelse()` is **vectorized** if statement (see help)  
+
+- returns a vector
+
+```{r,eval=FALSE}
+#syntax
+ifelse(vector_condition,if_true_do_this,if_false_do_this)
+```
+
+## Manipulating Data
+
+- Create new variable for **Large Setosa** flowers
+```{r,error=TRUE}
+ifelse((iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa"),
+       "L-S","NotL-S")
+```
+
+
+## Manipulating Data
+
+
+- `dplry` has a nice function called `transmute()`  
+```{r}
+transmute(iris,Size=
+          ifelse((Petal.Length>1.5)&(Petal.Width>0.3)&(Species=="setosa"),
+                 "L-S","NotL-s"))
+```
+
+## Manipulating Data
+
+- `dplry` function `mutate()` does the same but *adds variable to existing data frame*
+```{r}
+mutate(iris,Size=
+         ifelse((Petal.Length>1.5)&(Petal.Width>0.3)&(Species=="setosa"),
+                "LS","NotLS"))
+```
+
+
+## Recap!
+**Logical Operators**
+
+- `&` 'and'  
+
+- `|` 'or'  
+
+- `if (condition) { ... }`  
+
+- `if (condition) { ... } else if (condition) { ... }`  
+
+- `ifelse(vector_condition,result_if_true,result_if_false)`  
+
+
+
+## Subsetting/Manipulating Data
+**Overview of dplyr package**
+
+- Basic commands 
+    + `tbl_df` - convert data frame to one with better printing
+    + `filter` - subset **rows**
+    + `arrange` - reorder **rows**
+    + `select` - subset **columns**
+    + `mutate` - add newly created **column**
+    + `transmute` - create new variable
+    + `group_by` - group **rows** by a variable  
+    + `summarise` - apply basic function to data
+    + `left_join`, `right_join`, `inner_join`, `full_join` - commands to combine multiple data frames
+
+
+## Tidyverse Syntax
+
+- Reason to prefer `dplyr` and packages from the `tidyverse` 
+
+> - Fast!
+
+> - Good defaults
+
+> - All packages have similar syntax!  All work on `tibbles` (data frames)
+
+> - Syntax: function(data.frame, actions, ...)
+
+
+## Subsetting/Manipulating Data
+`tbl_df` - convert data frame to one with better printing
+
+- If data read in with haven, readxl, or readr already in this format!
+- Just 'wrap' data frame
+
+```{r,eval=FALSE}
+#install.packages("Lahman")
+library(Lahman)
+head(Batting,n=4) #look at just first 4 observations
+```
+
+## Subsetting/Manipulating Data
+`tbl_df` - convert data frame to one with better printing
+
+```{r,eval=TRUE,echo=FALSE}
+library(Lahman)
+```
+```{r}
+head(Batting,n=4) #look at just first 4 observations
+```
+
+## Subsetting/Manipulating Data
+
+```{r}
+Batting<-tbl_df(Batting)
+Batting
+```
+
+## Subsetting/Manipulating Data
+`filter` - subset **rows**
+
+- Use `filter()` to obtain only PIT data
+```{r}
+filter(Batting,teamID == "PIT")
+```
+
+## Subsetting/Manipulating Data
+`filter` - subset **rows**
+
+- Multiple filters
+```{r}
+filter(Batting,teamID == "PIT" & yearID == 2000)
+```
+
+## Subsetting/Manipulating Data
+`arrange` - reorder **rows**
+
+```{r}
+#reorder by teamID
+arrange(Batting,teamID)
+```
+
+## Subsetting/Manipulating Data
+`arrange` - reorder **rows**
+
+```{r}
+#get secondary arrangement as well
+arrange(Batting, teamID, G)
+```
+
+## Subsetting/Manipulating Data
+`arrange` - reorder **rows**
+
+```{r}
+#descending instead
+arrange(Batting,teamID,desc(G))
+```
+
+
+## Subsetting/Manipulating Data
+**Piping or Chaining**
+
+- Applying multiple functions: nesting hard to parse!
+- Piping or Chaining with `%>%` operator helps
+
+```{r}
+arrange(filter(Batting,teamID=="PIT"),desc(G))
+```
+
+## Subsetting/Manipulating Data
+**Piping or Chaining**
+
+- Applying multiple functions: nesting hard to parse!
+- Piping or Chaining with `%>%` operator helps
+
+```{r}
+Batting %>% filter(teamID=="PIT") %>% arrange(desc(G))
+```
+
+## Subsetting/Manipulating Data
+**Piping or Chaining**
+
+- Applying multiple functions: nesting hard to parse!
+- Piping or Chaining with %>% operator helps
+- If `dplyr` or `magrittr` package loaded, can use anywhere
+```{r}
+a<-runif(n=10)
+a
+```
+
+## Subsetting/Manipulating Data
+**Piping or Chaining**
+
+```{r}
+#silly example
+a %>% quantile()
+a %>% quantile() %>% range()
+```
+
+
+## Subsetting/Manipulating Data
+`select` - subset **columns**
+
+- Often only want select variables (saw `$` and `[ , ]`)
+- `select()` function has same syntax as other `dplyr` functions!
+
+```{r}
+#Choose a single column by name
+Batting %>% select(X2B)
+```
+
+## Subsetting/Manipulating Data
+`select` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns between
+Batting %>% select(X2B:HR)
+```
+
+## Subsetting/Manipulating Data
+`select` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns containing
+Batting %>% select(contains("X"))
+```
+
+
+## Subsetting/Manipulating Data
+`select` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns starting with
+Batting %>% select(starts_with("X"))
+```
+
+
+## Subsetting/Manipulating Data
+`select` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns ending with
+Batting %>% select(ends_with("ID"))
+```
+
+## Subsetting/Manipulating Data
+`mutate` - add newly created **column**  
+
+`transmute` - create new variable
+
+```{r}
+##Create an Extra Base Hits variable
+Batting %>% mutate(ExtraBaseHits=X2B+X3B+HR)
+```
+
+## Subsetting/Manipulating Data
+`mutate` - add newly created **column**  
+
+`transmute` - create new variable
+
+```{r}
+#can't see it!
+Batting %>% mutate(ExtraBaseHits=X2B+X3B+HR) %>% select(ExtraBaseHits)
+```
+
+
+## Subsetting/Manipulating Data
+`mutate` - add newly created **column**  
+
+`transmute` - create new variable
+
+```{r}
+#transmute will keep the new variable only
+Batting %>% transmute(ExtraBaseHits=X2B+X3B+HR)
+```
+
+
+## Subsetting/Manipulating Data
+`group_by` - group **rows** by a variable  
+
+`summarise` - apply basic function to data
+
+- Summarization - find avg \# of doubles (X2B) 
+- Remove `NA`'s
+- `NA` = Not Available (R's missing data indicator)
+```{r}
+Batting %>% summarise(AvgX2B=mean(X2B,na.rm=TRUE))
+```
+
+## Subsetting/Manipulating Data
+`group_by` - group **rows** by a variable  
+
+`summarise` - apply basic function to data
+
+- Summarization - find avg \# of doubles (X2B) *by team*
+```{r}
+Batting %>% group_by(teamID) %>% summarise(AvgX2B=mean(X2B,na.rm=TRUE))
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+(Cite: http://rpubs.com/justmarkham/dplyr-tutorial-part-2)
+
+```{r}
+# create two simple data frames
+a <- data_frame(color = c("green","yellow","red"), num = 1:3)
+b <- data_frame(color = c("green","yellow","pink"), size = c("S","M","L"))
+```
+
+<div style="float: left; width: 45%;">
+```{r}
+a
+```
+</div>
+<div style="float: right; width: 45%;">
+```{r}
+b
+```
+</div>
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- Only include observations found in both "a" and "b" (automatically joins on variables that appear in both tables)
+
+```{r}
+inner_join(a, b)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- include observations found in either "a" or "b"
+```{r}
+full_join(a, b)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- include all observations found in "a"
+```{r}
+left_join(a, b)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- include all observations found in "b"
+```{r}
+right_join(a, b)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- `right_join(a, b)` is identical to `left_join(b, a)` except for column ordering
+```{r}
+left_join(b, a)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- filter "a" to only show observations that match "b"
+```{r}
+semi_join(a, b)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- filter "a" to only show observations that don't match "b"
+```{r}
+anti_join(a, b)
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- sometimes matching variables don't have identical names
+
+<div style="float: left; width: 50%;">
+```{r}
+b <- b %>% rename(col = color)
+a
+```
+</div>
+<div style="float: right; width: 45%;">
+```{r}
+b
+```
+
+## Subsetting/Manipulating Data
+`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+
+- specify that the join should occur by matching "color" in "a" with "col" in "b"
+```{r}
+inner_join(a, b, by=c("color" = "col"))
+```
+
+## Subsetting/Manipulating Data
+**Overview of `dplyr` package** [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+- Basic commands 
+    + `tbl_df` - convert data frame to one with better printing
+    + `filter` - subset **rows**
+    + `arrange` - reorder **rows**
+    + `select` - subset **columns**
+    + `mutate` - add newly created **column**
+    + `transmute` - create new variable
+    + `group_by` - group **rows** by a variable  
+    + `summarise` - apply basic function to data
+    + `left_join`, `right_join`, `inner_join`, `full_join` - commands to combine multiple data frames
+    
+
+## Activity 
+- [**Manipulating Data Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ManipulateActivity.html) available on web  
+
+
+- "Starter" file there if you'd like  
+
+- Work in small groups  
+
+- Ask questions!  TAs and I will float about the room  
+
+- Feel free to ask questions about anything you didn't understand as well!   
+
