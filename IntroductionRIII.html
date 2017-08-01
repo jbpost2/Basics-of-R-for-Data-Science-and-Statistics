@@ -196,7 +196,7 @@ is.numeric(&quot;Word&quot;)</pre>
 
 <pre >## [1] TRUE</pre>
 
-<pre class = 'prettyprint lang-r'>is.na(c(1:2,NA,3))</pre>
+<pre class = 'prettyprint lang-r'>is.na(c(1:2, NA, 3))</pre>
 
 <pre >## [1] FALSE FALSE  TRUE FALSE</pre></div>
 
@@ -206,7 +206,7 @@ is.numeric(&quot;Word&quot;)</pre>
 <li>Useful for indexing a data set</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>iris&lt;-tbl_df(iris)
+<pre class = 'prettyprint lang-r'>iris &lt;- tbl_df(iris)
 iris</pre>
 
 <pre >## # A tibble: 150 × 5
@@ -226,7 +226,7 @@ iris</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>##Obtain a vector that indicates which rows are &quot;setosa&quot; species
-iris$Species==&quot;setosa&quot;</pre>
+iris$Species == &quot;setosa&quot;</pre>
 
 <pre >##   [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ##  [12]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
@@ -250,7 +250,7 @@ iris$Species==&quot;setosa&quot;</pre>
 <li>Standard way for subsetting data (or use <code>subset</code> function)</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>iris[iris$Species==&quot;setosa&quot;,]</pre>
+<pre class = 'prettyprint lang-r'>iris[iris$Species == &quot;setosa&quot;, ]</pre>
 
 <pre >## # A tibble: 50 × 5
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -269,7 +269,7 @@ iris$Species==&quot;setosa&quot;</pre>
 <li>Standard way for subsetting data (or use <code>subset</code> function)</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>iris[iris$Species==&quot;setosa&quot;,]</pre>
+<pre class = 'prettyprint lang-r'>iris[iris$Species == &quot;setosa&quot;, ]</pre>
 
 <ul>
 <li>Concept:
@@ -287,7 +287,7 @@ iris$Species==&quot;setosa&quot;</pre>
 <li>Better way: <code>filter()</code> from <code>dplyr</code> (installed with <code>tidyverse</code>)</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>filter(iris,Species==&quot;setosa&quot;)</pre>
+<pre class = 'prettyprint lang-r'>filter(iris, Species == &quot;setosa&quot;)</pre>
 
 <pre >## # A tibble: 50 × 5
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -301,7 +301,7 @@ iris$Species==&quot;setosa&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Logical Statements/Subsetting Data</h2></hgroup><article  id="logical-statementssubsetting-data-5">
 
-<pre class = 'prettyprint lang-r'>filter(iris,Species!=&quot;setosa&quot;)</pre>
+<pre class = 'prettyprint lang-r'>filter(iris, Species != &quot;setosa&quot;)</pre>
 
 <pre >## # A tibble: 100 × 5
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -331,7 +331,7 @@ iris$Species==&quot;setosa&quot;</pre>
 } 
 
 #if then else
-if (condition){
+if (condition) {
   execute this code  
 } else {
   execute this code
@@ -347,11 +347,11 @@ if (condition){
 </ul>
 
 <pre class = 'prettyprint lang-r'>#Or more if statements
-if (condition){
+if (condition) {
   execute this code  
 } else if (condition2) {
   execute this code
-} else if (condition3){
+} else if (condition3) {
   execute this code
 } else {
   #if no conditions met
@@ -364,17 +364,17 @@ if (condition){
 
 <div style="float: left; width: 45%;">
 <pre class = 'prettyprint lang-r'>#silly example
-a&lt;-5
-if (a&lt;10){
+a &lt;- 5
+if (a &lt; 10){
   print(&quot;hi&quot;)
 }</pre>
 
 <pre >## [1] &quot;hi&quot;</pre></div>
 
 <div style="float: right; width: 45%;">
-<pre class = 'prettyprint lang-r'>if (a&lt;10){
+<pre class = 'prettyprint lang-r'>if (a &lt; 10){
   print(&quot;hi&quot;)
-} else if (a&lt;40){
+} else if (a &lt; 40){
   print(&quot;goodbye&quot;)
 } else {
   print(&quot;aloha&quot;)
@@ -387,14 +387,14 @@ if (a&lt;10){
 <p><strong>If then, If then else</strong></p>
 
 <pre class = 'prettyprint lang-r'>#silly example
-a&lt;-20
-if (a&lt;10){
+a &lt;- 20
+if (a &lt; 10){
   print(&quot;hi&quot;)
 }
 
-if (a&lt;10){
+if (a &lt; 10){
   print(&quot;hi&quot;)
-} else if (a&lt;40){
+} else if (a &lt; 40){
   print(&quot;goodbye&quot;)
 } else {
   print(&quot;aloha&quot;)
@@ -407,14 +407,14 @@ if (a&lt;10){
 <p><strong>If then, If then else</strong></p>
 
 <pre class = 'prettyprint lang-r'>#silly example
-a&lt;-&quot;string&quot;
-if (a&lt;10){
+a &lt;- &quot;string&quot;
+if (a &lt; 10){
   print(&quot;hi&quot;)
 }
 
-if (a&lt;10){
+if (a &lt; 10){
   print(&quot;hi&quot;)
-} else if (a&lt;40){
+} else if (a &lt; 40){
   print(&quot;goodbye&quot;)
 } else {
   print(&quot;aloha&quot;)
@@ -432,12 +432,12 @@ if (a&lt;10){
 </ul>
 
 <pre class = 'prettyprint lang-r'>#coerce numeric to string
-c(&quot;hi&quot;,10)</pre>
+c(&quot;hi&quot;, 10)</pre>
 
 <pre >## [1] &quot;hi&quot; &quot;10&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>#coerce TRUE/FALSE to numeric
-c(TRUE,FALSE)+0</pre>
+c(TRUE, FALSE) + 0</pre>
 
 <pre >## [1] 1 0</pre>
 
@@ -462,7 +462,7 @@ c(TRUE,FALSE)+0</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>#logical to character
-c(TRUE,&quot;hi&quot;)</pre>
+c(TRUE, &quot;hi&quot;)</pre>
 
 <pre >## [1] &quot;TRUE&quot; &quot;hi&quot;</pre>
 
@@ -476,16 +476,16 @@ c(TRUE,&quot;hi&quot;)</pre>
 </ul>
 
 <div style="float: left; width: 48%;">
-<pre class = 'prettyprint lang-r'>as.numeric(c(TRUE,FALSE,TRUE))</pre>
+<pre class = 'prettyprint lang-r'>as.numeric(c(TRUE, FALSE, TRUE))</pre>
 
 <pre >## [1] 1 0 1</pre>
 
-<pre class = 'prettyprint lang-r'>mean(c(TRUE,FALSE,TRUE))</pre>
+<pre class = 'prettyprint lang-r'>mean(c(TRUE, FALSE, TRUE))</pre>
 
 <pre >## [1] 0.6666667</pre></div>
 
 <div style="float: right; width: 48%;">
-<pre class = 'prettyprint lang-r'>as.character(c(1,2,3.5,TRUE))</pre>
+<pre class = 'prettyprint lang-r'>as.character(c(1, 2, 3.5, TRUE))</pre>
 
 <pre >## [1] &quot;1&quot;   &quot;2&quot;   &quot;3.5&quot; &quot;1&quot;</pre></div>
 
@@ -564,16 +564,16 @@ c(TRUE,&quot;hi&quot;)</pre>
 <p><strong>Logical Operators</strong></p>
 
 <pre class = 'prettyprint lang-r'>set.seed(3)
-x&lt;-runif(n=10,min=0,max=1); x</pre>
+x &lt;- runif(n = 10, min = 0, max = 1); x</pre>
 
 <pre >##  [1] 0.1680415 0.8075164 0.3849424 0.3277343 0.6021007 0.6043941 0.1246334
 ##  [8] 0.2946009 0.5776099 0.6309793</pre>
 
-<pre class = 'prettyprint lang-r'>(x&lt;0.25)|(x&gt;0.75)</pre>
+<pre class = 'prettyprint lang-r'>(x &lt; 0.25) | (x &gt; 0.75)</pre>
 
 <pre >##  [1]  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</pre>
 
-<pre class = 'prettyprint lang-r'>(x&lt;0.25)||(x&gt;0.75)</pre>
+<pre class = 'prettyprint lang-r'>(x &lt; 0.25) || (x &gt; 0.75)</pre>
 
 <pre >## [1] TRUE</pre>
 
@@ -583,7 +583,8 @@ x&lt;-runif(n=10,min=0,max=1); x</pre>
 <li>Only pull out large petal setosa flowers</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>filter(iris,(Petal.Length&gt;1.5)&amp;(Petal.Width&gt;0.3)&amp;(Species==&quot;setosa&quot;))</pre>
+<pre class = 'prettyprint lang-r'>filter(iris, (Petal.Length &gt; 1.5) &amp; (Petal.Width &gt; 0.3) &amp; 
+         (Species == &quot;setosa&quot;))</pre>
 
 <pre >## # A tibble: 5 × 5
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -615,7 +616,8 @@ x&lt;-runif(n=10,min=0,max=1); x</pre>
 <li><p>Returns values where TRUE is present</p></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>(iris$Petal.Length&gt;1.5)&amp;(iris$Petal.Width&gt;0.3)&amp;(iris$Species==&quot;setosa&quot;)</pre>
+<pre class = 'prettyprint lang-r'>(iris$Petal.Length &gt; 1.5) &amp; (iris$Petal.Width &gt; 0.3) &amp;
+  (iris$Species == &quot;setosa&quot;)</pre>
 
 <pre >##   [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
 ##  [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -659,8 +661,9 @@ x&lt;-runif(n=10,min=0,max=1); x</pre>
 <li><p>Create new variable for <strong>Large Setosa</strong> flowers</p></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>if((iris$Petal.Length&gt;1.5)&amp;(iris$Petal.Width&gt;0.3)&amp;(iris$Species==&quot;setosa&quot;)){
-  &quot;Large Setosa&quot;
+<pre class = 'prettyprint lang-r'>if ((iris$Petal.Length &gt; 1.5) &amp; (iris$Petal.Width &gt; 0.3) &amp;
+      (iris$Species == &quot;setosa&quot;)) {
+   &quot;Large Setosa&quot;
 }</pre>
 
 <pre >## Warning in if ((iris$Petal.Length &gt; 1.5) &amp; (iris$Petal.Width &gt; 0.3) &amp; (iris
@@ -679,7 +682,7 @@ x&lt;-runif(n=10,min=0,max=1); x</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>#syntax
-ifelse(vector_condition,if_true_do_this,if_false_do_this)</pre>
+ifelse(vector_condition, if_true_do_this, if_false_do_this)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-4">
 
@@ -687,8 +690,8 @@ ifelse(vector_condition,if_true_do_this,if_false_do_this)</pre>
 <li>Create new variable for <strong>Large Setosa</strong> flowers</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>ifelse((iris$Petal.Length&gt;1.5)&amp;(iris$Petal.Width&gt;0.3)&amp;(iris$Species==&quot;setosa&quot;),
-       &quot;L-S&quot;,&quot;NotL-S&quot;)</pre>
+<pre class = 'prettyprint lang-r'>ifelse((iris$Petal.Length &gt; 1.5) &amp; (iris$Petal.Width &gt; 0.3) &amp; 
+         (iris$Species == &quot;setosa&quot;), &quot;L-S&quot;, &quot;NotL-S&quot;)</pre>
 
 <pre >##   [1] &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;L-S&quot;    &quot;NotL-S&quot;
 ##   [8] &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot;
@@ -719,9 +722,9 @@ ifelse(vector_condition,if_true_do_this,if_false_do_this)</pre>
 <li><code>dplry</code> has a nice function called <code>transmute()</code></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>transmute(iris,Size=
-          ifelse((Petal.Length&gt;1.5)&amp;(Petal.Width&gt;0.3)&amp;(Species==&quot;setosa&quot;),
-                 &quot;L-S&quot;,&quot;NotL-s&quot;))</pre>
+<pre class = 'prettyprint lang-r'>transmute(iris, Size =
+          ifelse((Petal.Length &gt; 1.5) &amp; (Petal.Width &gt; 0.3) &amp;
+                   (Species == &quot;setosa&quot;), &quot;L-S&quot;, &quot;NotL-s&quot;))</pre>
 
 <pre >## # A tibble: 150 × 1
 ##     Size
@@ -739,9 +742,9 @@ ifelse(vector_condition,if_true_do_this,if_false_do_this)</pre>
 <li><code>dplry</code> function <code>mutate()</code> does the same but <em>adds variable to existing data frame</em></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>mutate(iris,Size=
-         ifelse((Petal.Length&gt;1.5)&amp;(Petal.Width&gt;0.3)&amp;(Species==&quot;setosa&quot;),
-                &quot;LS&quot;,&quot;NotLS&quot;))</pre>
+<pre class = 'prettyprint lang-r'>mutate(iris, Size =
+         ifelse((Petal.Length &gt; 1.5) &amp; (Petal.Width &gt; 0.3) &amp;
+                  (Species == &quot;setosa&quot;), &quot;LS&quot;, &quot;NotLS&quot;))</pre>
 
 <pre >## # A tibble: 150 × 6
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species  Size
@@ -818,13 +821,13 @@ ifelse(vector_condition,if_true_do_this,if_false_do_this)</pre>
 
 <pre class = 'prettyprint lang-r'>#install.packages(&quot;Lahman&quot;)
 library(Lahman)
-head(Batting,n=4) #look at just first 4 observations</pre>
+head(Batting, n = 4) #look at just first 4 observations</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-2">
 
 <p><code>tbl_df</code> - convert data frame to one with better printing</p>
 
-<pre class = 'prettyprint lang-r'>head(Batting,n=4) #look at just first 4 observations</pre>
+<pre class = 'prettyprint lang-r'>head(Batting, n = 4) #look at just first 4 observations</pre>
 
 <pre >##    playerID yearID stint teamID lgID  G  AB  R  H X2B X3B HR RBI SB CS BB
 ## 1 abercda01   1871     1    TRO   NA  1   4  0  0   0   0  0   0  0  0  0
@@ -839,7 +842,7 @@ head(Batting,n=4) #look at just first 4 observations</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-3">
 
-<pre class = 'prettyprint lang-r'>Batting&lt;-tbl_df(Batting)
+<pre class = 'prettyprint lang-r'>Batting &lt;- tbl_df(Batting)
 Batting</pre>
 
 <pre >## # A tibble: 101,332 × 22
@@ -862,7 +865,7 @@ Batting</pre>
 <li>Use <code>filter()</code> to obtain only PIT data</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>filter(Batting,teamID == &quot;PIT&quot;)</pre>
+<pre class = 'prettyprint lang-r'>filter(Batting, teamID == &quot;PIT&quot;)</pre>
 
 <pre >## # A tibble: 4,667 × 22
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -884,7 +887,7 @@ Batting</pre>
 <li>Multiple filters</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>filter(Batting,teamID == &quot;PIT&quot; &amp; yearID == 2000)</pre>
+<pre class = 'prettyprint lang-r'>filter(Batting, teamID == &quot;PIT&quot; &amp; yearID == 2000)</pre>
 
 <pre >## # A tibble: 46 × 22
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -903,7 +906,7 @@ Batting</pre>
 <p><code>arrange</code> - reorder <strong>rows</strong></p>
 
 <pre class = 'prettyprint lang-r'>#reorder by teamID
-arrange(Batting,teamID)</pre>
+arrange(Batting, teamID)</pre>
 
 <pre >## # A tibble: 101,332 × 22
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -941,7 +944,7 @@ arrange(Batting, teamID, G)</pre>
 <p><code>arrange</code> - reorder <strong>rows</strong></p>
 
 <pre class = 'prettyprint lang-r'>#descending instead
-arrange(Batting,teamID,desc(G))</pre>
+arrange(Batting, teamID, desc(G))</pre>
 
 <pre >## # A tibble: 101,332 × 22
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -964,7 +967,7 @@ arrange(Batting,teamID,desc(G))</pre>
 <li>Piping or Chaining with <code>%&gt;%</code> operator helps</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>arrange(filter(Batting,teamID==&quot;PIT&quot;),desc(G))</pre>
+<pre class = 'prettyprint lang-r'>arrange(filter(Batting, teamID == &quot;PIT&quot;), desc(G))</pre>
 
 <pre >## # A tibble: 4,667 × 22
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -987,7 +990,7 @@ arrange(Batting,teamID,desc(G))</pre>
 <li>Piping or Chaining with <code>%&gt;%</code> operator helps</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>Batting %&gt;% filter(teamID==&quot;PIT&quot;) %&gt;% arrange(desc(G))</pre>
+<pre class = 'prettyprint lang-r'>Batting %&gt;% filter(teamID == &quot;PIT&quot;) %&gt;% arrange(desc(G))</pre>
 
 <pre >## # A tibble: 4,667 × 22
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -1011,7 +1014,7 @@ arrange(Batting,teamID,desc(G))</pre>
 <li>If <code>dplyr</code> or <code>magrittr</code> package loaded, can use anywhere</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>a&lt;-runif(n=10)
+<pre class = 'prettyprint lang-r'>a&lt;-runif(n = 10)
 a</pre>
 
 <pre >##  [1] 0.5120159 0.5050239 0.5340354 0.5572494 0.8679195 0.8297087 0.1114492
@@ -1144,7 +1147,7 @@ Batting %&gt;% select(ends_with(&quot;ID&quot;))</pre>
 <p><code>transmute</code> - create new variable</p>
 
 <pre class = 'prettyprint lang-r'>##Create an Extra Base Hits variable
-Batting %&gt;% mutate(ExtraBaseHits=X2B+X3B+HR)</pre>
+Batting %&gt;% mutate(ExtraBaseHits = X2B + X3B + HR)</pre>
 
 <pre >## # A tibble: 101,332 × 23
 ##    playerID yearID stint teamID   lgID     G    AB     R     H   X2B   X3B
@@ -1165,7 +1168,7 @@ Batting %&gt;% mutate(ExtraBaseHits=X2B+X3B+HR)</pre>
 <p><code>transmute</code> - create new variable</p>
 
 <pre class = 'prettyprint lang-r'>#can&#39;t see it!
-Batting %&gt;% mutate(ExtraBaseHits=X2B+X3B+HR) %&gt;% select(ExtraBaseHits)</pre>
+Batting %&gt;% mutate(ExtraBaseHits = X2B + X3B + HR) %&gt;% select(ExtraBaseHits)</pre>
 
 <pre >## # A tibble: 101,332 × 1
 ##   ExtraBaseHits
@@ -1184,7 +1187,7 @@ Batting %&gt;% mutate(ExtraBaseHits=X2B+X3B+HR) %&gt;% select(ExtraBaseHits)</pr
 <p><code>transmute</code> - create new variable</p>
 
 <pre class = 'prettyprint lang-r'>#transmute will keep the new variable only
-Batting %&gt;% transmute(ExtraBaseHits=X2B+X3B+HR)</pre>
+Batting %&gt;% transmute(ExtraBaseHits = X2B + X3B + HR)</pre>
 
 <pre >## # A tibble: 101,332 × 1
 ##   ExtraBaseHits
@@ -1208,7 +1211,7 @@ Batting %&gt;% transmute(ExtraBaseHits=X2B+X3B+HR)</pre>
 <li><code>NA</code> = Not Available (R&#39;s missing data indicator)</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>Batting %&gt;% summarise(AvgX2B=mean(X2B,na.rm=TRUE))</pre>
+<pre class = 'prettyprint lang-r'>Batting %&gt;% summarise(AvgX2B = mean(X2B, na.rm = TRUE))</pre>
 
 <pre >## # A tibble: 1 × 1
 ##     AvgX2B
@@ -1225,7 +1228,7 @@ Batting %&gt;% transmute(ExtraBaseHits=X2B+X3B+HR)</pre>
 <li>Summarization - find avg # of doubles (X2B) <em>by team</em></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>Batting %&gt;% group_by(teamID) %&gt;% summarise(AvgX2B=mean(X2B,na.rm=TRUE))</pre>
+<pre class = 'prettyprint lang-r'>Batting %&gt;% group_by(teamID) %&gt;% summarise(AvgX2B = mean(X2B, na.rm = TRUE))</pre>
 
 <pre >## # A tibble: 149 × 2
 ##   teamID   AvgX2B
@@ -1244,8 +1247,8 @@ Batting %&gt;% transmute(ExtraBaseHits=X2B+X3B+HR)</pre>
 <p>(Cite: <a href='http://rpubs.com/justmarkham/dplyr-tutorial-part-2' title=''>http://rpubs.com/justmarkham/dplyr-tutorial-part-2</a>)</p>
 
 <pre class = 'prettyprint lang-r'># create two simple data frames
-a &lt;- data_frame(color = c(&quot;green&quot;,&quot;yellow&quot;,&quot;red&quot;), num = 1:3)
-b &lt;- data_frame(color = c(&quot;green&quot;,&quot;yellow&quot;,&quot;pink&quot;), size = c(&quot;S&quot;,&quot;M&quot;,&quot;L&quot;))</pre>
+a &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;red&quot;), num = 1:3)
+b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&quot;), size = c(&quot;S&quot;, &quot;M&quot;, &quot;L&quot;))</pre>
 
 <div style="float: left; width: 45%;">
 <pre class = 'prettyprint lang-r'>a</pre>
@@ -1436,7 +1439,7 @@ a</pre>
 <li>specify that the join should occur by matching &quot;color&quot; in &quot;a&quot; with &quot;col&quot; in &quot;b&quot;</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>inner_join(a, b, by=c(&quot;color&quot; = &quot;col&quot;))</pre>
+<pre class = 'prettyprint lang-r'>inner_join(a, b, by = c(&quot;color&quot; = &quot;col&quot;))</pre>
 
 <pre >## # A tibble: 2 × 3
 ##    color   num  size
@@ -1468,7 +1471,6 @@ a</pre>
 
 <ul>
 <li><p><a href='http://www4.stat.ncsu.edu/~post/DataScienceR/ManipulateActivity.html' title=''><strong>Manipulating Data Activity</strong> instructions</a> available on web</p></li>
-<li><p>&quot;Starter&quot; file there if you&#39;d like</p></li>
 <li><p>Work in small groups</p></li>
 <li><p>Ask questions! TAs and I will float about the room</p></li>
 <li><p>Feel free to ask questions about anything you didn&#39;t understand as well!</p></li>

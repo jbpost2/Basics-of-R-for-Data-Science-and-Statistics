@@ -119,8 +119,8 @@ knitr::include_graphics("img/panes.png")
 
 ```{r, echo=TRUE}
 #simple math operations (# is a comment, not evaluated)
-3+7
-10*exp(3)
+3 + 7
+10 * exp(3)
 log(pi^2) #log is natural log by default
 ```
 <!--Output of each of these is actually a vector of length 1!-->
@@ -148,11 +148,11 @@ log(pi^2) #log is natural log by default
 - Can store output in an R 'object'  
 ```{r,echo=TRUE}
 #save for later
-avg<-(5+7+6)/3
+avg <- (5 + 7 + 6) / 3
 #call avg object
 avg
 #strings can be saved as well
-words<-"Hello there!"
+words <- "Hello there!"
 words
 ```
 <!--look at global environment window.  Note that R is case sensitive-->
@@ -175,8 +175,8 @@ words
 ```{r,echo=TRUE}
 #vectors (1 dimensional) objects
 #all elements of the same 'type'
-x<-c(1,3,10,-20,sqrt(2))
-y<-c("cat","dog","bird","floor")
+x <- c(1, 3, 10, -20, sqrt(2))
+y <- c("cat", "dog", "bird", "floor")
 x
 y
 ```
@@ -185,9 +185,9 @@ y
 
 - Many ways to populate a numeric vector
 ```{r,echo=TRUE,}
-1:20/20
-seq(from=1,to=10,by=2)
-runif(4,min=0,max=1)
+1:20 / 20
+seq(from = 1, to = 10, by = 2)
+runif(4, min = 0, max = 1)
 ```
 <!--seq and runif are functions. To use functions you call their name followed by parentheses.-->
 
@@ -215,8 +215,8 @@ runif(4,min=0,max=1)
 -  collection of vectors of the same **type and length**
 ```{r,echo=TRUE}
 #populate vectors
-x<-rep(0.2,times=6)
-y<-c(1,3,4,-1,5,6)
+x <- rep(0.2, times = 6)
+y <- c(1, 3, 4, -1, 5, 6)
 
 #check 'type'
 is.numeric(x)
@@ -231,8 +231,8 @@ is.numeric(y)
 -  collection of vectors of the same **type and length**
 ```{r,echo=TRUE}
 #populate vectors
-x<-rep(0.2,times=6)
-y<-c(1,3,4,-1,5,6)
+x <- rep(0.2, times = 6)
+y <- c(1, 3, 4, -1, 5, 6)
 
 #check 'length'
 length(x)
@@ -247,10 +247,10 @@ length(y)
 -  collection of vectors of the same **type and length**
 ```{r,echo=TRUE}
 #populate vectors
-x<-rep(0.2,times=6)
-y<-c(1,3,4,-1,5,6)
+x <- rep(0.2, times = 6)
+y <- c(1, 3, 4, -1, 5, 6)
 #combine in a matrix (check help(matrix))
-matrix(c(x,y),ncol=2)
+matrix(c(x, y), ncol = 2)
 ```
 <!--Can have as many columns and/or rows as needed-->
 
@@ -261,9 +261,9 @@ matrix(c(x,y),ncol=2)
 </ol>  
 -  collection of vectors of the same **type and length**
 ```{r,echo=TRUE}
-x<-c("Hi","There","!"); y<-c("a","b","c"); z<-c("One","Two","Three")
+x <- c("Hi", "There", "!"); y <- c("a", "b", "c"); z <- c("One", "Two", "Three")
 is.character(x)
-matrix(c(x,y,z),nrow=3)
+matrix(c(x, y, z), nrow = 3)
 ```
 <!--If asked, semi-colon can be used to put more than one piece of code on the same line-->
 
@@ -274,10 +274,10 @@ matrix(c(x,y,z),nrow=3)
 </ol> 
 - collection (list) of vectors of the same **length**
 ```{r,echo=TRUE}
-x<-c("a","b","c","d","e","f")
-y<-c(1,3,4,-1,5,6)
-z<-10:15
-data.frame(char=x,data1=y,data2=z)
+x <- c("a", "b", "c", "d", "e", "f")
+y <- c(1, 3, 4, -1, 5, 6)
+z <- 10:15
+data.frame(char = x, data1 = y, data2 = z)
 ```
 <!--Like a more flexible matrix-->
 
@@ -288,10 +288,10 @@ data.frame(char=x,data1=y,data2=z)
 </ol> 
 - collection (list) of vectors of the same **length**
 ```{r,echo=TRUE,eval=FALSE}
-x<-c("a","b","c","d","e","f")
-y<-c(1,3,4,-1,5,6)
-z<-10:15
-data.frame(char=x,data1=y,data2=z)
+x <- c("a", "b", "c", "d", "e", "f")
+y <- c(1, 3, 4, -1, 5, 6)
+z <- 10:15
+data.frame(char = x, data1 = y, data2 = z)
 ```
 - char, data1, and data2 become the variable names for the data frame
 <!--Valid Name:  A syntactically valid name consists of letters, numbers and the dot or underline characters and starts with a letter or the dot not followed by a number. Names such as ".2way" are not valid and neither are the reserved words. "n1" is valid.
@@ -307,7 +307,7 @@ see ?make.names for more details-->
 </ol> 
 - a vector that can have differing elements
 ```{r,echo=TRUE}
-list("Hi",1,2,"!")
+list("Hi", 1, 2, "!")
 ```
 <!--Still an ordered set of objects-->
 
@@ -319,9 +319,9 @@ list("Hi",1,2,"!")
 - a vector that can have differing elements
 - Not just differing types, but differing objects!
 ```{r,echo=TRUE}
-x<-c("Hi","There","!")
-y<-c(1,3,4,-1,5,6)
-list(x,y)
+x <- c("Hi", "There", "!")
+y <- c(1, 3, 4, -1, 5, 6)
+list(x, y)
 ```
 - More flexible than a Data Frame!
 <!--Perfect for use when you have data with a lot of information/variables-->
@@ -465,8 +465,8 @@ letters[10]
 - Can feed R a vector of values to choose
 ```{r}
 letters[1:4]
-letters[c(5,10,15,20,25)]
-x<-c(1,2,5); letters[x]
+letters[c(5, 10, 15, 20, 25)]
+x <- c(1, 2, 5); letters[x]
 ```
 
 ## Attributes and Basic Data Manipulation
@@ -475,7 +475,7 @@ x<-c(1,2,5); letters[x]
 - Access elements of a matrix using square brackets with a comma in between 
 - Notice the default row names and column names!
 ```{r}
-mat<-matrix(c(1:4,20:17),ncol=2)
+mat <- matrix(c(1:4, 20:17), ncol = 2)
 mat
 ```
 
@@ -486,15 +486,15 @@ mat
 
 <div style="float: left; width: 45%;">
 ```{r}
-mat[2,2]
-mat[,1]
-mat[2,]
+mat[2, 2]
+mat[ , 1]
+mat[2, ]
 ```
 </div>
 <div style="float: right; width: 45%;">
 ```{r}
-mat[2:4,1]
-mat[c(2,4),]
+mat[2:4, 1]
+mat[c(2, 4), ]
 ```
 </div>
 <!--Note that R simplifies the result where possible.  That is, returns an atomic vector if you have only 1 dimension and a matrix if two.  Also, if you only give a single value in the [] then R uses the count of the value in the matrix.  Counts go down columns first.-->
@@ -514,12 +514,12 @@ mat[c(2,4),]
 
 - Can give columns names and use them for access
 
-<div style="float: left; width: 55%;">
+<div style="float: left; width: 60%;">
 ```{r,eval=FALSE}
-mat<-matrix(c(1:4,20:17),ncol=2,
+mat <- matrix(c(1:4, 20:17), ncol = 2,
         ###<b>  
-        dimnames=list(NULL,
-              c("First","Second"))
+          dimnames = list(NULL,
+                c("First", "Second"))
         ###</b>
         )
 mat
@@ -531,9 +531,9 @@ mat<-matrix(c(1:4,20:17),ncol=2,
 mat
 ```
 </div>
-<div style="float: right; width: 40%;">
+<div style="float: right; width: 35%;">
 ```{r}
-mat[,"First"]
+mat[, "First"]
 ```
 </div>
 <!--Can also give a character vector of column names if you'd like-->
@@ -543,9 +543,9 @@ mat[,"First"]
 
 - Alternatively, we can assign the dimnames after creation
 ```{r}
-mat<-matrix(c(1:4,20:17),ncol=2)
+mat <- matrix(c(1:4, 20:17), ncol = 2)
 ### <b>
-dimnames(mat)<-list(NULL,c("First","Second"))
+dimnames(mat) <- list(NULL, c("First", "Second"))
 ### </b>
 mat
 ```
@@ -583,8 +583,8 @@ str(iris)
 
 - Can access just like a matrix
 ```{r}
-iris[1:4,2:4]
-iris[1,]
+iris[1:4, 2:4]
+iris[1, ]
 ```
 <!--Notice iris[1,] returns a data frame not a vector.  iris[,1] returns a vector.  This is due to that attributes associated with the columns but having none with the rows.  [  is actually a function call in R (everything is really) and the default argument on [ is drop=TRUE telling R to coerce whatever is left to the lowest possible dimension.  The attributes on the columns keep R from coercing to 1d.   iris[,1,drop=FALSE] returns a data frame with one column.  (Think of [,] as simplifying by default and [,,drop=F] as preserving.)--> 
 
@@ -594,7 +594,7 @@ iris[1,]
 
 - Can use variable names
 ```{r}
-iris[,c("Sepal.Length","Species")]
+iris[ , c("Sepal.Length", "Species")]
 ```
 
 
@@ -613,7 +613,7 @@ iris$Sepal.Length
 
 <div style="float: left; width:40%;">
 ```{r}
-x<-list("HI",c(10:20),1)
+x <- list("HI", c(10:20), 1)
 x[[1]]
 x[[3]]
 ```
@@ -632,9 +632,9 @@ x[[2]][4:5]
 
 - If named list elements, can use $
 ```{r}
-x<-list("HI",c(10:20),1)
+x <- list("HI", c(10:20), 1)
 str(x)
-x<-list(First="Hi",Second=c(10:20),Third=1)
+x <- list(First="Hi", Second=c(10:20), Third=1)
 x$Second
 ```
 
@@ -653,7 +653,7 @@ iris[[2]]
 
 - Note: Atomic vectors by default don't have any attributes
 ```{r}
-x<-seq(from=1,to=10,by=2)
+x <- seq(from = 1, to = 10, by = 2)
 str(x)
 attributes(x)
 ```
@@ -663,7 +663,7 @@ attributes(x)
 
 - Can add attributes to **any** object
 ```{r}
-names(x)<-letters[1:length(x)]
+names(x) <- letters[1:length(x)]
 str(x)
 attributes(x)
 ```
@@ -674,7 +674,7 @@ attributes(x)
 - New attribute via `attr()`  
 - Attributes returns a list!
 ```{r}
-attr(x,which="MyAttr")<-"Best vector ever"
+attr(x, which = "MyAttr") <- "Best vector ever"
 str(attributes(x))
 attributes(x)$MyAttr
 ```

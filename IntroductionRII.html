@@ -237,7 +237,7 @@ Plenty of other packages on places like GitHub
 
 <pre class = 'prettyprint lang-r'>install.packages(&quot;readr&quot;)
 #can do multiple packages at once
-install.packages(c(&quot;readr&quot;,&quot;readxl&quot;,&quot;haven&quot;,&quot;DBI&quot;,&quot;httr&quot;))</pre>
+install.packages(c(&quot;readr&quot;, &quot;readxl&quot;, &quot;haven&quot;, &quot;DBI&quot;, &quot;httr&quot;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Reading in Data/Writing Out Data</h2></hgroup><article  id="reading-in-datawriting-out-data-3">
 
@@ -479,7 +479,7 @@ setwd(&quot;E:/Other/DataScienceR&quot;)</pre>
 <li>To avoid dealing with downloading files, we&#39;ll pull straight from the web</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>scoreData&lt;-read_csv(file=&quot;https://raw.githubusercontent.com/
+<pre class = 'prettyprint lang-r'>scoreData &lt;- read_csv(file = &quot;https://raw.githubusercontent.com/
                     jbpost2/DataScienceR/master/datasets/scores.csv&quot;)</pre>
 
 <pre >## Parsed with column specification:
@@ -565,7 +565,7 @@ setwd(&quot;E:/Other/DataScienceR&quot;)</pre>
 <li>Look at season column type!</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>scoreStub&lt;-read_csv(&quot;https://raw.githubusercontent.com/
+<pre class = 'prettyprint lang-r'>scoreStub &lt;- read_csv(&quot;https://raw.githubusercontent.com/
                     jbpost2/DataScienceR/master/datasets/scoresStub.csv&quot;)</pre>
 
 <pre >## Parsed with column specification:
@@ -602,7 +602,7 @@ setwd(&quot;E:/Other/DataScienceR&quot;)</pre>
 <li>Can now make pretty plots (covered tomorrow)</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>ggplot(data=scoreData,aes(x=day,y=AFinal))+geom_boxplot()</pre>
+<pre class = 'prettyprint lang-r'>ggplot(data = scoreData, aes(x = day, y = AFinal)) + geom_boxplot()</pre>
 
 <p><img src="data:image/png;base64,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" width="720" /></p>
 
@@ -659,7 +659,7 @@ Ex: day or week
 </ul>
 
 <pre class = 'prettyprint lang-r'>#overwrite day column with factor version
-scoreData$day&lt;-as.factor(scoreData$day)
+scoreData$day &lt;- as.factor(scoreData$day)
 levels(scoreData$day)</pre>
 
 <pre >## [1] &quot;Fri&quot; &quot;Mon&quot; &quot;Sat&quot; &quot;Sun&quot; &quot;Thu&quot; &quot;Tue&quot; &quot;Wed&quot;</pre>
@@ -676,8 +676,8 @@ levels(scoreData$day)</pre>
 </ul></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>scoreData$day&lt;-ordered(scoreData$day, 
-                levels = levels(scoreData$day)[c(7,5,1,3,4,2,6)])
+<pre class = 'prettyprint lang-r'>scoreData$day &lt;- ordered(scoreData$day, 
+                  levels = levels(scoreData$day)[c(7, 5, 1, 3, 4, 2, 6)])
 
 levels(scoreData$day)</pre>
 
@@ -710,9 +710,9 @@ levels(scoreData$day)</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>umpData&lt;-read_delim(&quot;https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/umps2012.txt&quot;,delim=&quot;&gt;&quot;,
-<b>          col_names=c(&quot;Year&quot;,&quot;Month&quot;,&quot;Day&quot;,&quot;Home&quot;,&quot;Away&quot;,&quot;HPUmpire&quot;&quot;)
+<pre class = 'prettyprint lang-r'>umpData &lt;- read_delim(&quot;https://raw.githubusercontent.com/
+                    jbpost2/DataScienceR/master/datasets/umps2012.txt&quot;, delim = &quot;&gt;&quot;,
+<b>     col_names = c(&quot;Year&quot;, &quot;Month&quot;, &quot;Day&quot;, &quot;Home&quot;, &quot;Away&quot;, &quot;HPUmpire&quot;)
 </b>)</pre>
 
 <pre >## Parsed with column specification:
@@ -786,9 +786,9 @@ levels(scoreData$day)</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>#a guess based on reading a few columns
-cigData&lt;-read_fwf(&quot;https://raw.githubusercontent.com/jbpost2/
+cigData &lt;- read_fwf(&quot;https://raw.githubusercontent.com/jbpost2/
                   DataScienceR/master/datasets/cigarettes.txt&quot;,
-<b>                  col_positions=
+<b>                  col_positions =
                       fwf_empty(&quot;https://raw.githubusercontent.com/jbpost2/
                              DataScienceR/master/datasets/cigarettes.txt&quot;,
                  col_names = c(&quot;brand&quot;, &quot;tar&quot;, &quot;nicotine&quot;, &quot;weight&quot;, &quot;co&quot;))
@@ -819,10 +819,10 @@ cigData&lt;-read_fwf(&quot;https://raw.githubusercontent.com/jbpost2/
 <pre class = 'prettyprint lang-r'>#need to skip first line!
 cigData&lt;-read_fwf(&quot;https://raw.githubusercontent.com/
                   jbpost2/DataScienceR/master/datasets/cigarettes.txt&quot;,
-                  col_positions=fwf_empty(&quot;https://raw.githubusercontent.com/jbpost2/
+                  col_positions = fwf_empty(&quot;https://raw.githubusercontent.com/jbpost2/
                        DataScienceR/master/datasets/cigarettes.txt&quot;,
                  col_names = c(&quot;brand&quot;, &quot;tar&quot;, &quot;nicotine&quot;, &quot;weight&quot;, &quot;co&quot;)),
-<b>       skip=1
+<b>       skip = 1
 </b>)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Reading in Data/Writing Out Data</h2></hgroup><article  id="reading-in-datawriting-out-data-31">
@@ -850,10 +850,10 @@ cigData&lt;-read_fwf(&quot;https://raw.githubusercontent.com/
 <pre class = 'prettyprint lang-r'>#another option
 cigData&lt;-read_fwf(&quot;https://raw.githubusercontent.com/jbpost2/
                    DataScienceR/master/datasets/cigarettes.txt&quot;,
-                   col_positions=
-<b>                                 fwf_widths(c(17,4,5,11,4),
+                   col_positions =
+<b>                                 fwf_widths(c(17, 4, 5, 11, 4),
 </b>                col_names = c(&quot;brand&quot;, &quot;tar&quot;, &quot;nicotine&quot;, &quot;weight&quot;, &quot;co&quot;)),
-                    skip=1
+                    skip = 1
   )</pre>
 
 </article></slide><slide class=''><hgroup><h2>Reading in Data/Writing Out Data</h2></hgroup><article  id="reading-in-datawriting-out-data-33">
@@ -901,7 +901,7 @@ cigData&lt;-read_fwf(&quot;https://raw.githubusercontent.com/jbpost2/
 
 <pre class = 'prettyprint lang-r'>library(readxl)
 #just first sheet
-edData&lt;-read_excel(&quot;datasets/censusEd.xls&quot;,sheet=&quot;EDU01A&quot;)</pre>
+edData &lt;- read_excel(&quot;datasets/censusEd.xls&quot;, sheet = &quot;EDU01A&quot;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Reading in Data/Writing Out Data</h2></hgroup><article  id="reading-in-datawriting-out-data-36">
 
@@ -961,8 +961,8 @@ edData&lt;-read_excel(&quot;datasets/censusEd.xls&quot;,sheet=&quot;EDU01A&quot;
 
 <pre class = 'prettyprint lang-r'>library(readxl)
 #just first sheet
-edData&lt;-read_excel(&quot;datasets/censusEd.xls&quot;,sheet=&quot;EDU01A&quot;, 
-<b>                   range=cell_cols(&quot;A:D&quot;)
+edData &lt;- read_excel(&quot;datasets/censusEd.xls&quot;, sheet = &quot;EDU01A&quot;, 
+<b>                   range = cell_cols(&quot;A:D&quot;)
 </b>                   )</pre>
 
 </article></slide><slide class=''><hgroup><h2>Reading in Data/Writing Out Data</h2></hgroup><article  id="reading-in-datawriting-out-data-39">
@@ -1043,7 +1043,7 @@ Use <code>excel_sheets</code>
 </ul>
 
 <pre class = 'prettyprint lang-r'>library(haven)
-bodyFatData&lt;-read_spss(&quot;https://github.com/jbpost2/
+bodyFatData &lt;- read_spss(&quot;https://github.com/jbpost2/
                       DataScienceR/blob/master/datasets/
                       bodyFat.sav?raw=true.sav&quot;)</pre>
 
@@ -1072,7 +1072,7 @@ bodyFatData&lt;-read_spss(&quot;https://github.com/jbpost2/
 <li><p>Not many options!</p></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>smokeData&lt;-read_sas(&quot;https://github.com/jbpost2/
+<pre class = 'prettyprint lang-r'>smokeData &lt;- read_sas(&quot;https://github.com/jbpost2/
                     DataScienceR/blob/master/datasets/
                     smoke2003.sas7bdat?raw=true&quot;)</pre>
 
@@ -1233,7 +1233,7 @@ bodyFatData&lt;-read_spss(&quot;https://github.com/jbpost2/
 </ul></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>attr(smokeData$SDDSRVYR,&quot;label&quot;)</pre>
+<pre class = 'prettyprint lang-r'>attr(smokeData$SDDSRVYR, &quot;label&quot;)</pre>
 
 <pre >## [1] &quot;Data Release Number&quot;</pre>
 
@@ -1251,8 +1251,8 @@ bodyFatData&lt;-read_spss(&quot;https://github.com/jbpost2/
 </ul></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>write_csv(x=smokeData,
-          path=&quot;E:/Other/DataScienceR/datasets/output/smokeData.csv&quot;)</pre>
+<pre class = 'prettyprint lang-r'>write_csv(x = smokeData,
+          path = &quot;E:/Other/DataScienceR/datasets/output/smokeData.csv&quot;)</pre>
 
 <!-- Note: Lose lables here... would need to write a function to grab them and then output them to the data set as an extra row. Or create a different data set to hold them.-->
 
@@ -1271,9 +1271,9 @@ bodyFatData&lt;-read_spss(&quot;https://github.com/jbpost2/
 </ul></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>write_csv(x=bodyFatData,
-          path=&quot;E:/Other/DataScienceR/datasets/smokeData.csv&quot;,
-          append=TRUE)</pre>
+<pre class = 'prettyprint lang-r'>write_csv(x = bodyFatData,
+          path = &quot;E:/Other/DataScienceR/datasets/smokeData.csv&quot;,
+          append = TRUE)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Recap</h2></hgroup><article  id="recap">
 

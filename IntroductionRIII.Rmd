@@ -80,8 +80,7 @@ is.numeric(10)
 <div style="float: right; width: 45%;">
 ```{r}
 is.character("10")
-is.na(c(1:2,NA,3))
-
+is.na(c(1:2, NA, 3))
 ```
 </div>
 
@@ -89,7 +88,7 @@ is.na(c(1:2,NA,3))
 
 - Useful for indexing a data set
 ```{r}
-iris<-tbl_df(iris)
+iris <- tbl_df(iris)
 iris
 ```
 
@@ -98,7 +97,7 @@ iris
 - Useful for indexing a vector
 ```{r}
 ##Obtain a vector that indicates which rows are "setosa" species
-iris$Species=="setosa"
+iris$Species == "setosa"
 ```
 
 ## Logical Statements/Subsetting Data
@@ -106,7 +105,7 @@ iris$Species=="setosa"
 - Useful for indexing a vector
 - Standard way for subsetting data (or use `subset` function)
 ```{r}
-iris[iris$Species=="setosa",]
+iris[iris$Species == "setosa", ]
 ```
 
 ## Logical Statements/Subsetting Data
@@ -114,7 +113,7 @@ iris[iris$Species=="setosa",]
 - Useful for indexing a vector
 - Standard way for subsetting data (or use `subset` function)
 ```{r,eval=FALSE}
-iris[iris$Species=="setosa",]
+iris[iris$Species == "setosa", ]
 ```
 
 - Concept:
@@ -128,14 +127,14 @@ iris[iris$Species=="setosa",]
 - Better way: `filter()` from `dplyr` (installed with `tidyverse`)
 
 ```{r}
-filter(iris,Species=="setosa")
+filter(iris, Species == "setosa")
 ```
 
 
 ## Logical Statements/Subsetting Data
 
 ```{r}
-filter(iris,Species!="setosa")
+filter(iris, Species != "setosa")
 ```
 - We'll spend a good bit of time with dplyr in a bit!
 
@@ -151,7 +150,7 @@ if (condition) {
 } 
 
 #if then else
-if (condition){
+if (condition) {
   execute this code  
 } else {
   execute this code
@@ -165,11 +164,11 @@ if (condition){
 - `if` `then` else concept
 ```{r,eval=FALSE}
 #Or more if statements
-if (condition){
+if (condition) {
   execute this code  
 } else if (condition2) {
   execute this code
-} else if (condition3){
+} else if (condition3) {
   execute this code
 } else {
   #if no conditions met
@@ -184,8 +183,8 @@ if (condition){
 <div style="float: left; width: 45%;">
 ```{r}
 #silly example
-a<-5
-if (a<10){
+a <- 5
+if (a < 10){
   print("hi")
 }
 ```
@@ -193,9 +192,9 @@ if (a<10){
 
 <div style="float: right; width: 45%;">
 ```{r}
-if (a<10){
+if (a < 10){
   print("hi")
-} else if (a<40){
+} else if (a < 40){
   print("goodbye")
 } else {
   print("aloha")
@@ -209,14 +208,14 @@ if (a<10){
 
 ```{r}
 #silly example
-a<-20
-if (a<10){
+a <- 20
+if (a < 10){
   print("hi")
 }
 
-if (a<10){
+if (a < 10){
   print("hi")
-} else if (a<40){
+} else if (a < 40){
   print("goodbye")
 } else {
   print("aloha")
@@ -229,14 +228,14 @@ if (a<10){
 
 ```{r}
 #silly example
-a<-"string"
-if (a<10){
+a <- "string"
+if (a < 10){
   print("hi")
 }
 
-if (a<10){
+if (a < 10){
   print("hi")
-} else if (a<40){
+} else if (a < 40){
   print("goodbye")
 } else {
   print("aloha")
@@ -251,9 +250,9 @@ if (a<10){
 - Ex: Atomic vector - all elements must be the same type
 ```{r}
 #coerce numeric to string
-c("hi",10)
+c("hi", 10)
 #coerce TRUE/FALSE to numeric
-c(TRUE,FALSE)+0
+c(TRUE, FALSE) + 0
 ```
 
 
@@ -269,7 +268,7 @@ c(TRUE,FALSE)+0
         * character.
 ```{r}
 #logical to character
-c(TRUE,"hi")
+c(TRUE, "hi")
 ```
 
 ## Logical Statements
@@ -280,13 +279,13 @@ c(TRUE,"hi")
 
 <div style="float: left; width: 48%;">
 ```{r}
-as.numeric(c(TRUE,FALSE,TRUE))
-mean(c(TRUE,FALSE,TRUE))
+as.numeric(c(TRUE, FALSE, TRUE))
+mean(c(TRUE, FALSE, TRUE))
 ```
 </div>
 <div style="float: right; width: 48%;">
 ```{r}
-as.character(c(1,2,3.5,TRUE))
+as.character(c(1, 2, 3.5, TRUE))
 ```
 </div>
 
@@ -327,16 +326,17 @@ Operator | A,B true       | A true, B false   | A,B false
 
 ```{r}
 set.seed(3)
-x<-runif(n=10,min=0,max=1); x
-(x<0.25)|(x>0.75)
-(x<0.25)||(x>0.75)
+x <- runif(n = 10, min = 0, max = 1); x
+(x < 0.25) | (x > 0.75)
+(x < 0.25) || (x > 0.75)
 ```
 
 ## Subsetting Data
 
 - Only pull out large petal setosa flowers
 ```{r}
-filter(iris,(Petal.Length>1.5)&(Petal.Width>0.3)&(Species=="setosa"))
+filter(iris, (Petal.Length > 1.5) & (Petal.Width > 0.3) & 
+         (Species == "setosa"))
 ```
 
 ## Subsetting Data
@@ -358,7 +358,8 @@ What's the idea for the filter function?
 
 
 ```{r}
-(iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa")
+(iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
+  (iris$Species == "setosa")
 ```
 
 
@@ -384,8 +385,9 @@ What's the idea for the filter function?
  - Create new variable for **Large Setosa** flowers
 
 ```{r,error=TRUE}
-if((iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa")){
-  "Large Setosa"
+if ((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
+      (iris$Species == "setosa")) {
+   "Large Setosa"
 }
 ```
 
@@ -403,15 +405,15 @@ if((iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa")){
 
 ```{r,eval=FALSE}
 #syntax
-ifelse(vector_condition,if_true_do_this,if_false_do_this)
+ifelse(vector_condition, if_true_do_this, if_false_do_this)
 ```
 
 ## Manipulating Data
 
 - Create new variable for **Large Setosa** flowers
 ```{r,error=TRUE}
-ifelse((iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa"),
-       "L-S","NotL-S")
+ifelse((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) & 
+         (iris$Species == "setosa"), "L-S", "NotL-S")
 ```
 
 
@@ -420,18 +422,18 @@ ifelse((iris$Petal.Length>1.5)&(iris$Petal.Width>0.3)&(iris$Species=="setosa"),
 
 - `dplry` has a nice function called `transmute()`  
 ```{r}
-transmute(iris,Size=
-          ifelse((Petal.Length>1.5)&(Petal.Width>0.3)&(Species=="setosa"),
-                 "L-S","NotL-s"))
+transmute(iris, Size =
+          ifelse((Petal.Length > 1.5) & (Petal.Width > 0.3) &
+                   (Species == "setosa"), "L-S", "NotL-s"))
 ```
 
 ## Manipulating Data
 
 - `dplry` function `mutate()` does the same but *adds variable to existing data frame*
 ```{r}
-mutate(iris,Size=
-         ifelse((Petal.Length>1.5)&(Petal.Width>0.3)&(Species=="setosa"),
-                "LS","NotLS"))
+mutate(iris, Size =
+         ifelse((Petal.Length > 1.5) & (Petal.Width > 0.3) &
+                  (Species == "setosa"), "LS", "NotLS"))
 ```
 
 
@@ -487,7 +489,7 @@ mutate(iris,Size=
 ```{r,eval=FALSE}
 #install.packages("Lahman")
 library(Lahman)
-head(Batting,n=4) #look at just first 4 observations
+head(Batting, n = 4) #look at just first 4 observations
 ```
 
 ## Subsetting/Manipulating Data
@@ -497,13 +499,13 @@ head(Batting,n=4) #look at just first 4 observations
 library(Lahman)
 ```
 ```{r}
-head(Batting,n=4) #look at just first 4 observations
+head(Batting, n = 4) #look at just first 4 observations
 ```
 
 ## Subsetting/Manipulating Data
 
 ```{r}
-Batting<-tbl_df(Batting)
+Batting <- tbl_df(Batting)
 Batting
 ```
 
@@ -512,7 +514,7 @@ Batting
 
 - Use `filter()` to obtain only PIT data
 ```{r}
-filter(Batting,teamID == "PIT")
+filter(Batting, teamID == "PIT")
 ```
 
 ## Subsetting/Manipulating Data
@@ -520,7 +522,7 @@ filter(Batting,teamID == "PIT")
 
 - Multiple filters
 ```{r}
-filter(Batting,teamID == "PIT" & yearID == 2000)
+filter(Batting, teamID == "PIT" & yearID == 2000)
 ```
 
 ## Subsetting/Manipulating Data
@@ -528,7 +530,7 @@ filter(Batting,teamID == "PIT" & yearID == 2000)
 
 ```{r}
 #reorder by teamID
-arrange(Batting,teamID)
+arrange(Batting, teamID)
 ```
 
 ## Subsetting/Manipulating Data
@@ -544,7 +546,7 @@ arrange(Batting, teamID, G)
 
 ```{r}
 #descending instead
-arrange(Batting,teamID,desc(G))
+arrange(Batting, teamID, desc(G))
 ```
 
 
@@ -555,7 +557,7 @@ arrange(Batting,teamID,desc(G))
 - Piping or Chaining with `%>%` operator helps
 
 ```{r}
-arrange(filter(Batting,teamID=="PIT"),desc(G))
+arrange(filter(Batting, teamID == "PIT"), desc(G))
 ```
 
 ## Subsetting/Manipulating Data
@@ -565,7 +567,7 @@ arrange(filter(Batting,teamID=="PIT"),desc(G))
 - Piping or Chaining with `%>%` operator helps
 
 ```{r}
-Batting %>% filter(teamID=="PIT") %>% arrange(desc(G))
+Batting %>% filter(teamID == "PIT") %>% arrange(desc(G))
 ```
 
 ## Subsetting/Manipulating Data
@@ -575,7 +577,7 @@ Batting %>% filter(teamID=="PIT") %>% arrange(desc(G))
 - Piping or Chaining with %>% operator helps
 - If `dplyr` or `magrittr` package loaded, can use anywhere
 ```{r}
-a<-runif(n=10)
+a<-runif(n = 10)
 a
 ```
 
@@ -649,7 +651,7 @@ Batting %>% select(ends_with("ID"))
 
 ```{r}
 ##Create an Extra Base Hits variable
-Batting %>% mutate(ExtraBaseHits=X2B+X3B+HR)
+Batting %>% mutate(ExtraBaseHits = X2B + X3B + HR)
 ```
 
 ## Subsetting/Manipulating Data
@@ -659,7 +661,7 @@ Batting %>% mutate(ExtraBaseHits=X2B+X3B+HR)
 
 ```{r}
 #can't see it!
-Batting %>% mutate(ExtraBaseHits=X2B+X3B+HR) %>% select(ExtraBaseHits)
+Batting %>% mutate(ExtraBaseHits = X2B + X3B + HR) %>% select(ExtraBaseHits)
 ```
 
 
@@ -670,7 +672,7 @@ Batting %>% mutate(ExtraBaseHits=X2B+X3B+HR) %>% select(ExtraBaseHits)
 
 ```{r}
 #transmute will keep the new variable only
-Batting %>% transmute(ExtraBaseHits=X2B+X3B+HR)
+Batting %>% transmute(ExtraBaseHits = X2B + X3B + HR)
 ```
 
 
@@ -683,7 +685,7 @@ Batting %>% transmute(ExtraBaseHits=X2B+X3B+HR)
 - Remove `NA`'s
 - `NA` = Not Available (R's missing data indicator)
 ```{r}
-Batting %>% summarise(AvgX2B=mean(X2B,na.rm=TRUE))
+Batting %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
 ```
 
 ## Subsetting/Manipulating Data
@@ -693,7 +695,7 @@ Batting %>% summarise(AvgX2B=mean(X2B,na.rm=TRUE))
 
 - Summarization - find avg \# of doubles (X2B) *by team*
 ```{r}
-Batting %>% group_by(teamID) %>% summarise(AvgX2B=mean(X2B,na.rm=TRUE))
+Batting %>% group_by(teamID) %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
 ```
 
 ## Subsetting/Manipulating Data
@@ -703,8 +705,8 @@ Batting %>% group_by(teamID) %>% summarise(AvgX2B=mean(X2B,na.rm=TRUE))
 
 ```{r}
 # create two simple data frames
-a <- data_frame(color = c("green","yellow","red"), num = 1:3)
-b <- data_frame(color = c("green","yellow","pink"), size = c("S","M","L"))
+a <- data_frame(color = c("green", "yellow", "red"), num = 1:3)
+b <- data_frame(color = c("green", "yellow", "pink"), size = c("S", "M", "L"))
 ```
 
 <div style="float: left; width: 45%;">
@@ -796,7 +798,7 @@ b
 
 - specify that the join should occur by matching "color" in "a" with "col" in "b"
 ```{r}
-inner_join(a, b, by=c("color" = "col"))
+inner_join(a, b, by = c("color" = "col"))
 ```
 
 ## Subsetting/Manipulating Data
@@ -816,9 +818,6 @@ inner_join(a, b, by=c("color" = "col"))
 
 ## Activity 
 - [**Manipulating Data Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ManipulateActivity.html) available on web  
-
-
-- "Starter" file there if you'd like  
 
 - Work in small groups  
 
