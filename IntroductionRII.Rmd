@@ -103,7 +103,7 @@ knitr::include_graphics("img/packages.png")
 
 ## Reading in Data/Writing Out Data
 
-- Once 'installed' on computer, never need to install again  
+- Once 'installed' on computer, never need to install again (unless you update R)  
 
 - **Each session** read the package in using `library()` or `require()`
 
@@ -575,7 +575,7 @@ excel_sheets("datasets/censusEd.xls")
 **Excel Data**
 
 - Using `read_excel()` from readxl package 
-    + Specify cells with continguous range 
+    + Specify cells with contiguous range 
     
 ```{r,eval=FALSE}
 library(readxl)
