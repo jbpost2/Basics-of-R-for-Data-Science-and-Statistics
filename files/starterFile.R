@@ -2,7 +2,7 @@
 ##Code corresponding to activities in course:
 ##Introduction to Data Science Using R
 ##_Your_Name_Here_
-##August 7-8, 2011
+##August 7-8, 2017
 ###########################################################
 
 ###########################################################
