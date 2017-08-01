@@ -277,7 +277,7 @@ matrix(c(x, y, z), nrow = 3)
 x <- c("a", "b", "c", "d", "e", "f")
 y <- c(1, 3, 4, -1, 5, 6)
 z <- 10:15
-data.frame(char = x, data1 = y, data2 = z)
+data.frame(x, y, z)
 ```
 <!--Like a more flexible matrix-->
 
