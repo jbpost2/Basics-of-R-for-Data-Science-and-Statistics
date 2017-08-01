@@ -112,7 +112,7 @@ knitr::include_graphics("img/panes.png")
 - Global options --> Appearance allows font/background changes
 
 
-## Basic Use or R
+## Basic Use of R
 
 - You can type directly into the console to evaluate code  
 - R is the fanciest calculator you could ever want!
@@ -164,7 +164,7 @@ words
      1. Atomic Vector (1d)  
      2. Matrix (2d)  
      3. Array (nd) (we'll skip)  
-     4. Data Frame (nd)  
+     4. Data Frame (2d)  
      5. List (1d)  
 
 
