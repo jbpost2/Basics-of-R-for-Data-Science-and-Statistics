@@ -393,8 +393,6 @@ if ((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
 
 ## Manipulating Data
 
-## Manipulating Data
-
 - Logical statments great for data filtering    
 
 - Quite useful for creating new variables too    
@@ -456,15 +454,15 @@ mutate(iris, Size =
 **Overview of dplyr package**
 
 - Basic commands 
-    + `tbl_df` - convert data frame to one with better printing
-    + `filter` - subset **rows**
-    + `arrange` - reorder **rows**
-    + `select` - subset **columns**
-    + `mutate` - add newly created **column**
-    + `transmute` - create new variable
-    + `group_by` - group **rows** by a variable  
-    + `summarise` - apply basic function to data
-    + `left_join`, `right_join`, `inner_join`, `full_join` - commands to combine multiple data frames
+    + `tbl_df()` - convert data frame to one with better printing
+    + `filter()` - subset **rows**
+    + `arrange()` - reorder **rows**
+    + `select()` - subset **columns**
+    + `mutate()` - add newly created **column**
+    + `transmute()` - create new variable
+    + `group_by()` - group **rows** by a variable  
+    + `summarise()` - apply basic function to data
+    + `left_join()`, `right_join()`, `inner_join()`, `full_join()` - commands to combine multiple data frames
 
 
 ## Tidyverse Syntax
@@ -481,7 +479,7 @@ mutate(iris, Size =
 
 
 ## Subsetting/Manipulating Data
-`tbl_df` - convert data frame to one with better printing
+`tbl_df()` - convert data frame to one with better printing
 
 - If data read in with haven, readxl, or readr already in this format!
 - Just 'wrap' data frame
@@ -493,7 +491,7 @@ head(Batting, n = 4) #look at just first 4 observations
 ```
 
 ## Subsetting/Manipulating Data
-`tbl_df` - convert data frame to one with better printing
+`tbl_df()` - convert data frame to one with better printing
 
 ```{r,eval=TRUE,echo=FALSE}
 library(Lahman)
@@ -510,7 +508,7 @@ Batting
 ```
 
 ## Subsetting/Manipulating Data
-`filter` - subset **rows**
+`filter()` - subset **rows**
 
 - Use `filter()` to obtain only PIT data
 ```{r}
@@ -518,7 +516,7 @@ filter(Batting, teamID == "PIT")
 ```
 
 ## Subsetting/Manipulating Data
-`filter` - subset **rows**
+`filter()` - subset **rows**
 
 - Multiple filters
 ```{r}
@@ -526,7 +524,7 @@ filter(Batting, teamID == "PIT" & yearID == 2000)
 ```
 
 ## Subsetting/Manipulating Data
-`arrange` - reorder **rows**
+`arrange()` - reorder **rows**
 
 ```{r}
 #reorder by teamID
@@ -534,7 +532,7 @@ arrange(Batting, teamID)
 ```
 
 ## Subsetting/Manipulating Data
-`arrange` - reorder **rows**
+`arrange()` - reorder **rows**
 
 ```{r}
 #get secondary arrangement as well
@@ -542,7 +540,7 @@ arrange(Batting, teamID, G)
 ```
 
 ## Subsetting/Manipulating Data
-`arrange` - reorder **rows**
+`arrange()` - reorder **rows**
 
 ```{r}
 #descending instead
@@ -592,7 +590,7 @@ a %>% quantile() %>% range()
 
 
 ## Subsetting/Manipulating Data
-`select` - subset **columns**
+`select()` - subset **columns**
 
 - Often only want select variables (saw `$` and `[ , ]`)
 - `select()` function has same syntax as other `dplyr` functions!
@@ -603,7 +601,7 @@ Batting %>% select(X2B)
 ```
 
 ## Subsetting/Manipulating Data
-`select` - subset **columns**
+`select()` - subset **columns**
 
 - Many ways to select variables 
 
@@ -613,7 +611,7 @@ Batting %>% select(X2B:HR)
 ```
 
 ## Subsetting/Manipulating Data
-`select` - subset **columns**
+`select()` - subset **columns**
 
 - Many ways to select variables 
 
@@ -624,7 +622,7 @@ Batting %>% select(contains("X"))
 
 
 ## Subsetting/Manipulating Data
-`select` - subset **columns**
+`select()` - subset **columns**
 
 - Many ways to select variables 
 
@@ -635,7 +633,7 @@ Batting %>% select(starts_with("X"))
 
 
 ## Subsetting/Manipulating Data
-`select` - subset **columns**
+`select()` - subset **columns**
 
 - Many ways to select variables 
 
@@ -645,9 +643,9 @@ Batting %>% select(ends_with("ID"))
 ```
 
 ## Subsetting/Manipulating Data
-`mutate` - add newly created **column**  
+`mutate()` - add newly created **column**  
 
-`transmute` - create new variable
+`transmute()` - create new variable
 
 ```{r}
 ##Create an Extra Base Hits variable
@@ -655,9 +653,9 @@ Batting %>% mutate(ExtraBaseHits = X2B + X3B + HR)
 ```
 
 ## Subsetting/Manipulating Data
-`mutate` - add newly created **column**  
+`mutate()` - add newly created **column**  
 
-`transmute` - create new variable
+`transmute()` - create new variable
 
 ```{r}
 #can't see it!
@@ -666,9 +664,9 @@ Batting %>% mutate(ExtraBaseHits = X2B + X3B + HR) %>% select(ExtraBaseHits)
 
 
 ## Subsetting/Manipulating Data
-`mutate` - add newly created **column**  
+`mutate()` - add newly created **column**  
 
-`transmute` - create new variable
+`transmute()` - create new variable
 
 ```{r}
 #transmute will keep the new variable only
@@ -677,9 +675,9 @@ Batting %>% transmute(ExtraBaseHits = X2B + X3B + HR)
 
 
 ## Subsetting/Manipulating Data
-`group_by` - group **rows** by a variable  
+`group_by()` - group **rows** by a variable  
 
-`summarise` - apply basic function to data
+`summarise()` - apply basic function to data
 
 - Summarization - find avg \# of doubles (X2B) 
 - Remove `NA`'s
@@ -689,9 +687,9 @@ Batting %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
 ```
 
 ## Subsetting/Manipulating Data
-`group_by` - group **rows** by a variable  
+`group_by()` - group **rows** by a variable  
 
-`summarise` - apply basic function to data
+`summarise()` - apply basic function to data
 
 - Summarization - find avg \# of doubles (X2B) *by team*
 ```{r}
@@ -699,7 +697,7 @@ Batting %>% group_by(teamID) %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 (Cite: http://rpubs.com/justmarkham/dplyr-tutorial-part-2)
 
@@ -721,7 +719,7 @@ b
 </div>
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - Only include observations found in both "a" and "b" (automatically joins on variables that appear in both tables)
 
@@ -730,7 +728,7 @@ inner_join(a, b)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - include observations found in either "a" or "b"
 ```{r}
@@ -738,7 +736,7 @@ full_join(a, b)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - include all observations found in "a"
 ```{r}
@@ -746,7 +744,7 @@ left_join(a, b)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - include all observations found in "b"
 ```{r}
@@ -754,7 +752,7 @@ right_join(a, b)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - `right_join(a, b)` is identical to `left_join(b, a)` except for column ordering
 ```{r}
@@ -762,7 +760,7 @@ left_join(b, a)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - filter "a" to only show observations that match "b"
 ```{r}
@@ -770,7 +768,7 @@ semi_join(a, b)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - filter "a" to only show observations that don't match "b"
 ```{r}
@@ -778,7 +776,7 @@ anti_join(a, b)
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - sometimes matching variables don't have identical names
 
@@ -794,7 +792,7 @@ b
 ```
 
 ## Subsetting/Manipulating Data
-`left_join`, `right_join`, `inner_join`, `full_join` - combine multiple DFs
+`left_join()`, `right_join()`, `inner_join()`, `full_join()` - combine multiple DFs
 
 - specify that the join should occur by matching "color" in "a" with "col" in "b"
 ```{r}
@@ -805,15 +803,15 @@ inner_join(a, b, by = c("color" = "col"))
 **Overview of `dplyr` package** [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 - Basic commands 
-    + `tbl_df` - convert data frame to one with better printing
-    + `filter` - subset **rows**
-    + `arrange` - reorder **rows**
-    + `select` - subset **columns**
-    + `mutate` - add newly created **column**
-    + `transmute` - create new variable
-    + `group_by` - group **rows** by a variable  
-    + `summarise` - apply basic function to data
-    + `left_join`, `right_join`, `inner_join`, `full_join` - commands to combine multiple data frames
+    + `tbl_df()` - convert data frame to one with better printing
+    + `filter()` - subset **rows**
+    + `arrange()` - reorder **rows**
+    + `select()` - subset **columns**
+    + `mutate()` - add newly created **column**
+    + `transmute()` - create new variable
+    + `group_by()` - group **rows** by a variable  
+    + `summarise()` - apply basic function to data
+    + `left_join()`, `right_join()`, `inner_join()`, `full_join()` - commands to combine multiple data frames
     
 
 ## Activity 

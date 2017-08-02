@@ -672,8 +672,6 @@ x &lt;- runif(n = 10, min = 0, max = 1); x</pre>
 
 </article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-2">
 
-</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-3">
-
 <ul>
 <li><p>Logical statments great for data filtering</p></li>
 <li><p>Quite useful for creating new variables too</p></li>
@@ -684,7 +682,7 @@ x &lt;- runif(n = 10, min = 0, max = 1); x</pre>
 <pre class = 'prettyprint lang-r'>#syntax
 ifelse(vector_condition, if_true_do_this, if_false_do_this)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-4">
+</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-3">
 
 <ul>
 <li>Create new variable for <strong>Large Setosa</strong> flowers</li>
@@ -716,7 +714,7 @@ ifelse(vector_condition, if_true_do_this, if_false_do_this)</pre>
 ## [141] &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot;
 ## [148] &quot;NotL-S&quot; &quot;NotL-S&quot; &quot;NotL-S&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-5">
+</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-4">
 
 <ul>
 <li><code>dplry</code> has a nice function called <code>transmute()</code></li>
@@ -736,7 +734,7 @@ ifelse(vector_condition, if_true_do_this, if_false_do_this)</pre>
 ## 5 NotL-s
 ## # ... with 145 more rows</pre>
 
-</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-6">
+</article></slide><slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data-5">
 
 <ul>
 <li><code>dplry</code> function <code>mutate()</code> does the same but <em>adds variable to existing data frame</em></li>
@@ -776,15 +774,15 @@ ifelse(vector_condition, if_true_do_this, if_false_do_this)</pre>
 <li>Basic commands
 
 <ul>
-<li><code>tbl_df</code> - convert data frame to one with better printing</li>
-<li><code>filter</code> - subset <strong>rows</strong></li>
-<li><code>arrange</code> - reorder <strong>rows</strong></li>
-<li><code>select</code> - subset <strong>columns</strong></li>
-<li><code>mutate</code> - add newly created <strong>column</strong></li>
-<li><code>transmute</code> - create new variable</li>
-<li><code>group_by</code> - group <strong>rows</strong> by a variable<br/></li>
-<li><code>summarise</code> - apply basic function to data</li>
-<li><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - commands to combine multiple data frames</li>
+<li><code>tbl_df()</code> - convert data frame to one with better printing</li>
+<li><code>filter()</code> - subset <strong>rows</strong></li>
+<li><code>arrange()</code> - reorder <strong>rows</strong></li>
+<li><code>select()</code> - subset <strong>columns</strong></li>
+<li><code>mutate()</code> - add newly created <strong>column</strong></li>
+<li><code>transmute()</code> - create new variable</li>
+<li><code>group_by()</code> - group <strong>rows</strong> by a variable<br/></li>
+<li><code>summarise()</code> - apply basic function to data</li>
+<li><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - commands to combine multiple data frames</li>
 </ul></li>
 </ul>
 
@@ -812,7 +810,7 @@ ifelse(vector_condition, if_true_do_this, if_false_do_this)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-1">
 
-<p><code>tbl_df</code> - convert data frame to one with better printing</p>
+<p><code>tbl_df()</code> - convert data frame to one with better printing</p>
 
 <ul>
 <li>If data read in with haven, readxl, or readr already in this format!</li>
@@ -825,7 +823,7 @@ head(Batting, n = 4) #look at just first 4 observations</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-2">
 
-<p><code>tbl_df</code> - convert data frame to one with better printing</p>
+<p><code>tbl_df()</code> - convert data frame to one with better printing</p>
 
 <pre class = 'prettyprint lang-r'>head(Batting, n = 4) #look at just first 4 observations</pre>
 
@@ -859,7 +857,7 @@ Batting</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-4">
 
-<p><code>filter</code> - subset <strong>rows</strong></p>
+<p><code>filter()</code> - subset <strong>rows</strong></p>
 
 <ul>
 <li>Use <code>filter()</code> to obtain only PIT data</li>
@@ -881,7 +879,7 @@ Batting</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-5">
 
-<p><code>filter</code> - subset <strong>rows</strong></p>
+<p><code>filter()</code> - subset <strong>rows</strong></p>
 
 <ul>
 <li>Multiple filters</li>
@@ -903,7 +901,7 @@ Batting</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-6">
 
-<p><code>arrange</code> - reorder <strong>rows</strong></p>
+<p><code>arrange()</code> - reorder <strong>rows</strong></p>
 
 <pre class = 'prettyprint lang-r'>#reorder by teamID
 arrange(Batting, teamID)</pre>
@@ -922,7 +920,7 @@ arrange(Batting, teamID)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-7">
 
-<p><code>arrange</code> - reorder <strong>rows</strong></p>
+<p><code>arrange()</code> - reorder <strong>rows</strong></p>
 
 <pre class = 'prettyprint lang-r'>#get secondary arrangement as well
 arrange(Batting, teamID, G)</pre>
@@ -941,7 +939,7 @@ arrange(Batting, teamID, G)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-8">
 
-<p><code>arrange</code> - reorder <strong>rows</strong></p>
+<p><code>arrange()</code> - reorder <strong>rows</strong></p>
 
 <pre class = 'prettyprint lang-r'>#descending instead
 arrange(Batting, teamID, desc(G))</pre>
@@ -1036,7 +1034,7 @@ a %&gt;% quantile()</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-13">
 
-<p><code>select</code> - subset <strong>columns</strong></p>
+<p><code>select()</code> - subset <strong>columns</strong></p>
 
 <ul>
 <li>Often only want select variables (saw <code>$</code> and <code>[ , ]</code>)</li>
@@ -1058,7 +1056,7 @@ Batting %&gt;% select(X2B)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-14">
 
-<p><code>select</code> - subset <strong>columns</strong></p>
+<p><code>select()</code> - subset <strong>columns</strong></p>
 
 <ul>
 <li>Many ways to select variables</li>
@@ -1079,7 +1077,7 @@ Batting %&gt;% select(X2B:HR)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-15">
 
-<p><code>select</code> - subset <strong>columns</strong></p>
+<p><code>select()</code> - subset <strong>columns</strong></p>
 
 <ul>
 <li>Many ways to select variables</li>
@@ -1100,7 +1098,7 @@ Batting %&gt;% select(contains(&quot;X&quot;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-16">
 
-<p><code>select</code> - subset <strong>columns</strong></p>
+<p><code>select()</code> - subset <strong>columns</strong></p>
 
 <ul>
 <li>Many ways to select variables</li>
@@ -1121,7 +1119,7 @@ Batting %&gt;% select(starts_with(&quot;X&quot;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-17">
 
-<p><code>select</code> - subset <strong>columns</strong></p>
+<p><code>select()</code> - subset <strong>columns</strong></p>
 
 <ul>
 <li>Many ways to select variables</li>
@@ -1142,9 +1140,9 @@ Batting %&gt;% select(ends_with(&quot;ID&quot;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-18">
 
-<p><code>mutate</code> - add newly created <strong>column</strong></p>
+<p><code>mutate()</code> - add newly created <strong>column</strong></p>
 
-<p><code>transmute</code> - create new variable</p>
+<p><code>transmute()</code> - create new variable</p>
 
 <pre class = 'prettyprint lang-r'>##Create an Extra Base Hits variable
 Batting %&gt;% mutate(ExtraBaseHits = X2B + X3B + HR)</pre>
@@ -1163,9 +1161,9 @@ Batting %&gt;% mutate(ExtraBaseHits = X2B + X3B + HR)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-19">
 
-<p><code>mutate</code> - add newly created <strong>column</strong></p>
+<p><code>mutate()</code> - add newly created <strong>column</strong></p>
 
-<p><code>transmute</code> - create new variable</p>
+<p><code>transmute()</code> - create new variable</p>
 
 <pre class = 'prettyprint lang-r'>#can&#39;t see it!
 Batting %&gt;% mutate(ExtraBaseHits = X2B + X3B + HR) %&gt;% select(ExtraBaseHits)</pre>
@@ -1182,9 +1180,9 @@ Batting %&gt;% mutate(ExtraBaseHits = X2B + X3B + HR) %&gt;% select(ExtraBaseHit
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-20">
 
-<p><code>mutate</code> - add newly created <strong>column</strong></p>
+<p><code>mutate()</code> - add newly created <strong>column</strong></p>
 
-<p><code>transmute</code> - create new variable</p>
+<p><code>transmute()</code> - create new variable</p>
 
 <pre class = 'prettyprint lang-r'>#transmute will keep the new variable only
 Batting %&gt;% transmute(ExtraBaseHits = X2B + X3B + HR)</pre>
@@ -1201,9 +1199,9 @@ Batting %&gt;% transmute(ExtraBaseHits = X2B + X3B + HR)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-21">
 
-<p><code>group_by</code> - group <strong>rows</strong> by a variable</p>
+<p><code>group_by()</code> - group <strong>rows</strong> by a variable</p>
 
-<p><code>summarise</code> - apply basic function to data</p>
+<p><code>summarise()</code> - apply basic function to data</p>
 
 <ul>
 <li>Summarization - find avg # of doubles (X2B)</li>
@@ -1220,9 +1218,9 @@ Batting %&gt;% transmute(ExtraBaseHits = X2B + X3B + HR)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-22">
 
-<p><code>group_by</code> - group <strong>rows</strong> by a variable</p>
+<p><code>group_by()</code> - group <strong>rows</strong> by a variable</p>
 
-<p><code>summarise</code> - apply basic function to data</p>
+<p><code>summarise()</code> - apply basic function to data</p>
 
 <ul>
 <li>Summarization - find avg # of doubles (X2B) <em>by team</em></li>
@@ -1242,7 +1240,7 @@ Batting %&gt;% transmute(ExtraBaseHits = X2B + X3B + HR)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-23">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <p>(Cite: <a href='http://rpubs.com/justmarkham/dplyr-tutorial-part-2' title=''>http://rpubs.com/justmarkham/dplyr-tutorial-part-2</a>)</p>
 
@@ -1272,7 +1270,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-24">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>Only include observations found in both &quot;a&quot; and &quot;b&quot; (automatically joins on variables that appear in both tables)</li>
@@ -1290,7 +1288,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-25">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>include observations found in either &quot;a&quot; or &quot;b&quot;</li>
@@ -1310,7 +1308,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-26">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>include all observations found in &quot;a&quot;</li>
@@ -1329,7 +1327,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-27">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>include all observations found in &quot;b&quot;</li>
@@ -1348,7 +1346,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-28">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li><code>right_join(a, b)</code> is identical to <code>left_join(b, a)</code> except for column ordering</li>
@@ -1367,7 +1365,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-29">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>filter &quot;a&quot; to only show observations that match &quot;b&quot;</li>
@@ -1385,7 +1383,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-30">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>filter &quot;a&quot; to only show observations that don&#39;t match &quot;b&quot;</li>
@@ -1402,7 +1400,7 @@ b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&q
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-31">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>sometimes matching variables don&#39;t have identical names</li>
@@ -1433,7 +1431,7 @@ a</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting/Manipulating Data</h2></hgroup><article  id="subsettingmanipulating-data-32">
 
-<p><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - combine multiple DFs</p>
+<p><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - combine multiple DFs</p>
 
 <ul>
 <li>specify that the join should occur by matching &quot;color&quot; in &quot;a&quot; with &quot;col&quot; in &quot;b&quot;</li>
@@ -1455,15 +1453,15 @@ a</pre>
 <li>Basic commands
 
 <ul>
-<li><code>tbl_df</code> - convert data frame to one with better printing</li>
-<li><code>filter</code> - subset <strong>rows</strong></li>
-<li><code>arrange</code> - reorder <strong>rows</strong></li>
-<li><code>select</code> - subset <strong>columns</strong></li>
-<li><code>mutate</code> - add newly created <strong>column</strong></li>
-<li><code>transmute</code> - create new variable</li>
-<li><code>group_by</code> - group <strong>rows</strong> by a variable<br/></li>
-<li><code>summarise</code> - apply basic function to data</li>
-<li><code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code> - commands to combine multiple data frames</li>
+<li><code>tbl_df()</code> - convert data frame to one with better printing</li>
+<li><code>filter()</code> - subset <strong>rows</strong></li>
+<li><code>arrange()</code> - reorder <strong>rows</strong></li>
+<li><code>select()</code> - subset <strong>columns</strong></li>
+<li><code>mutate()</code> - add newly created <strong>column</strong></li>
+<li><code>transmute()</code> - create new variable</li>
+<li><code>group_by()</code> - group <strong>rows</strong> by a variable<br/></li>
+<li><code>summarise()</code> - apply basic function to data</li>
+<li><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code> - commands to combine multiple data frames</li>
 </ul></li>
 </ul>
 

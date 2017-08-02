@@ -711,7 +711,8 @@ levels(scoreData$day)</pre>
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'>umpData &lt;- read_delim(&quot;https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/umps2012.txt&quot;, delim = &quot;&gt;&quot;,
+                    jbpost2/DataScienceR/master/datasets/umps2012.txt&quot;, 
+                    delim = &quot;&gt;&quot;,
 <b>     col_names = c(&quot;Year&quot;, &quot;Month&quot;, &quot;Day&quot;, &quot;Home&quot;, &quot;Away&quot;, &quot;HPUmpire&quot;)
 </b>)</pre>
 
@@ -991,7 +992,7 @@ edData &lt;- read_excel(&quot;datasets/censusEd.xls&quot;, sheet = &quot;EDU01A&
 
 <li>
 
-Use <code>sheet = &quot;name&quot;</code> or <code>sheet = \#</code>
+Use <code>sheet = &quot;name&quot;</code> or <code>sheet = #</code>
 
 </li>
 
@@ -1013,7 +1014,13 @@ Use <code>excel_sheets</code>
 
 <li>
 
-<code>range = cell_cols(&quot;...&quot;)&#39; &lt;/li&gt; &lt;li&gt;</code>range = cell_rows(&quot;&#8230;&quot;)`
+<code>range = cell_cols(&quot;...&quot;)</code>
+
+</li>
+
+<li>
+
+<code>range = cell_rows(&quot;...&quot;)</code>
 
 </li>
 

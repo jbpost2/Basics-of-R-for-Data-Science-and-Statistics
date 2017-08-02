@@ -1203,7 +1203,6 @@ library(corrplot)
 ```
 ```{r,eval=FALSE}
 corrplot(Correlation, type = "upper",
-         title = "Figure 2: Correlation matrix of variables.",
          tl.pos = "lt")
 corrplot(Correlation, type = "lower", method = "number",
          add = TRUE, diag = FALSE, tl.pos = "n")
@@ -1212,7 +1211,7 @@ corrplot(Correlation, type = "lower", method = "number",
 ## Numerical and Graphical Summaries  
 
 ```{r,eval=TRUE,echo=FALSE}
-corrplot(Correlation,type="upper",title="Figure 2: Correlation matrix of variables.",tl.pos="lt")
+corrplot(Correlation,type="upper",tl.pos="lt")
 corrplot(Correlation,type="lower",method="number",add=TRUE,diag=FALSE,tl.pos="n")
 ```
 

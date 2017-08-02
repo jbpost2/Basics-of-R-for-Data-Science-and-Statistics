@@ -389,7 +389,8 @@ ggplot(data = filter(scoreData, day %in% c("Mon", "Sat", "Sun", "Thu")),aes(x=da
 
 ```{r,eval=FALSE}
 umpData <- read_delim("https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/umps2012.txt", delim = ">",
+                    jbpost2/DataScienceR/master/datasets/umps2012.txt", 
+                    delim = ">",
 ### <b>
      col_names = c("Year", "Month", "Day", "Home", "Away", "HPUmpire")
 ### </b>
@@ -605,12 +606,12 @@ Using `read_excel()` from `readxl` package
 
 > - Reads both xls and xlsx files
 > - Specify sheet with name or integers (or `NULL` for 1st)  
-       <ul> <li> Use `sheet = "name"` or `sheet = \#` </li></ul> 
+       <ul> <li> Use `sheet = "name"` or `sheet = #` </li></ul> 
 > - Look at sheets available    
       <ul> <li>  Use `excel_sheets`</li></ul>    
 > - Specify cells with continguous range  
         <ul> 
-          <li> `range = cell_cols("...")' </li>
+          <li> `range = cell_cols("...")` </li>  
           <li> `range = cell_rows("...")`</li>
         </ul>
 > - Specify cells   
