@@ -56,7 +56,7 @@ norm <- rnorm(n = 30)
 
 #1. Go to the gitHub datasets folder and look at the breastcancer.dat file. Click on the "raw" button.
 
-#2. Read in the BreastCancer.dat data file using the URL you got for the gitHub page after clicking "raw". Save the R object as cancerData.
+#2. Read in the BreastCancer.dat data file using the URL you got for the gitHub page after clicking "raw". Note this is a tab delimited file.  Save the R object as cancerData.
 
 #3. Repeat the above process to read in the mosquito.txt file. Save the R object as mosquitoData.
 
@@ -65,7 +65,7 @@ norm <- rnorm(n = 30)
 rbind(mosquitoData, mosquitoData2)
 #4b. Write the mosquitoFullData out to a .csv file with name of your choice.
 
-#5. Repeat the above process to read in the effort.dta file. Note that this is a stata file. Save the R object as effortData.
+#5. Repeat the above process to read in the effort.dta file. Note that this is a stata file. Right click on view raw and save the link. Save the R object as effortData.
 
 
 ###########################################################
