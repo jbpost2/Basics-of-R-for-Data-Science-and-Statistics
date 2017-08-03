@@ -1792,7 +1792,7 @@ predict(fit2, newdata = data.frame(college = 40, Perot = 20))
 
 
 ## Activity 
-- [**Basic Analysis Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/A nalysisActivity.html) available on web  
+- [**Basic Analysis Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/AnalysisActivity.html) available on web  
 
 - Work in small groups  
 
