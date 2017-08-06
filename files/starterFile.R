@@ -24,7 +24,7 @@ paste(adj, nouns)
 #3. Create and save a vector of 26 random values between 0 and 1 using the code: 
 unif <- runif(n = 26)
 #3a. Create and save a vector of 26 random values from the standard normal distribution using the code: 
-norm <- rnorm(n = 30)
+norm <- rnorm(n = 26)
 #3b. Type `letters' into the console. This is a built-in object in R.
 #3c. Create and save a data frame that has three columns given by letters, unif, and norm. Make sure the columns are named and call the object 'dataDF'.
 
@@ -65,7 +65,7 @@ norm <- rnorm(n = 30)
 rbind(mosquitoData, mosquitoData2)
 #4b. Write the mosquitoFullData out to a .csv file with name of your choice.
 
-#5. Repeat the above process to read in the effort.dta file. Note that this is a stata file. Right click on view raw and save the link. Save the R object as effortData.
+#5. Repeat the above process to read in the effort.dta file. Note that this is a stata file. Right click on view raw and copy the link address. Save the R object as effortData.
 
 
 ###########################################################
@@ -88,7 +88,7 @@ rbind(mosquitoData, mosquitoData2)
 
 #7. Have R find the average 'size' of the tumor for the "flag" and "no flag" groups in one R statment.
 
-#8. Have R find the number of women that were premenopausal and Postmenopausal.
+#8. Have R find the number of women that were premenopausal and Postmenopausal, respectively.
 
 #9. Create a new data frame called abbCancerData that only has the id, size, grade, and flag variables.
 
@@ -107,9 +107,9 @@ rbind(mosquitoData, mosquitoData2)
                                                                         
 #4. Create a bar chart of the player birth month frequencies. Give the plot appropriate labels.
                                                                       
-#5. Create a two-way contingency table that gives the frequencies of birthCountry and the way the player throws ("throws").
+#5. Create a two-way contingency table that gives the frequencies of how the player bats ("bats") and the way the player throws ("throws").
                                                                       
-#6. Create a stacked bar chart of the player birth month frequencies. Give the plot appropriate labels.
+#6. Create a stacked bar chart of the player bat and throw preferences. Give the plot appropriate labels.
 
 
 ###########################################################
