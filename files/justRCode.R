@@ -204,8 +204,7 @@ levels(scoreData$day)
 ggplot(data = filter(scoreData, day %in% c("Mon", "Sat", "Sun", "Thu")), aes(x = day, y = AFinal)) + 
   geom_boxplot()
 
-umpData <- read_delim("https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/umps2012.txt", delim = ">", col_names = c("Year", "Month", "Day", "Home", "Away", "HPUmpire"))
+umpData <- read_delim("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/umps2012.txt", delim = ">", col_names = c("Year", "Month", "Day", "Home", "Away", "HPUmpire"))
 
 umpData
 
