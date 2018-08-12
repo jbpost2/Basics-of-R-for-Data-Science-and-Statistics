@@ -1,7 +1,7 @@
 #####################################################
 ##Just the R code in lectures from course:
 ##Introduction to Data Science using R
-##Justin Post 2017
+##Justin Post 2018
 #####################################################
 
 #####################################################
@@ -15,6 +15,8 @@
 3 + 7
 10 * exp(3)
 log(pi^2) #log is natural log by default
+
+hist(cars$dist)
 
 #save for later
 avg <- (5 + 7 + 6) / 3
@@ -50,6 +52,7 @@ length(y)
 
 #combine in a matrix (check help(matrix))
 matrix(c(x, y), ncol = 2)
+matrix(c(x, y), nrow = 2, byrow = TRUE)
 
 x <- c("Hi", "There", "!")
 y <- c("a", "b", "c")
@@ -65,11 +68,7 @@ data.frame(x, y, z)
 data.frame(char = x, data1 = y, data2 = z)
 
 #lists
-list("Hi", 1, 2, "!")
-
-x <- c("Hi", "There", "!")
-y <- c(1, 3, 4, -1, 5, 6)
-list(x, y)
+list("Hi", 1:3, rnorm(2), c("!", "?"))
 
 
 #####################################################
@@ -105,17 +104,7 @@ mat <- matrix(c(1:4, 20:17), ncol = 2,
               )
 mat
 
-mat<-matrix(c(1:4,20:17),ncol=2,
-            dimnames=list(NULL,
-                          c("First","Second")))
-mat
-
 mat[, "First"]
-
-#assign after creation
-mat <- matrix(c(1:4, 20:17), ncol = 2)
-dimnames(mat) <- list(NULL, c("First", "Second"))
-mat
 
 str(mat)
 attributes(mat)
@@ -151,13 +140,15 @@ x <- seq(from = 1, to = 10, by = 2)
 str(x)
 attributes(x)
 
-names(x) <- letters[1:length(x)]
-str(x)
-attributes(x)
+str(attributes(iris))
 
-attr(x, which = "MyAttr") <- "Best vector ever"
-str(attributes(x))
-attributes(x)$MyAttr
+attributes(iris)$names
+attributes(iris)$names[1] <- "Sepal_Length"
+attributes(iris)$names
+
+names(iris)
+names(iris)[2] <- "Sepal_Width"
+names(iris)
 
 
 #####################################################
@@ -197,7 +188,8 @@ ggplot(data = scoreData, aes(x = day, y = AFinal)) + geom_boxplot()
 scoreData$day <- as.factor(scoreData$day)
 levels(scoreData$day)
 
-scoreData$day <- ordered(scoreData$day, levels = levels(scoreData$day)[c(7, 5, 1, 3, 4, 2, 6)])
+scoreData$day <- ordered(scoreData$day, 
+												 levels = c("Wed","Thu","Fri","Sat","Sun","Mon","Tue"))
 
 levels(scoreData$day)
 
@@ -219,21 +211,21 @@ cigData <- read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/mast
 cigData
 
 #another option
-cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt", col_positions = fwf_widths(c(17, 4, 5, 11, 4), col_names = c("brand", "tar", "nicotine", "weight", "co")), skip = 1)
+cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt", col_positions = fwf_widths(c(17, 5, 9, 6, NA), col_names = c("brand", "tar", "nicotine", "weight", "co")), skip = 1)
 
 cigData
 
 
 library(readxl)
 #just first sheet
-edData <- read_excel("datasets/censusEd.xls", sheet = "EDU01A")
+edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A")
 
 edData
 
-excel_sheets("datasets/censusEd.xls")
+excel_sheets("datasets/censusEd.xlsx")
 
 #just first sheet
-edData <- read_excel("datasets/censusEd.xls", sheet = "EDU01A", 
+edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A", 
                      range = cell_cols("A:D"))
 
 edData
@@ -259,6 +251,9 @@ write_csv(x = bodyFatData, path = "E:/Other/DataScienceR/datasets/smokeData.csv"
 
 #####################################################
 ##Data manipulation
+
+#restore iris data set
+rm(iris)
 
 #logical statements
 #Use of ==, !=, >=, <=, >, <
@@ -286,6 +281,33 @@ iris[iris$Species == "setosa", ]
 filter(iris, Species == "setosa")
 
 filter(iris, Species != "setosa")
+
+
+#coerce numeric to string
+c("hi", 10)
+#coerce TRUE/FALSE to numeric
+c(TRUE, FALSE) + 0
+
+#logical to character
+c(TRUE, "hi")
+
+as.numeric(c(TRUE, FALSE, TRUE))
+mean(c(TRUE, FALSE, TRUE))
+as.character(c(1, 2, 3.5, TRUE))
+
+#compound statements
+set.seed(3)
+x <- runif(n = 10, min = 0, max = 1); x
+(x < 0.25) | (x > 0.75)
+(x < 0.25) || (x > 0.75)
+
+filter(iris, (Petal.Length > 1.5) & (Petal.Width > 0.3) & 
+			 	(Species == "setosa"))
+
+(iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
+	(iris$Species == "setosa")
+
+
 
 #silly example
 a <- 5
@@ -329,29 +351,7 @@ if (a < 10){
 }
 
 
-#coerce numeric to string
-c("hi", 10)
-#coerce TRUE/FALSE to numeric
-c(TRUE, FALSE) + 0
 
-#logical to character
-c(TRUE, "hi")
-
-as.numeric(c(TRUE, FALSE, TRUE))
-mean(c(TRUE, FALSE, TRUE))
-as.character(c(1, 2, 3.5, TRUE))
-
-#compound statements
-set.seed(3)
-x <- runif(n = 10, min = 0, max = 1); x
-(x < 0.25) | (x > 0.75)
-(x < 0.25) || (x > 0.75)
-
-filter(iris, (Petal.Length > 1.5) & (Petal.Width > 0.3) & 
-         (Species == "setosa"))
-
-(iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
-  (iris$Species == "setosa")
 
 #won't work!
 if ((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
@@ -365,13 +365,17 @@ ifelse(vector_condition, if_true_do_this, if_false_do_this)
 ifelse((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) & 
          (iris$Species == "setosa"), "L-S", "NotL-S")
 
-transmute(iris, Size =
-            ifelse((Petal.Length > 1.5) & (Petal.Width > 0.3) &
-                     (Species == "setosa"), "L-S", "NotL-s"))
+transmute(iris, 
+					Size = ifelse((Petal.Length > 1.5) & (Petal.Width > 0.3) &
+                     (Species == "setosa"), "L-S", "NotLS"))
 
-mutate(iris, Size =
-         ifelse((Petal.Length > 1.5) & (Petal.Width > 0.3) &
+mutate(iris, 
+			 Size = ifelse((Petal.Length > 1.5) & (Petal.Width > 0.3) &
                   (Species == "setosa"), "LS", "NotLS"))
+
+iris[(iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) & 
+		 	(iris$Species == "setosa"), ]
+
 
 #dplyr
 #install.packages("Lahman")
@@ -472,36 +476,30 @@ tab[, 1, ]
 tab[2, 2, ]
 
 #bar plots
-ggplot(data = titanicData, aes(x = as.factor(embarked)))
-g <- ggplot(data = titanicData, aes(x = as.factor(embarked)))
+ggplot(data = titanicData, aes(x = embarked))
+g <- ggplot(data = titanicData, aes(x = embarked))
 g + geom_bar()
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-            aes(x = as.factor(embarked)))
+
+titanicData <- titanicData %>% drop_na(embarked)
+g <- ggplot(data = titanicData, aes(x = embarked))
 g + geom_bar()
 
 #Fix x axis, x axis label and give title
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-            aes(x = as.factor(embarked)))
 g + geom_bar() + 
   labs(x = "City Embarked", title = "Bar Plot of Embarked City 
        for Titanic Passengers") + 
   scale_x_discrete(labels = c("Cherbourg","Queenstown","Southampton"))
 
 #filled bar plot
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-            aes(x = as.factor(embarked)))
 g + geom_bar(aes(fill = as.factor(survived)))
 
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-            aes(x = as.factor(embarked)))
+#add labels, titles, etc
 g + geom_bar(aes(fill = as.factor(survived))) +
   labs(x = "City Embarked", 
        title = "Bar Plot of Embarked City for Titanic Passengers") + 
   scale_x_discrete(labels = c("Cherbourg", "Queenstown", "Southampton")) + 
   scale_fill_discrete(name = "Surived", labels = c("No","Yes"))
 
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-            aes(x = as.factor(embarked)))
 g + geom_bar(aes(fill = as.factor(survived))) +
   labs(x = "City Embarked", 
        title = "Bar Plot of Embarked City for Titanic Passengers") +
@@ -510,22 +508,21 @@ g + geom_bar(aes(fill = as.factor(survived))) +
   coord_flip()
 
 #side-by-side bar plot
-twoWayData<-titanicData %>% group_by(embarked, survived) %>%
+twoWayData<-titanicData %>% drop_na(embarked) %>% group_by(embarked, survived) %>%
   summarise(count=n())
 twoWayData
 
-g <- ggplot(data = twoWayData %>% drop_na(embarked), 
-            aes(x = as.factor(embarked), y = count, fill = as.factor(survived)))+
-  geom_bar(stat = "identity", position = "dodge") %>%
+g <- ggplot(data = twoWayData, 
+            aes(x = embarked, y = count, fill = as.factor(survived)))
+g + geom_bar(stat = "identity", position = "dodge") +
   labs(x = "City Embarked", 
        title = "Bar Plot of Embarked City for Titanic Passengers") + 
-  scale_x_discrete(labels = c("Cherbourg", "Queenstown", "Southampton")) + 
   scale_fill_discrete(name = "Surived", labels = c("No", "Yes"))
 
 #save table/graph
-tab <- tbl_df(table(titanicData$embarked,titanicData$survived))
+tab <- tbl_df(table(titanicData$embarked, titanicData$survived))
 
-names(tab) <- c("Embarked","Survived","Count")
+names(tab) <- c("Embarked", "Survived", "Count")
 
 write_csv(x = tab, path = "titanicTable.csv", col_names = TRUE)
 
@@ -550,16 +547,8 @@ var(CO2$uptake)
 sd(CO2$uptake)
 IQR(CO2$uptake)
 quantile(CO2$uptake, probs = c(0.1, 0.2))
-#combine
-stats <- c(summary(CO2$uptake), var(CO2$uptake),
-           sd(CO2$uptake), quantile(CO2$uptake, probs = c(0.1, 0.2)))
-stats
-str(stats)
-attributes(stats)
-#special names function
-names(stats)[7:10] <- c("Var", "SD", "10thP", "20thP")
-stats
 
+#cov/corr
 cov(CO2$conc, CO2$uptake)
 cor(CO2$conc, CO2$uptake)
 
@@ -571,86 +560,70 @@ CO2 %>% group_by(Treatment) %>% summarise(var = var(uptake))
 CO2 %>% group_by(Treatment, Type) %>% summarise(avg = mean(uptake))
 
 #dot plots
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot()
+g <- ggplot(CO2, aes(x = uptake))
+g + geom_dotplot()
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot(col = "Blue")
+g + geom_dotplot(col = "Blue")
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot(aes(col = Treatment))
+g + geom_dotplot(aes(col = Treatment))
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot(aes(col = Treatment),
+g + geom_dotplot(aes(col = Treatment),
                stackgroups = TRUE, method = "histodot",
                binpositions = "all",stackdir = "down")
 
 #histogram/density
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_histogram()
+g + geom_histogram()
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_histogram(color = "blue", fill = "red", linetype = "dashed",
+g + geom_histogram(color = "blue", fill = "red", linetype = "dashed",
                  size = 2,binwidth = 3)
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_density()
+g + geom_density()
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment))
+g + geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment))
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_histogram(aes(y = ..density.., fill = Treatment))+
+g + geom_histogram(aes(y = ..density.., fill = Treatment))+
   geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment)) 
 
 #ecdf
-g <- ggplot(CO2, aes(x = uptake))+
-  stat_ecdf(geom = "step")
+g + stat_ecdf(geom = "step")
 
-g <- ggplot(CO2, aes(x = uptake, color = Treatment)) +
-  stat_ecdf(geom = "step") +
+g + stat_ecdf(geom = "step", aes(color = Treatment)) +
   ylab("ECDF")
 
 #scatter plots
 scoresFull <- read_csv("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/scoresFull.csv")
 scoresFull
 
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point()
+g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal))
+g + geom_point()
 
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point() +
-  geom_smooth() +
-  geom_smooth(method = lm, col = "Red") 
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") 
 
 paste("Hi", "What", "Is", "Going", "On", "?", sep = " ")
 paste("Hi", "What", "Is", "Going", "On", "?", sep = ".")
 
 correlation <- cor(scoresFull$homeRushYds,scoresFull$HFinal)
 
-g <- ggplot(scoresFull, aes(x = homeRushYds,y = HFinal)) +
-  geom_point() +
-  geom_smooth() +
-  geom_smooth(method = lm, col = "Red") + 
-  geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ", round(correlation, 2)))
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") + 
+    geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ", round(correlation, 2)))
 
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point() +
-  geom_smooth() +
-  geom_smooth(method = lm, col = "Red") + 
-  geom_rug()
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") + 
+    geom_rug()
 
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point()+
-  facet_grid(. ~ surface)
+g + geom_point() +
+    facet_grid(. ~ surface)
 
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal))+
-  geom_point()+  
-  facet_grid(roof ~ surface)
+g + geom_point()+  
+    facet_grid(roof ~ surface)
 
-g <- ggplot(scoresFull, aes(x = homeRushYds,y = HFinal)) +
-  geom_point(aes(col = homeSpread), alpha = 0.3, size = 0.5) +  
-  facet_grid(roof ~ surface)
+g + geom_point(aes(col = homeSpread), alpha = 0.3, size = 0.5) +  
+    facet_grid(roof ~ surface)
 
 pairs(select(scoresFull, Hturnovers, homeRushYds,
              homePassYds, HFinal), cex = 0.3)
@@ -670,17 +643,15 @@ library(GGally)
 ggpairs(iris, aes(colour = Species, alpha = 0.4))
 
 #box and violin plots
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds)) +
-  geom_boxplot(fill = "grey")
+g <- ggplot(scoresFull, aes(x = surface, y = homePassYds))
+g + geom_boxplot(fill = "grey")
 
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds)) +
-  geom_boxplot(fill = "grey") +
-  geom_jitter(aes(col = roof), alpha = 0.3, size = 0.3) +
-  stat_summary(fun.y = mean, geom = "line", 
-               lwd = 1.5, aes(group = roof, col = roof))
+g + geom_boxplot(fill = "grey") +
+    geom_jitter(aes(col = roof), alpha = 0.3, size = 0.3) +
+    stat_summary(fun.y = mean, geom = "line", 
+                 lwd = 1.5, aes(group = roof, col = roof))
 
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds))+
-  geom_violin(fill = "grey")
+g + geom_violin(fill = "grey")
 
 oneDate<-paste(scoresFull$date[1], scoresFull$season[1], sep = "-")
 oneDate
@@ -700,8 +671,8 @@ subScores <- scoresFull %>%
 
 subScores
 
-g <- ggplot(subScores, aes(x = season, y = homeAvgYds, color = homeTeam)) +
-  geom_line(lwd = 2)
+g <- ggplot(subScores, aes(x = season, y = homeAvgYds, color = homeTeam)) 
+g + geom_line(lwd = 2)
 
 #3d plots
 install.packages("plot3Drgl")
