@@ -1,10 +1,11 @@
 ---
 title: "Introduction to Data Science Using R Part IV"
 author: "Justin Post"
-date: "August 7-8, 2017"
+date: "August 13-14, 2018"
 output: 
       ioslides_presentation:
          css: css/style.css
+         widescreen: true
 transition: faster
 logo: img/logo.png
 ---
@@ -226,7 +227,7 @@ Needs:
 - Syntax:
 
 ```{r,eval=FALSE}
-g <- ggplot(dataframe,aes(x = , y = , ...))
+g <- ggplot(dataframe, aes(x = , y = , ...))
 g + geom_type(...) +
   stat_type(...) + 
   labs(...)
@@ -236,12 +237,10 @@ g + geom_type(...) +
 ## Numerical and Graphical Summaries  
 **Categorical Data**
 
-- `ggplot()` often prefers factors  
-
 - Example bar plot:
 
 ```{r,eval=FALSE}
-ggplot(data = titanicData, aes(x = as.factor(embarked)))
+ggplot(data = titanicData, aes(x = embarked))
 ```
 
 ## Numerical and Graphical Summaries  
@@ -250,7 +249,7 @@ ggplot(data = titanicData, aes(x = as.factor(embarked)))
 - Must add geom layer!
 
 ```{r,eval=TRUE,echo=FALSE}
-ggplot(data=titanicData,aes(x=as.factor(embarked)))
+ggplot(data=titanicData,aes(x=embarked))
 ```
 
 
@@ -261,15 +260,16 @@ ggplot(data=titanicData,aes(x=as.factor(embarked)))
 - Idea: Save base object, then "add layers"  
 
 ```{r,eval=FALSE}
-g <- ggplot(data = titanicData, aes(x = as.factor(embarked)))
+g <- ggplot(data = titanicData, aes(x = embarked))
 g + geom_bar()
 ```
 
 
 ## Numerical and Graphical Summaries  
-**Categorical Data**
+**Categorical Data**  
+
 ```{r,eval=TRUE, echo=FALSE}
-g<-ggplot(data=titanicData,aes(x=as.factor(embarked)))
+g<-ggplot(data=titanicData,aes(x=embarked))
 g + geom_bar()
 ```
 
@@ -281,8 +281,8 @@ g + geom_bar()
 - Might remove `NA` category  
 
 ```{r,eval=FALSE}
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-          aes(x = as.factor(embarked)))
+titanicData <- titanicData %>% drop_na(embarked)
+g <- ggplot(data = titanicData, aes(x = embarked))
 g + geom_bar()
 ```
 
@@ -291,8 +291,8 @@ g + geom_bar()
  
 ```{r,eval=TRUE,echo=FALSE}
 #remove NA category
-g<-ggplot(data=titanicData %>% drop_na(embarked),
-          aes(x=as.factor(embarked)))
+titanicData <- titanicData %>% drop_na(embarked)
+g <- ggplot(data = titanicData, aes(x = embarked))
 g + geom_bar()
 ```
 
@@ -305,33 +305,12 @@ g + geom_bar()
 
 ```{r,eval=FALSE}
 #Fix x axis, x axis label and give title
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-          aes(x = as.factor(embarked)))
 g + geom_bar() + 
   ### <b>
   labs(x = "City Embarked", title = "Bar Plot of Embarked City 
        for Titanic Passengers") + 
   ### </b>
   scale_x_discrete(labels = c("Cherbourg","Queenstown","Southampton"))
-```
-
-## Numerical and Graphical Summaries  
-**Categorical Data**
- 
-- How to improve this plot?    
-
-- Might add better labels and a title  
-
-```{r,eval=FALSE}
-#Fix x axis, x axis label and give title
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-          aes(x = as.factor(embarked)))
-g + geom_bar() + 
-  labs(x = "City Embarked", title = "Bar Plot of Embarked City 
-       for Titanic Passengers") + 
-  ### <b>
-  scale_x_discrete(labels = c("Cherbourg","Queenstown","Southampton"))
-  ### </b>
 ```
 
 
@@ -340,8 +319,6 @@ g + geom_bar() +
  
 ```{r,eval=TRUE,echo=FALSE}
 #Fix x axis, x axis label and give title
-g<-ggplot(data=titanicData %>% drop_na(embarked),
-          aes(x=as.factor(embarked)))
 g + geom_bar() + labs(x="City Embarked",title="Bar Plot of Embarked City for Titanic Passengers") + scale_x_discrete(labels=c("Cherbourg","Queenstown","Southampton"))
 ```
 
@@ -353,7 +330,7 @@ g + geom_bar() + labs(x="City Embarked",title="Bar Plot of Embarked City for Tit
 > - How to visualize table for two?  
     <ul>
       <li> Filled bar plot</li>
-      <li> Side-by-side bar plot (Require work!)</li>
+      <li> Side-by-side bar plot (Requires work!)</li>
     </ul>  
     
 > - Process the same  
@@ -370,19 +347,14 @@ g + geom_bar() + labs(x="City Embarked",title="Bar Plot of Embarked City for Tit
 - Filled bar plot
 
 ```{r,eval=FALSE}
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-          aes(x = as.factor(embarked)))
-g + geom_bar(###<b>
-aes(fill = as.factor(survived))###</b>
-)
+
+g + geom_bar(aes(fill = as.factor(survived)))
 ```
 
 ## Numerical and Graphical Summaries  
 **Categorical Data**
 
 ```{r,eval=TRUE,echo=FALSE}
-g<-ggplot(data=titanicData %>% drop_na(embarked),
-          aes(x=as.factor(embarked)))
 g + geom_bar(aes(fill=as.factor(survived)))
 ```
 
@@ -393,8 +365,6 @@ g + geom_bar(aes(fill=as.factor(survived)))
 Add labels and such:
 
 ```{r,eval=FALSE}
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-          aes(x = as.factor(embarked)))
 g + geom_bar(aes(fill = as.factor(survived))) +
   labs(x = "City Embarked", 
        title = "Bar Plot of Embarked City for Titanic Passengers") + 
@@ -405,13 +375,10 @@ g + geom_bar(aes(fill = as.factor(survived))) +
 ```
 
 
-
 ## Numerical and Graphical Summaries  
 **Categorical Data**
 
 ```{r,eval=TRUE,echo=FALSE}
-g<-ggplot(data=titanicData %>% drop_na(embarked),
-          aes(x=as.factor(embarked)))
 g + geom_bar(aes(fill=as.factor(survived))) +
   labs(x="City Embarked", title="Bar Plot of Embarked City for Titanic Passengers") + 
   scale_x_discrete(labels=c("Cherbourg","Queenstown","Southampton")) + 
@@ -424,8 +391,6 @@ g + geom_bar(aes(fill=as.factor(survived))) +
 - Can rotate it 
 
 ```{r,eval=FALSE}
-g <- ggplot(data = titanicData %>% drop_na(embarked),
-          aes(x = as.factor(embarked)))
 g + geom_bar(aes(fill = as.factor(survived))) +
   labs(x = "City Embarked", 
        title = "Bar Plot of Embarked City for Titanic Passengers") +
@@ -441,8 +406,6 @@ g + geom_bar(aes(fill = as.factor(survived))) +
 **Categorical Data**
 
 ```{r,eval=TRUE,echo=FALSE}
-g<-ggplot(data=titanicData %>% drop_na(embarked),
-          aes(x=as.factor(embarked)))
 g + geom_bar(aes(fill=as.factor(survived))) +
   labs(x="City Embarked", title="Bar Plot of Embarked City \n for Titanic Passengers") + 
   scale_x_discrete(labels=c("Cherbourg","Queenstown","Southampton")) + 
@@ -456,8 +419,8 @@ g + geom_bar(aes(fill=as.factor(survived))) +
 - Side-by-side bar plot  
 - First, create data frame with summary info
 ```{r}
-twoWayData<-titanicData %>% group_by(embarked, survived) %>%
-  summarise(count=n())
+twoWayData <- titanicData %>% drop_na(embarked) %>% group_by(embarked, survived) %>%
+  summarise(count = n())
 ```
 ```{r,echo=FALSE}
 twoWayData
@@ -468,15 +431,10 @@ twoWayData
 
 - Side-by-side bar plot  
 ```{r,eval=FALSE}
-g <- ggplot(data = twoWayData %>% drop_na(embarked), 
-      aes(x = as.factor(embarked), ###<b>
+g <- ggplot(data = twoWayData, 
+      aes(x = embarked, ###<b>
 y = count ###</b>
-,fill = as.factor(survived)))+
-  geom_bar(stat = "identity", position = "dodge") %>%
-    labs(x = "City Embarked", 
-         title = "Bar Plot of Embarked City for Titanic Passengers") + 
-  scale_x_discrete(labels = c("Cherbourg", "Queenstown", "Southampton")) + 
-  scale_fill_discrete(name = "Surived", labels = c("No", "Yes"))
+, fill = as.factor(survived)))
 ```
 
 ## Numerical and Graphical Summaries  
@@ -484,11 +442,14 @@ y = count ###</b>
 
 - Side-by-side bar plot  
 ```{r,eval=FALSE}
-g <- ggplot(data = twoWayData %>% drop_na(embarked), 
-      aes(x = as.factor(embarked), y = count,fill = as.factor(survived)))+
-  geom_bar(###<b>
+g <- ggplot(data = twoWayData, 
+      aes(x = embarked, 
+y = count 
+, fill = as.factor(survived)))
+
+g + geom_bar(###<b>
 stat = "identity", position = "dodge"###</b>
-) %>%
+) +
     labs(x = "City Embarked", 
          title = "Bar Plot of Embarked City for Titanic Passengers") + 
   scale_x_discrete(labels = c("Cherbourg", "Queenstown", "Southampton")) + 
@@ -501,13 +462,12 @@ stat = "identity", position = "dodge"###</b>
 **Categorical Data**
 
 ```{r,echo=FALSE,eval=TRUE}
-g<-ggplot(data=twoWayData %>% drop_na(embarked), aes(x=as.factor(embarked),y=count))+
-  geom_bar(stat="identity",position="dodge",aes(fill=as.factor(survived))) + 
-    labs(x="City Embarked", title="Bar Plot of Embarked City for Titanic Passengers") + 
-  scale_x_discrete(labels=c("Cherbourg","Queenstown","Southampton")) + 
-  scale_fill_discrete(name="Surived",labels=c("No","Yes"))
-
-g
+g <- ggplot(data = twoWayData, 
+            aes(x = embarked, y = count, fill = as.factor(survived)))
+g + geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "City Embarked", 
+       title = "Bar Plot of Embarked City for Titanic Passengers") + 
+  scale_fill_discrete(name = "Surived", labels = c("No", "Yes"))
 ```
 
 ## Numerical and Graphical Summaries  
@@ -517,9 +477,9 @@ g
     + Save tables with write_csv!
  
 ```{r,eval=FALSE}
-tab <- tbl_df(table(titanicData$embarked,titanicData$survived))
+tab <- tbl_df(table(titanicData$embarked, titanicData$survived))
 
-names(tab) <- c("Embarked","Survived","Count")
+names(tab) <- c("Embarked", "Survived", "Count")
 
 write_csv(x = tab, path = "titanicTable.csv", col_names = TRUE)
 ```
@@ -684,38 +644,6 @@ quantile(CO2$uptake, probs = c(0.1, 0.2))
 
 
 ## Numerical and Graphical Summaries  
-**Quantitative Data** - One Variable
-
-- Combine all stats 
-```{r}
-stats <- c(summary(CO2$uptake), var(CO2$uptake),
-           sd(CO2$uptake), quantile(CO2$uptake, probs = c(0.1, 0.2)))
-stats
-```
-
-## Numerical and Graphical Summaries  
-**Quantitative Data** - One Variable
-
-- Combine all stats 
-- Fix names!
-```{r}
-str(stats)
-attributes(stats)
-```
-
-## Numerical and Graphical Summaries  
-**Quantitative Data** - One Variable
-
-- Combine all stats 
-- Fix names!
-```{r}
-#special names function
-names(stats)[7:10] <- c("Var", "SD", "10thP", "20thP")
-stats
-```
-
-
-## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Covariance/Correlation  
 ```{r}
 cov(CO2$conc, CO2$uptake)
@@ -763,16 +691,16 @@ CO2 %>% group_by(Treatment, Type) %>% summarise(avg = mean(uptake))
 - Dot shown to represent each data point
 
 ```{r,eval=FALSE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot()
+g <- ggplot(CO2, aes(x = uptake)) 
+g + geom_dotplot()
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Dot Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+geom_dotplot()
-g
+g <- ggplot(CO2,aes(x=uptake))
+g + geom_dotplot()
 ```
 
 ## Numerical and Graphical Summaries  
@@ -780,43 +708,36 @@ g
 
 - Color dots:  
     + **Any attribute that depends on the data must go into aes**  
-    + If consistent or defined elsewhere, can go outside aes
+    + If consistent can go outside aes (no legend needed)
 
 ```{r,eval=FALSE,echo=TRUE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot(col = "Blue")
+g + geom_dotplot(col = "Red")
 
 #vs
 
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot(aes(col = Treatment))
+g + geom_dotplot(aes(col = Treatment))
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Dot Plot 
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_dotplot(col="Blue")
-g
+g + geom_dotplot(col="Blue")
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Dot Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_dotplot(aes(col=Treatment))
-g
+g + geom_dotplot(aes(col=Treatment))
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Dot Plot
 
-- Options!  
+- Lots of options!  
 ```{r,eval=FALSE,echo=TRUE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_dotplot(aes(col = Treatment),
+g + geom_dotplot(aes(col = Treatment),
                stackgroups = TRUE, method = "histodot",
                binpositions = "all",stackdir = "down")
 ```
@@ -825,11 +746,9 @@ g <- ggplot(CO2, aes(x = uptake))+
 **Quantitative Data** - One Variable: Dot Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_dotplot(aes(col=Treatment),
+g + geom_dotplot(aes(col=Treatment),
                stackgroups = TRUE, method="histodot",
                binpositions = "all",stackdir="down")
-g
 ```
 
 ## Numerical and Graphical Summaries  
@@ -838,15 +757,14 @@ g
 - Bins data to show distribution of observations
 
 ```{r,eval=FALSE}
-g <- ggplot(CO2, aes(x = uptake))+
-    geom_histogram()
+g + geom_histogram()
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Histogram
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+geom_histogram()
+g + geom_histogram()
 g
 ```
 
@@ -856,18 +774,15 @@ g
 - Can improve the look  
 
 ```{r,eval=FALSE,echo=TRUE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_histogram(color = "blue", fill = "red", linetype = "dashed",
-                 size = 2,binwidth = 3)
+g + geom_histogram(color = "blue", fill = "red", linetype = "dashed",
+                 size = 2, binwidth = 3)
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** Hideous!
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_histogram(color="blue",fill="red",linetype="dashed",size=2,binwidth=3)
-g
+g + geom_histogram(color="blue",fill="red",linetype="dashed",size=2,binwidth=3)
 ```
 
 ## Numerical and Graphical Summaries  
@@ -878,8 +793,7 @@ g
     + Many options (see `help(density)`)
     
 ```{r,eval=FALSE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_density()
+g + geom_density()
 ```
 
 
@@ -887,9 +801,7 @@ g <- ggplot(CO2, aes(x = uptake))+
 **Quantitative Data** - One Variable: Kernel Smoother
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_density()
-g
+g + geom_density()
 ```
 
 ## Numerical and Graphical Summaries  
@@ -897,25 +809,21 @@ g
 
 - Improve it with options!  
 ```{r,eval=FALSE,echo=TRUE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment))
+g + geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment))
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Kernel Smoother
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_density(adjust=0.25,alpha=0.5,aes(fill=Treatment))
-g
+g + geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment))
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: Histogram and Kernel Smoother
 
 ```{r,eval=FALSE,echo=TRUE}
-g <- ggplot(CO2, aes(x = uptake))+
-  geom_histogram(aes(y = ..density.., fill = Treatment))+
+g + geom_histogram(aes(y = ..density.., fill = Treatment)) +
   geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment)) 
 ```
 
@@ -923,10 +831,8 @@ g <- ggplot(CO2, aes(x = uptake))+
 **Quantitative Data** - One Variable: Histogram and Kernel Smoother
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  geom_histogram(aes(y=..density..,fill=Treatment))+
-  geom_density(adjust=0.25,alpha=0.5,aes(fill=Treatment)) 
-g
+g + geom_histogram(aes(y = ..density.., fill = Treatment)) +
+  geom_density(adjust = 0.25, alpha = 0.5, aes(fill = Treatment))
 ```
 
 ## Numerical and Graphical Summaries  
@@ -936,17 +842,14 @@ g
 - At each point x, gives the proportion of points at or below x
 
 ```{r,eval=FALSE}
-g <- ggplot(CO2, aes(x = uptake))+
-  stat_ecdf(geom = "step")
+g + stat_ecdf(geom = "step")
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - One Variable: ECDF
 
 ```{r,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake))+
-  stat_ecdf(geom="step")
-g
+g + stat_ecdf(geom="step")
 ```
 
 
@@ -957,8 +860,7 @@ g
 - At each point x, gives the proportion of points at or below x
 - For each treatment
 ```{r,eval=FALSE}
-g <- ggplot(CO2, aes(x = uptake, color = Treatment)) +
-  stat_ecdf(geom = "step") +
+g + stat_ecdf(geom = "step", aes(color = Treatment)) +
   ylab("ECDF")
 ```
 
@@ -966,10 +868,8 @@ g <- ggplot(CO2, aes(x = uptake, color = Treatment)) +
 **Quantitative Data** - One Variable: ECDF
 
 ```{r,echo=FALSE,message=FALSE}
-g<-ggplot(CO2,aes(x=uptake,color=Treatment))+
-  stat_ecdf(geom="step")+
+g + stat_ecdf(geom = "step", aes(color = Treatment)) +
   ylab("ECDF")
-g
 ```
 
 
@@ -997,8 +897,8 @@ scoresFull
 - Probably most used graph!  
 - Shows a point corresponding to each observation
 ```{r,eval=FALSE}
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point()
+g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) 
+g + geom_point()
 ```
 
 
@@ -1006,9 +906,8 @@ g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point()
-g
+g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))
+g + geom_point()
 ```
 
 
@@ -1018,10 +917,9 @@ g
 - Add trend lines (linear and gam - a fancy smoother) 
 
 ```{r,echo=TRUE,eval=FALSE}
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point() +
-  geom_smooth() +
-  geom_smooth(method = lm, col = "Red") 
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") 
 ```
 
 
@@ -1029,10 +927,9 @@ g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point()+geom_smooth()+
-  geom_smooth(method=lm,col="Red") 
-g
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") 
 ```
 
 
@@ -1063,22 +960,24 @@ paste("Hi", "What", "Is", "Going", "On", "?", sep = ".")
 ```{r,eval=FALSE}
 correlation <- cor(scoresFull$homeRushYds,scoresFull$HFinal)
 
-g <- ggplot(scoresFull, aes(x = homeRushYds,y = HFinal)) +
-  geom_point() +
-  geom_smooth() +
-  geom_smooth(method = lm, col = "Red") + 
-  geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ", 
-                                           round(correlation, 2)))
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") + 
+    geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ", 
+                                             round(correlation, 2)))
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-correlation<-cor(scoresFull$homeRushYds,scoresFull$HFinal)
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point()+geom_smooth()+geom_smooth(method=lm,col="Red") + geom_text(x=315,y=10,size=5,label=paste0("Correlation = ",round(correlation,2)))
-g
+correlation <- cor(scoresFull$homeRushYds,scoresFull$HFinal)
+
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") + 
+    geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ", 
+                                             round(correlation, 2)))
 ```
 
 ## Numerical and Graphical Summaries  
@@ -1088,20 +987,20 @@ g
 - Gives idea about density of just x or just y variable 
 
 ```{r,eval=FALSE}
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point() +
-  geom_smooth() +
-  geom_smooth(method = lm, col = "Red") + 
-  geom_rug()
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") + 
+    geom_rug()
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point()+geom_smooth()+geom_smooth(method=lm,col="Red") + geom_rug()
-g
+g + geom_point() +
+    geom_smooth() +
+    geom_smooth(method = lm, col = "Red") + 
+    geom_rug()
 ```
 
 ## Numerical and Graphical Summaries  
@@ -1111,19 +1010,16 @@ g
 - Use `facet_grid()`
 
 ```{r,eval=FALSE}
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal)) +
-  geom_point()+
-  facet_grid(. ~ surface)
+g + geom_point() +
+    facet_grid(. ~ surface)
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point()+  
-  facet_grid(.~surface)
-g
+g + geom_point() +
+    facet_grid(. ~ surface)
 ```
 
 ## Numerical and Graphical Summaries  
@@ -1133,19 +1029,16 @@ g
 - Use `facet_grid()`
 
 ```{r,eval=FALSE}
-g <- ggplot(scoresFull, aes(x = homeRushYds, y = HFinal))+
-  geom_point()+  
-  facet_grid(roof ~ surface)
+g + geom_point() +  
+    facet_grid(roof ~ surface)
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point()+  
-  facet_grid(roof~surface)
-g
+g + geom_point() +  
+    facet_grid(roof ~ surface)
 ```
 
 
@@ -1155,19 +1048,16 @@ g
 - Can still do all the fancy stuff to each plot!
 
 ```{r,eval=FALSE}
-g <- ggplot(scoresFull, aes(x = homeRushYds,y = HFinal)) +
-  geom_point(aes(col = homeSpread), alpha = 0.3, size = 0.5) +  
-  facet_grid(roof ~ surface)
+g + geom_point(aes(col = homeSpread), alpha = 0.3, size = 0.5) +  
+    facet_grid(roof ~ surface)
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Scatter Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=homeRushYds,y=HFinal))+
-  geom_point(aes(col=homeSpread),alpha=0.3,size=0.5)+  
-  facet_grid(roof~surface)
-g
+g + geom_point(aes(col = homeSpread), alpha = 0.3, size = 0.5) +  
+    facet_grid(roof ~ surface)
 ```
 
 ## Numerical and Graphical Summaries  
@@ -1220,7 +1110,7 @@ corrplot(Correlation,type="lower",method="number",add=TRUE,diag=FALSE,tl.pos="n"
 
 - Really nice for many variables  
 
-```{r, out.width = "425px",echo=FALSE}
+```{r, out.width = "400px",echo=FALSE}
 knitr::include_graphics("img/corr.png")
 ```
 
@@ -1262,17 +1152,16 @@ ggpairs(iris, aes(colour = Species, alpha = 0.4))
 **Quantitative Data** - Two Variables: Box/Violin Plot
     
 ```{r,eval=FALSE,echo=TRUE,message=FALSE}
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds)) +
-  geom_boxplot(fill = "grey")
+g <- ggplot(scoresFull, aes(x = surface, y = homePassYds))
+g + geom_boxplot(fill = "grey")
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Box/Violin Plot
     
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=surface,y=homePassYds))+
-  geom_boxplot(fill="grey")
-g
+g <- ggplot(scoresFull, aes(x = surface, y = homePassYds))
+g + geom_boxplot(fill="grey")
 ```
 
 ## Numerical and Graphical Summaries  
@@ -1282,42 +1171,22 @@ g
 - Add in points, lines connecting means for each group
 
 ```{r,eval=FALSE,echo=TRUE,message=FALSE}
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds)) +
-  geom_boxplot(fill = "grey") +
-  ###<b>
-  geom_jitter(aes(col = roof), alpha = 0.3, size = 0.3) +
-  ###</b>
-  stat_summary(fun.y = mean, geom = "line", 
-               lwd = 1.5, aes(group = roof, col = roof))
+g + geom_boxplot(fill = "grey") +
+    ###<b>
+    geom_jitter(aes(col = roof), alpha = 0.3, size = 0.3) +
+    ###</b>
+    stat_summary(fun.y = mean, geom = "line", 
+                 lwd = 1.5, aes(group = roof, col = roof))
 ```
-
-## Numerical and Graphical Summaries  
-**Quantitative Data** - Two Variables: Box/Violin Plot
-
-- Get very fancy
-- Add in points, lines connecting means for each group
-
-```{r,eval=FALSE,echo=TRUE,message=FALSE}
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds)) +
-  geom_boxplot(fill = "grey") +
-  geom_jitter(aes(col = roof), alpha = 0.3, size = 0.3) +
-  ###<b>
-  stat_summary(fun.y = mean, geom = "line", 
-               lwd = 1.5, aes(group = roof, col = roof))
-  ###</b>
-```
-
-
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Box/Violin Plot
     
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=surface,y=homePassYds))+
+g +
   geom_boxplot(fill="grey")+
   geom_jitter(aes(col=roof),alpha=0.3,size=0.3)+
   stat_summary(fun.y=mean,geom="line",lwd=1.5,aes(group=roof,col=roof))
-g
 ```
 
 
@@ -1327,8 +1196,7 @@ g
 - Check how violin plots look
 
 ```{r,eval=FALSE,echo=TRUE,message=FALSE}
-g <- ggplot(scoresFull, aes(x = surface, y = homePassYds))+
-  geom_violin(fill = "grey")
+g + geom_violin(fill = "grey")
 ```
 
 
@@ -1336,9 +1204,7 @@ g <- ggplot(scoresFull, aes(x = surface, y = homePassYds))+
 **Quantitative Data** - Two Variables: Box/Violin Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(scoresFull,aes(x=surface,y=homePassYds))+
-  geom_violin(fill="grey")
-g
+g + geom_violin(fill = "grey")
 ```
 
 
@@ -1374,7 +1240,7 @@ oneDate
 ```{r,message=FALSE}
 library(lubridate)
 as.Date(oneDate,"%d-%b-%Y")
-as.Date(oneDate,"%d-%b-%Y")+1
+as.Date(oneDate,"%d-%b-%Y") + 1
 ```
 
 
@@ -1407,17 +1273,16 @@ subScores
 **Quantitative Data** - Two Variables: Line Plot
 
 ```{r,eval=FALSE,echo=TRUE,message=FALSE}
-g <- ggplot(subScores, aes(x = season, y = homeAvgYds, color = homeTeam)) +
-  geom_line(lwd = 2)
+g <- ggplot(subScores, aes(x = season, y = homeAvgYds, color = homeTeam))
+g + geom_line(lwd = 2)
 ```
 
 ## Numerical and Graphical Summaries  
 **Quantitative Data** - Two Variables: Line Plot
 
 ```{r,eval=TRUE,echo=FALSE,message=FALSE}
-g<-ggplot(subScores,aes(x=season,y=homeAvgYds,color=homeTeam))+
-  geom_line(lwd=2)
-g
+g <- ggplot(subScores, aes(x = season, y = homeAvgYds, color = homeTeam))
+g + geom_line(lwd = 2)
 ```
 
 
@@ -1498,7 +1363,6 @@ scatter3D(x = scoresFull$homeRushYds, y = scoresFull$awayRushYds,
 - Numerical and Graphical Summaries
 - **Basic Analyses**
 
-
 ## Basic Analysis (Linear Regression)
 
 - With multiple quantitative varibles can look at many types of relationships  
@@ -1508,6 +1372,18 @@ scatter3D(x = scoresFull$homeRushYds, y = scoresFull$awayRushYds,
 > - Scatter Plot gives useful visualization    
 
 > - Consider data on voting preferences by county  
+    <ul><li> Inspect relationship with pct with college degree and income </li></ul>
+    
+
+## Basic Analysis (Linear Regression)
+
+- With multiple quantitative varibles can look at many types of relationships  
+
+- Investigated linear relationship between two with correlation  
+
+- Scatter Plot gives useful visualization    
+
+- Consider data on voting preferences by county  
     <ul><li> Inspect relationship with pct with college degree and income </li></ul>
     
 ```{r}
@@ -1547,7 +1423,8 @@ votePlot+geom_point()+
 ## Basic Analysis (Linear Regression)
 
 - Often want to predict y variable using a value of x 
-- **Simple Linear Regression** allows for this
+- **Simple Linear Regression** allows for this  
+
 > - Linear model for predicting income based on college:
 
 > cty_income = int + slope * (% college in county) + random_error
@@ -1705,6 +1582,8 @@ fits <- voting %>% group_by(region) %>%
 names(fits)
 ```
 
+- Probably easier to just subset and then fit each model separately!  
+
 ## Basic Analysis (Linear Regression)
 ```{r}
 fits$model[[1]]
@@ -1715,9 +1594,9 @@ fits$model[[2]]
 
 - Multiple Linear Regression (more than one x)
 - In `lm()`  
-     + add "main effect" terms with `+name`
-     + interactions with `+name1:name2`
-     + all possible combinations with `name1*name2` 
+     + add "main effect" terms with `+ name`
+     + interactions with `+ name1:name2`
+     + all possible combinations with `+ name1*name2` 
 
 ```{r}
 fit2<-lm(income ~ college + Perot, data = voting)

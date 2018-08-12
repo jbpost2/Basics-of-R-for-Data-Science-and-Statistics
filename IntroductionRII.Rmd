@@ -1,10 +1,11 @@
 ---
 title: "Introduction to Data Science Using R Part II"
 author: "Justin Post"
-date: "August 7-8, 2017"
+date: "August 13-14, 2018"
 output: 
       ioslides_presentation:
          css: css/style.css
+         widescreen: true
 transition: faster
 logo: img/logo.png
 ---
@@ -50,7 +51,7 @@ library(haven)
 
 > - [Fixed field](https://github.com/jbpost2/DataScienceR/blob/master/datasets/cigarettes.txt) data  
 
-> - [Excel](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xls) data  
+> - [Excel](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xlsx?raw=true) data  
 
 > - [SPSS formatted](https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav) data  
  
@@ -326,10 +327,11 @@ scoreStub
 ggplot(data = scoreData, aes(x = day, y = AFinal)) + geom_boxplot()
 ```
 
-## Reading in Data/Writing Out Data
+## Quick Aside: `factors`  
 
 - Base R `read.csv()`  
-    + Reads character variables as "factors"
+    + Reads character variables as `factors`  
+    
 > - Factor - special class of vector  
     <ul>
       <li> Great for variable with finite number of classes (**levels**) </li>
@@ -337,11 +339,12 @@ ggplot(data = scoreData, aes(x = day, y = AFinal)) + geom_boxplot()
     </ul>
 
 
-## Reading in Data/Writing Out Data
+## Quick Aside: `factors`  
 
 - Base R `read.csv()`  
-    + Reads character variables as "factors"
-> - Factor - special class of vector  
+    + Reads character variables as `factors`  
+    
+- Factor - special class of vector  
     <ul>
       <li> Great for variable with finite number of classes (**levels**) </li>
       <li> Ex: day or week</li>
@@ -353,15 +356,13 @@ scoreData$day <- as.factor(scoreData$day)
 levels(scoreData$day)
 ```
 
-## Reading in Data/Writing Out Data
-- Factor - special class of vector  
-    + Great for variable with finite number of classes 
-    + Can now reorder (useful when plotting)
-    + Use `ordered` funtion on a *factor* to order the levels
+## Quick Aside: `factors`    
+- Factor - Can now reorder (useful when plotting)  
+    + Use `ordered` function on a *factor* to order the levels
 
 ```{r}
 scoreData$day <- ordered(scoreData$day, 
-                  levels = levels(scoreData$day)[c(7, 5, 1, 3, 4, 2, 6)])
+                  levels = c("Wed","Thu","Fri","Sat","Sun","Mon","Tue"))
 
 levels(scoreData$day)
 ```
@@ -500,7 +501,7 @@ cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/
                    DataScienceR/master/datasets/cigarettes.txt",
                    col_positions =
   ### <b>
-                                 fwf_widths(c(17, 4, 5, 11, 4),
+                                 fwf_widths(c(17, 5, 9, 6, NA),
   ### </b>
                 col_names = c("brand", "tar", "nicotine", "weight", "co")),
                     skip = 1
@@ -510,11 +511,14 @@ cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/
 ```{r,echo=FALSE,message=FALSE}
 #another option
 cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
-       fwf_widths(c(17,4,5,11,4),
+       fwf_widths(c(17,5,9,6,NA),
                   col_names = c("brand", "tar", "nicotine", "weight", "co")),
        skip=1)
 ```
 
+```{r, out.width = "600px",echo=FALSE}
+knitr::include_graphics("img/fwfdata.png")
+```
 
 ## Reading in Data/Writing Out Data
 
@@ -524,17 +528,19 @@ cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master
      + reads an entire file into a single string
 
 - read_lines() 
-     + reads a file into a character vector with one element per line
+     + reads a file into a character vector with one element per line  
+
+- Usually parse with `regular expressions`   
 
 
 ## Reading in Data/Writing Out Data
 **Excel Data**
 
-- Read in censusEd.xls  
+- Read in censusEd.xlsx  
 
-- Unfortunately can't xls from gitHub easily
+- Unfortunately can't xlsx from gitHub easily
 
-- Download [censusEd.xls](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xls?raw=true)
+- Download [censusEd.xlsx](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xlsx?raw=true)
 
 - Place in folder called 'datasets' in working directory
 
@@ -551,7 +557,7 @@ cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master
 ```{r}
 library(readxl)
 #just first sheet
-edData <- read_excel("datasets/censusEd.xls", sheet = "EDU01A")
+edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A")
 ```
 
 ## Reading in Data/Writing Out Data
@@ -568,20 +574,20 @@ edData
     + Look at sheets available
 
 ```{r}
-excel_sheets("datasets/censusEd.xls")
+excel_sheets("datasets/censusEd.xlsx")
 ```
 
 
 ## Reading in Data/Writing Out Data
 **Excel Data**
 
-- Using `read_excel()` from readxl package 
+- Using `read_excel()` from `readxl` package 
     + Specify cells with contiguous range 
     
 ```{r,eval=FALSE}
 library(readxl)
 #just first sheet
-edData <- read_excel("datasets/censusEd.xls", sheet = "EDU01A", 
+edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A", 
                    ### <b>
                    range = cell_cols("A:D")
                    ### </b>
@@ -590,7 +596,7 @@ edData <- read_excel("datasets/censusEd.xls", sheet = "EDU01A",
 ```{r,echo=FALSE}
 library(readxl)
 #just first sheet
-edData <- read_excel("datasets/censusEd.xls", sheet = "EDU01A", 
+edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A", 
                    range = cell_cols("A:D"))
 ```
 
