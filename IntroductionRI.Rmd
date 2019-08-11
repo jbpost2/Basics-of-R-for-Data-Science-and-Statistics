@@ -1,7 +1,7 @@
 ---
-title: "Introduction to Data Science Using R Part I"
+title: "Introduction to R for Data Science Part I"
 author: "Justin Post"
-date: "August 13-14, 2018"
+date: "August 12-13, 2019"
 output: 
       ioslides_presentation:
          css: css/style.css
@@ -10,7 +10,7 @@ transition: faster
 logo: img/logo.png
 ---
 
-```{r,echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE, warning = FALSE}
 library(tidyverse)
 options(dplyr.print_min = 5)
 ```
@@ -22,10 +22,11 @@ options(dplyr.print_min = 5)
 - 9:30-10:40 Session  
 - 10-minute break  
 - 10:50-12:00 Session  
-- 12:00-1:30 Lunch  
-- 1:30-2:40 Session  
+- 12:00-1:15 Lunch  
+- 1:15-2:25 Session  
 - 10-minute break  
-- 2:50-4:00 Session  
+- 2:35-3:45 Session  
+- 3:45 – 4:00 Q&A and Feedback  
 
 
 ## What do we want to be able to do?
@@ -60,6 +61,19 @@ options(dplyr.print_min = 5)
 <!-- We will do some of the basic numerical/graphical summary stuff along the way during day 1.-->
 
 
+## Installing R  
+
+- Check out the course [website](http://www4.stat.ncsu.edu/~post/DataScienceR/index.html)    
+
+- Info on installing R and R studio [available here](http://www4.stat.ncsu.edu/~post/DataScienceR/Install.html)
+
+- Let's take a few minutes and make sure everyone has these installed and working properly!
+
+If installed, go to console and type `install.packages("tidyverse")`
+
+
+
+
 ## Why learn R?
 
 > - It's free, open source, available on all major platforms. <!--As a result, if you do your analysis in R, anyone can easily replicate it.--> 
@@ -69,6 +83,8 @@ options(dplyr.print_min = 5)
 > - Access to the newest methods.  
 
 > - Great community support (stackoverflow, R-help mailing list, etc.)  
+
+> - Vibrant community readily sharing (rbloggers for instance)  
 
 > - Can *easily* create pdfs, slides, reports, html files, and interactive apps.  
 
@@ -84,15 +100,6 @@ options(dplyr.print_min = 5)
 > - Confusing!  Often many ways to do the same thing <!--Each way correct, but picking the easiest to use or the one that is most compatible with what you are doing can be difficult-->
 
 
-## Installing R  
-
-- Check out the course [website](http://www4.stat.ncsu.edu/~post/DataScienceR/index.html)    
-
-- Info on installing R and R studio [available here](http://www4.stat.ncsu.edu/~post/DataScienceR/Install.html)
-
-- Let's take a few minutes and make sure everyone has these installed and working properly!
-
-If installed, go to console and type `install.packages("tidyverse")`
 
 
 ## R Studio Interface
@@ -152,25 +159,61 @@ log(pi^2) #log is natural log by default
 
 - Submit to console using button or hot key  
 
+> - Have a script open as we go so you can try things!
+
 > - Save script using file --> Save  
 
-> - Note:  All R code from slides on web!  
+> - Note:  All R code from slides available on web!  
 <!--Open a R script, type in the previous lines and use hotkeys to submit to console.  Add in header/why you want it in there.-->
 
-## Objects and Common Classes 
 
-- Often want to save result for later use  
-- Can store output in an R 'object'  
+## R Objects  
+
+R has strong **O**bject **O**riented **P**rogramming (OOP) tools  
+
+> - Object: data structure with attributes  
+
+> - Methods exist to act on an object type  
+
+> - R functions like `print()` or `plot()` act differently depending on object type 
+
+```{r}
+str(cars)
+```
+
+
+## Methods  
+
+```{r}
+str(iris)
+```
+
+
+## Methods  
+
+```{r}
+plot(iris)
+```
+
+
+## R Objects  
+
+> - Store **data/info/function/etc.** in R objects  
+
 ```{r,echo=TRUE}
 #save for later
 avg <- (5 + 7 + 6) / 3
 #call avg object
 avg
 #strings (text) can be saved as well
-words <- "Hello there!"
+words = "Hello there!"
 words
 ```
-<!--look at global environment window.  Note that R is case sensitive-->
+
+<!--look at global environment window.  Note that R is case sensitive
+The operators <- and = assign into the environment in which they are evaluated. The operator <- can be used anywhere, whereas the operator = is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions. 
+-->
+
 
 ## Objects and Common Classes   
 
@@ -491,26 +534,6 @@ attributes(iris)
 ## Basic Data Manipulation  
 - **How do we access different parts of our object?  **
 
-## Basic Data Manipulation 
-- **How do we access different parts of our object?  **
-- For data may want    
-    + Data value  
-
-## Basic Data Manipulation  
-- **How do we access different parts of our object?  **
-- For data may want    
-    + Data value  
-    + Just a column
-    + Multiple columns
-
-## Basic Data Manipulation  
-- **How do we access different parts of our object?  **
-- For data may want    
-    + Data value  
-    + Just a column
-    + Multiple columns
-    + Just a row  
-    + Multiple rows  
 
 ## Basic Data Manipulation  
 - **How do we access different parts of our object?  **
@@ -522,18 +545,7 @@ attributes(iris)
     + Multiple rows  
     + Access to values of an attribute  
 
-## Basic Data Manipulation  
-- **How do we access different parts of our object?  **
-- For data may want    
-    + Data value  
-    + Just a column
-    + Multiple columns
-    + Just a row  
-    + Multiple rows  
-    + Access to values of an attribute  
 
-- Let's go through each of our common data types and work our way up!
- 
 ## Basic Data Manipulation  
 **Atomic Vectors**  
 
@@ -785,6 +797,26 @@ names(iris)
 names(iris)[2] <- "Sepal_Width"
 names(iris)
 ```
+
+
+
+## Partial Matching 
+
+With `[[` or `$` partial matching can be used  
+
+```{r}
+iris$Sp
+```
+
+
+## Partial Matching 
+
+With `[[` or `$` partial matching can be used  
+
+```{r}
+iris[["Petal.Len", exact = FALSE]]
+```
+
 
 
 ## Recap!

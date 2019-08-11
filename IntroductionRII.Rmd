@@ -1,7 +1,7 @@
 ---
-title: "Introduction to Data Science Using R Part II"
+title: "Introduction to R for Data Science Part II"
 author: "Justin Post"
-date: "August 13-14, 2018"
+date: "August 12-13, 2019"
 output: 
       ioslides_presentation:
          css: css/style.css
@@ -53,10 +53,12 @@ library(haven)
 
 > - [Excel](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xlsx?raw=true) data  
 
-> - [SPSS formatted](https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav) data  
- 
-> - [SAS data sets](https://github.com/jbpost2/DataScienceR/blob/master/datasets/smoke2003.sas7bdat)  
+> - From other statistical software, Ex: [SPSS formatted](https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav) data or [SAS data sets](https://github.com/jbpost2/DataScienceR/blob/master/datasets/smoke2003.sas7bdat)   
 
+> - From a database  
+
+> - From an Application Programming Interface (API)
+  
 > - Many ways to read in the data... How to choose?  
 
 
@@ -185,18 +187,20 @@ Focus on file argument as everything else has defaults.  Notice a path must be g
 ## Reading in Data/Writing Out Data  
 - How does R locate the file?  
 
+## Reading in Data/Writing Out Data  
+- How does R locate the file?  
+    + Can give file *full path name*  
+        * ex: E:/Other/DataScienceR/datasets/data.txt  
+        * ex: E:\\\\Other\\\\DataScienceR\\\\datasets\\\\data.txt  
+
+
 
 ## Reading in Data/Writing Out Data  
 - How does R locate the file?  
     + Can give file *full path name*  
-        * ex: E:/Other/DataScienceR/datasets/data.txt
+        * ex: E:/Other/DataScienceR/datasets/data.txt  
+        * ex: E:\\\\Other\\\\DataScienceR\\\\datasets\\\\data.txt  
 
-
-
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
-    + Can give file *full path name*  
-        * ex: E:/Other/DataScienceR/datasets/data.txt
     + Can change *working directory*  
         * Folder on computer usually
         * Where R 'looks' for files
@@ -205,6 +209,7 @@ Focus on file argument as everything else has defaults.  Notice a path must be g
 ```{r}
 getwd()
 ```
+
 
 ## Reading in Data/Writing Out Data  
 - How does R locate the file?  
@@ -242,7 +247,35 @@ knitr::include_graphics("img/setwd.png")
 
 - Set working directory to that folder  
 
-- Read in data
+- Read in data  
+
+
+## Aside: RStudio - Project
+
+- Often have many files associated with each analysis  
+
+- Keeping different undertakings separate can be difficult!
+
+- Can use "Project" feature in R Studio  
+
+> - Provides straightforward way to divide your work into multiple contexts.  Each with their own:    
+    <ul>  
+      <li> Working directory</li>
+      <li> Workspace</li>  
+      <li> History</li>  
+      <li> Source documents</li>  
+    </ul>
+
+
+## Aside: RStudio - Project
+
+- Easy to create!  
+
+```{r project.png, out.width = "600px",echo=FALSE}
+knitr::include_graphics("../img/project.png")
+```
+
+- Can save workspace, etc. and pick up right where you left off!
 
 
 ## Reading in Data/Writing Out Data
@@ -746,6 +779,175 @@ SAS (.sas7bdat)    | `haven`   | `read_sas`
 
 - Write data with `write_csv()` from readr  
 
+
+## APIs  
+
+Application Program Interface (API)  
+
+- set of subroutine definitions, communication protocols, and tools for building software  
+
+- Basically a protocol for computers to talk to one another  
+
+- Just need to understand the language!  
+
+- Useful for getting data  
+
+Ex: [Census API](https://api.census.gov/data.html)
+
+- Usually need to get a key (sometimes a username and password)
+
+
+## APIs  
+
+Very few APIs are out there for R as compared to say python  
+
+- Some R packages exist such as `censusapi` (you can get your own census key [here](https://api.census.gov/data/key_signup.html)) 
+
+```{r, message = FALSE}
+library(censusapi)
+apis <- listCensusApis()
+head(apis)
+```
+
+## APIs  
+
+`getCensus()`  
+
+- makes an API call to a given Census API and returns a data frame  
+
+- most census APIs require (among other things)  
+
+    + name - API name given by Census (“acs5” or “timeseries/bds/firms”)  
+
+    + vintage - dataset year  
+
+    + vars - list of variable names to get  
+
+    + region - geography level to return, like state or county
+
+
+## APIs  
+
+Follow vignette example of getting uninsured rates by income group using the Small Area Health Insurance Estimates API, which provides detailed annual state-level and county-level estimates of health insurance rates.
+
+- name = sahie  
+
+- vintage is time for this api (time = 2016 will be used)  
+
+- vars/region we'll look at the list of available values  
+
+
+##APIs (List of vars)
+
+```{r}
+sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie", type = "variables")
+```
+
+Partial list  
+
+```{r, echo = FALSE, out.width = "800px"}
+knitr::include_graphics("../img/censusAPI.png")
+```
+
+## APIs  
+
+Variables we'll get from that list  
+
+- IPRCAT: Income Poverty Ratio Category  
+
+- IPR_DESC: Income Poverty Ratio Category Description  
+
+- PCTUI_PT: Percent Uninsured in Demographic Group for Selected Income Range, Estimate  
+
+- NAME: Name of the geography returned (e.g. state or county name)  
+
+
+## APIs (List of Region option)
+
+```{r}
+listCensusMetadata(name = "timeseries/healthins/sahie", type = "geography")
+```
+
+- us, county, or state can be requested
+
+##APIs  
+
+Call some data (ask the api for it)  
+
+- uninsured rate by income group at the national level  
+
+```{r, eval = FALSE}
+getCensus(name = "timeseries/healthins/sahie",
+    vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+    region = "us:*", 
+    time = 2016, key = "your_key_here")
+```
+
+
+```{r, echo = FALSE}
+getCensus(name = "timeseries/healthins/sahie",
+    vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+    region = "us:*", 
+    time = 2016, key = "e267f117801b2ef741e54620602b0903c5f4d3c8")
+```
+
+
+##APIs  
+
+Call some data (ask the api for it)  
+
+- uninsured rate by income group for each state  
+
+```{r}
+sahie_states <- getCensus(name = "timeseries/healthins/sahie",
+    vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+    region = "state:*", 
+    time = 2016, key = "e267f117801b2ef741e54620602b0903c5f4d3c8")
+head(sahie_states)
+```
+
+
+## What Does `censusapi` Do?  
+
+Creates the correct call to the API (similar to examples we saw)   
+
+`   constructURL <- function(name, vintage) {`  
+`        if (is.null(vintage)) {`  
+`            apiurl <- paste("https://api.census.gov/data", name, sep = "/")`  
+`        }`  
+`        else {`  
+`            apiurl <- paste("https://api.census.gov/data", vintage, name, sep = "/")`  
+`        }`  
+`        lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))`  
+`        if (lastchar == "?" | lastchar == "/") {`  
+`            apiurl <- substr(apiurl, 1, nchar(apiurl) - 1)`  
+`        }`  
+`        apiurl`  
+`    }`
+
+
+## API Access in R  
+
+Article [here](https://www.programmableweb.com/news/how-to-access-any-restful-api-using-r-language/how-to/2017/07/21) discusses accessing APIs generically with R  
+
+Same website gives a [list of APIs](https://www.programmableweb.com/category/all/apis)
+
+
+##Recap  
+
+Many sources of data  
+
+- flat delimited files  
+
+- Excel  
+
+- APIs  
+
+- Databases (not covered here)   
+
+- Web scraping (not covered here)  
+
+Need to know how to bring data in and manipulate it for analysis!  
 
 ## Activity 
 - [**Reading/Writing Data Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ReadWriteActivity.html) available on web  
