@@ -128,6 +128,16 @@ iris[iris$Species == "setosa", ]
 ## Logical Statements/Subsetting Data
 
 - Useful for indexing a vector
+- Standard way for subsetting data (or use `subset` function)
+```{r}
+subset(iris, Species == "setosa")
+```
+
+
+
+## Logical Statements/Subsetting Data
+
+- Useful for indexing a vector
 - Optional way: `filter()` from `dplyr` (installed with `tidyverse`)
 
 ```{r}

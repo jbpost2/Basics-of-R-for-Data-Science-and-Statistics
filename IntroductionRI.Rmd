@@ -147,7 +147,7 @@ log(pi^2) #log is natural log by default
 > - Send lines of code to console via: 
     <ul>
       <li> "Run" button (runs current line)  </li>
-      <li> CTRL+r (PC) or Command+Enter (MAC)  </li>
+      <li> CTRL+Enter (PC) or Command+Enter (MAC)  </li>
       <li> Highlight section and do above</li>
     </ul>
 
