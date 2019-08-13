@@ -477,7 +477,7 @@ g + geom_bar(stat = "identity", position = "dodge") +
     + Save tables with write_csv!
  
 ```{r,eval=FALSE}
-tab <- tbl_df(table(titanicData$embarked, titanicData$survived))
+tab <- as.data.frame(table(titanicData$embarked, titanicData$survived))
 
 names(tab) <- c("Embarked", "Survived", "Count")
 

@@ -288,6 +288,25 @@ iris$Species == &quot;setosa&quot;</pre>
 
 <ul>
 <li>Useful for indexing a vector</li>
+<li>Standard way for subsetting data (or use <code>subset</code> function)</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>subset(iris, Species == &quot;setosa&quot;)</pre>
+
+<pre >## # A tibble: 50 x 5
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+## 1          5.1         3.5          1.4         0.2 setosa 
+## 2          4.9         3            1.4         0.2 setosa 
+## 3          4.7         3.2          1.3         0.2 setosa 
+## 4          4.6         3.1          1.5         0.2 setosa 
+## 5          5           3.6          1.4         0.2 setosa 
+## # ... with 45 more rows</pre>
+
+</article></slide><slide class=""><hgroup><h2>Logical Statements/Subsetting Data</h2></hgroup><article  id="logical-statementssubsetting-data-5">
+
+<ul>
+<li>Useful for indexing a vector</li>
 <li>Optional way: <code>filter()</code> from <code>dplyr</code> (installed with <code>tidyverse</code>)</li>
 </ul>
 
@@ -303,7 +322,7 @@ iris$Species == &quot;setosa&quot;</pre>
 ## 5          5           3.6          1.4         0.2 setosa 
 ## # ... with 45 more rows</pre>
 
-</article></slide><slide class=""><hgroup><h2>Logical Statements/Subsetting Data</h2></hgroup><article  id="logical-statementssubsetting-data-5">
+</article></slide><slide class=""><hgroup><h2>Logical Statements/Subsetting Data</h2></hgroup><article  id="logical-statementssubsetting-data-6">
 
 <pre class = 'prettyprint lang-r'>filter(iris, Species != &quot;setosa&quot;)</pre>
 
@@ -1294,12 +1313,8 @@ Batting %&gt;% summarise(AvgX2B = mean(X2B, na.rm = TRUE))</pre>
 <p>(Cite: <a href='http://rpubs.com/justmarkham/dplyr-tutorial-part-2' title=''>http://rpubs.com/justmarkham/dplyr-tutorial-part-2</a>)</p>
 
 <pre class = 'prettyprint lang-r'># create two simple data frames
-a &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;red&quot;), num = 1:3)</pre>
-
-<pre >## Warning: `data_frame()` is deprecated, use `tibble()`.
-## This warning is displayed once per session.</pre>
-
-<pre class = 'prettyprint lang-r'>b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&quot;), size = c(&quot;S&quot;, &quot;M&quot;, &quot;L&quot;))</pre>
+a &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;red&quot;), num = 1:3)
+b &lt;- data_frame(color = c(&quot;green&quot;, &quot;yellow&quot;, &quot;pink&quot;), size = c(&quot;S&quot;, &quot;M&quot;, &quot;L&quot;))</pre>
 
 <div style="float: left; width: 45%;">
 <pre class = 'prettyprint lang-r'>a</pre>

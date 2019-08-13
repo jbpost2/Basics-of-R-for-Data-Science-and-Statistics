@@ -748,7 +748,7 @@ Batting %>% group_by(teamID) %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
 
 (Cite: http://rpubs.com/justmarkham/dplyr-tutorial-part-2)
 
-```{r}
+```{r, warning = FALSE}
 # create two simple data frames
 a <- data_frame(color = c("green", "yellow", "red"), num = 1:3)
 b <- data_frame(color = c("green", "yellow", "pink"), size = c("S", "M", "L"))
