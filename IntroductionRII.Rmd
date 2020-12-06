@@ -1,7 +1,6 @@
 ---
 title: "Introduction to R for Data Science Part II"
 author: "Justin Post"
-date: "August 12-13, 2019"
 output: 
       ioslides_presentation:
          css: css/style.css

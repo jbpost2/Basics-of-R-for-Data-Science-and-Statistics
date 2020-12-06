@@ -1,7 +1,6 @@
 ---
 title: "Introduction to R for Data Science Part I"
 author: "Justin Post"
-date: "August 12-13, 2019"
 output: 
       ioslides_presentation:
          css: css/style.css
@@ -20,13 +19,13 @@ options(dplyr.print_min = 5)
 **Daily agenda:**   
 
 - 9:30-10:40 Session  
-- 10-minute break  
-- 10:50-12:00 Session  
-- 12:00-1:15 Lunch  
-- 1:15-2:25 Session  
-- 10-minute break  
-- 2:35-3:45 Session  
-- 3:45 – 4:00 Q&A and Feedback  
+- 15-minute break  
+- 10:55-12:05 Session  
+- 12:05-1:20 Lunch  
+- 1:20-2:30 Session  
+- 15-minute break  
+- 2:45-3:55 Session  
+- 3:55–4:00 Q&A and Feedback  
 
 
 ## What do we want to be able to do?
