@@ -566,6 +566,17 @@ aggregate(uptake ~ Treatment + conc, data = CO2, FUN = summary)
 
 
 
+## Activity 
+- [**Numerical Summaries Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/NumericalActivity.html) available on web  
+
+- We'll send you to breakout rooms   
+
+- One TA or instructor in each room to help out
+
+- Feel free to ask questions about anything you didn't understand as well! 
+
+
+
 ## Plotting  
 
 Three major systems for plotting:
@@ -1077,6 +1088,17 @@ Next:  Numeric variable plotting
 
 
 
+## Activity 
+- [**Basic Plotting Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/BasicPlotActivity.html) available on web  
+
+- We'll send you to breakout rooms   
+
+- One TA or instructor in each room to help out
+
+- Feel free to ask questions about anything you didn't understand as well! 
+
+
+
 
 ## `ggplot2` Plotting: Numeric Variables    
 
@@ -1458,7 +1480,7 @@ General `ggplot` things:
 
 
 ## Activity 
-- [**Quantitative Plots Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/QuantPlotsActivity.html) available on web  
+- [**ggplot Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ggplotActivity.html) available on web  
 
 - We'll send you to breakout rooms   
 
