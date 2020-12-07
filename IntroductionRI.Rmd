@@ -12,6 +12,7 @@ logo: img/logo.png
 ```{r,echo=FALSE,message=FALSE, warning = FALSE}
 library(tidyverse)
 options(dplyr.print_min = 5)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
 ```
 
 ## Course Schedule  
@@ -27,34 +28,149 @@ options(dplyr.print_min = 5)
 - 2:45-3:55 Session  
 - 3:55–4:00 Q&A and Feedback  
 
+## What is this course about?
 
-## What do we want to be able to do?
+Basic use of R for reading, manipulating, and plotting data!
 
-- Read in data  
 
-- Manipulate data  
 
-- Plot data  
+## What is this course about?
 
-- Summarize data  
+Basic use of R for reading, manipulating, and plotting data!
 
-- Analyze data  
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/chemical.txt">
+```{r step1a, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/rawData.png")
+```
+</a>
+</div>
+
+## What is this course about?
+
+Basic use of R for reading, manipulating, and plotting data!
+
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/chemical.txt">
+```{r step2a, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/rawData.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow2a, fig.align = 'left', out.width = '30px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/readChemData.r">
+```{r step2b, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/ImportR.png")
+```
+</a>
+</div>
+
+
+## What is this course about?
+
+Basic use of R for reading, manipulating, and plotting data!
+
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/chemical.txt">
+```{r step3a, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/rawData.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow3a, fig.align = 'left', out.width = '30px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/readChemData.r">
+```{r step3b, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/ImportR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/summChemData.r">
+```{r arrow3b, fig.align = 'left', out.width = '30px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</a>
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/summChemData.r">
+```{r step3c, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/SummarizeR.png")
+```
+</a>
+</div>
+
+
+
+## What is this course about?
+
+Basic use of R for reading, manipulating, and plotting data!
+
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/chemical.txt">
+```{r step4a, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/rawData.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4a, fig.align = 'left', out.width = '30px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/readChemData.r">
+```{r step4b, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/ImportR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4b, fig.align = 'left', out.width = '30px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/summChemData.r">
+```{r step4c, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/SummarizeR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4c, fig.align = 'left', out.width = '30px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px dashed black;">
+```{r step4d, fig.align = 'left', out.width = '205px', out.height = "249px", echo = FALSE}
+knitr::include_graphics("img/AnalysisR.png")
+```
+</div>
 
 
 ## Where do we start?  
 
-**Day 1**  
+**Roughly Day 1**  
 
 - Install R/R studio  
 - R Studio Interface
 - Classes and Objects    
 - Attributes and Basic Data Object Manipulation    
 - Reading in Data/Writing Out Data    
-- Logical Statements and Subsetting/Manipulating Data     
 
-**Day 2**  
+**Roughly Day 2**  
 
-- Logical Statements and Subsetting/Manipulating Data?
+- Logical Statements and Subsetting/Manipulating Data
 - Numerical and Graphical Summaries    
 - Basic Analyses  
 <!-- We will do some of the basic numerical/graphical summary stuff along the way during day 1.-->
@@ -68,7 +184,7 @@ options(dplyr.print_min = 5)
 
 - Let's take a few minutes and make sure everyone has these installed and working properly!
 
-If installed, go to console and type `install.packages("tidyverse")`
+If installed, open RStudio, go to 'console' and type `install.packages("tidyverse")`
 
 
 
@@ -83,316 +199,636 @@ If installed, go to console and type `install.packages("tidyverse")`
 
 > - Great community support (stackoverflow, R-help mailing list, etc.)  
 
-> - Vibrant community readily sharing (rbloggers for instance)  
-
 > - Can *easily* create pdfs, slides, reports, html files, and interactive apps.  
 
 
 ## Drawbacks of Using R  
 
-> - Somewhat slow generally (although ways to speed it up) <!--C, Fortran, C++ connections - BLAS libraries, etc. Microsoft R does all this for you.  If really intensive computations, R is often used to profile code then written in a faster language-->  
-
 > - Code style differs greatly! <!--Packages and code written by many different people with different styles.  Kind of have to learn as you go.  Newer wave of packages 'cleaning up' R quite a bit.  They use the same syntax (or similar).-->  
-
-> - New code not necessarily verified <!--Users writing code for their latest method may have written something incorrectly.-->  
 
 > - Confusing!  Often many ways to do the same thing <!--Each way correct, but picking the easiest to use or the one that is most compatible with what you are doing can be difficult-->
 
+> - New code not necessarily verified <!--Users writing code for their latest method may have written something incorrectly.-->  
+
+> - Updates can mess up 'legacy' code
 
 
 
-## R Studio Interface
 
-- Four main 'areas' we'll use  
-    + Scripting and Viewing Area  
-    + Environment/History  
-    + Plots/Packages/Help  
-    + Console
+## RStudio IDE 
+
+In RStudio, four main 'areas'   
+
+- Console (& Terminal)  
+
+- Scripting and Viewing Window  
+    
+- Plots/Help (& Files/Packages)  
+
+- Environment (& Connections/Git)  
     
 
-## R Studio Interface  
+## Console  
 
-To rearrange panes
+- Type code directly into the **console** for evaluation  
 
-```{r, out.width = "700px",echo=FALSE}
-knitr::include_graphics("img/panes.png")
-```
-
-- Global options --> Appearance allows font/background changes  
-- Global options --> Code allows for soft-wrap of script files
-
-
-## Basic Use of R
-
-- You can type directly into the console to evaluate code  
-- R is the fanciest calculator you could ever want!
-
-```{r, echo=TRUE}
-#simple math operations (# is a comment, not evaluated)
+<div  style = "float: left; width = 45%;">
+```{r calc2, echo=TRUE}
+#simple math operations
+# <-- is a comment - code not evaluated
 3 + 7
 10 * exp(3) #exp is exponential function
 log(pi^2) #log is natural log by default
 ```
+</div>
+
+<div  style = "float: right; width = 45%;">
+```{r basic, echo = TRUE, out.width = "400px", fig.align='center'}
+mean(cars$speed)
+hist(cars$speed)
+```
+</div>
 <!--Output of each of these is actually a vector of length 1!-->
 
-## Basic Use of R  
+## Scripting and Viewing Window 
 
-- Usually want to keep code for later use  
+- Usually want to keep code for later use!  
 
-> - Write code in a 'script'  
+> - Write code in a 'script' and save script (or use markdown - covered later)
 
-> - Save code script  
-
-> - Send lines of code to console via: 
+> - From script can send code to console via: 
     <ul>
       <li> "Run" button (runs current line)  </li>
       <li> CTRL+Enter (PC) or Command+Enter (MAC)  </li>
       <li> Highlight section and do above</li>
     </ul>
 
-## Basic Use of R  
+## Scripting and Viewing Window  
 
 - Go to file --> New File --> R Script  
 
-- Type `hist(cars$dist)`  
+- Type `View(cars)` (note capital `V`)  
+
+- Type `plot(cars)`  
 
 - Submit to console using button or hot key  
 
-> - Have a script open as we go so you can try things!
 
-> - Save script using file --> Save  
+## Plots/Help 
 
-> - Note:  All R code from slides available on web!  
-<!--Open a R script, type in the previous lines and use hotkeys to submit to console.  Add in header/why you want it in there.-->
++ Created plots stored in `Plots` tab  
 
+    - Cycle through past plots  
+    - Easily save  
+ 
+> + `Help` tab to learn about R functions  
+    - Type `help(hist)` in the console
 
-## R Objects  
+## Environment   
 
-R has strong **O**bject **O**riented **P**rogramming (OOP) tools  
+- Store **data/info/function/etc.** in R objects  
 
-> - Object: data structure with attributes  
+- Create an R object via `<-` (recommended) or `=`  
 
-> - Methods exist to act on an object type  
-
-> - R functions like `print()` or `plot()` act differently depending on object type 
-
-```{r}
-str(cars)
-```
-
-
-## Methods  
-
-```{r}
-str(iris)
-```
-
-
-## Methods  
-
-```{r}
-plot(iris)
-```
-
-
-## R Objects  
-
-> - Store **data/info/function/etc.** in R objects  
-
-```{r,echo=TRUE}
+```{r save,echo=TRUE}
 #save for later
 avg <- (5 + 7 + 6) / 3
 #call avg object
 avg
 #strings (text) can be saved as well
-words = "Hello there!"
+words <- c("Hello there!", "How are you?")
 words
 ```
 
-<!--look at global environment window.  Note that R is case sensitive
-The operators <- and = assign into the environment in which they are evaluated. The operator <- can be used anywhere, whereas the operator = is only allowed at the top level (e.g., in the complete expression typed at the command prompt) or as one of the subexpressions in a braced list of expressions. 
--->
+
+## Environment   
+
+- Look at all current objects with `ls()`
+
+```{r ls, echo = TRUE}
+ls()
+```
+
+- `rm()` to remove  
+
+```{r rm, echo = TRUE}
+rm(avg)
+ls()
+```
 
 
-## Objects and Common Classes   
+## Environment   
 
-- You have data...  
+- Built-in objects exist like `letters` and `cars`  
 
-- Five major data structures used  
+```{r builtin, echo = TRUE}
+letters
+head(cars, n = 3)
+```
 
-     1. Atomic Vector (1d)  
-     2. Matrix (2d)  
-     3. Array (nd) (we'll skip)  
-     4. Data Frame (2d)  
-     5. List (1d)  
+- `data()` shows available built-in datasets
 
 
-## Objects and Common Classes    
+## RStudio IDE 
 
-1. Atomic Vector (a set of elements with an ordering) 
-  - `c()` function "combines" values together
-  
-## Objects and Common Classes    
+Four main 'areas'   
 
-1. Atomic Vector (a set of elements with an ordering) 
-  - `c()` function "combines" values together
-```{r,echo=TRUE}
+- Console (& Terminal)  
+
+- Scripting and Viewing Window  
+    
+- Plots/Help (& Files/Packages)  
+
+- Environment (& Connections/Git)  
+    
+
+## RStudio IDE 
+
+To rearrange panes
+
+```{r panes, out.width = "700px",echo=FALSE, fig.align = "center"}
+knitr::include_graphics("img/panes.png")
+```
+
+
+## RStudio IDE 
+
+Other useful global options:  
+
+- Appearance  
+
+    + font size  
+    + theme  
+    
+- Code  
+ 
+    + editing --> soft-wrap  
+    + display --> show whitespace
+
+
+
+## R Objects and Classes  
+
+- R has strong **O**bject **O**riented **P**rogramming (OOP) tools  
+
+- Object: data structure with attributes (class)  
+
+- Method: procedures (functions) act on object based on attributes  
+
+
+## R Objects and Classes  
+
+- R has strong **O**bject **O**riented **P**rogramming (OOP) tools  
+
+- Object: data structure with attributes (class)  
+
+- Method: procedures (functions) act on object based on attributes  
+
+- R functions like `print()` or `plot()` act differently depending on object class 
+
+<div style = "float: left; width = 45%;">
+```{r str1, echo = TRUE}
+class(cars)
+```
+</div>
+<div style = "float: left; width = 10%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style = "float: left; width = 45%;">
+```{r str2, echo = TRUE}
+class(exp)
+```
+</div>
+
+
+## R Objects and Classes  
+
+- R has strong **O**bject **O**riented **P**rogramming (OOP) tools  
+
+- Object: data structure with attributes (often a 'class')  
+
+- Method: procedures (often 'functions') act on object based on attributes  
+
+- R functions like `print()` or `plot()` act differently depending on object class 
+
+<div style = "float: left; width = 45%;">
+```{r plot1, echo = TRUE, fig.align = 'center', out.width = '350px'}
+plot(cars)
+```
+</div>
+<div style = "float: left; width = 10%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</div>
+<div style = "float: left; width = 45%;">
+```{r plot2, echo = TRUE, fig.align = 'center', out.width = '350px'}
+plot(exp)
+```
+</div>
+
+
+
+## R Objects and Classes  
+
+- Create an R object via `<-` (recommended) or `=`  
+
+    + allocates memory to object  
+    
+    + object attributes usually depend on how you created it!  
+    
+```{r create, echo = TRUE}
+vec <- c(1, 4, 10)
+class(vec)
+
+fit <- lm(dist ~ speed, data = cars)
+class(fit)
+```
+
+
+## Investigating Objects  
+
+Many functions to help understand an R Object  
+
+ - `class()`  
+ 
+ - describes the `class` attribute of an R object  
+ 
+```{r obj2, echo = TRUE}
+class(cars)
+```
+
+
+## Investigating Objects  
+
+Many functions to help understand an R Object  
+
+ - `typeof()`  
+ 
+ - determines the (R internal) type or storage mode of any object  
+ 
+```{r obj3, echo = TRUE}
+typeof(cars)
+```
+ 
+## Investigating Objects  
+
+Many functions to help understand an R Object  
+
+ - `str()`  
+ 
+ - compactly displays the internal structure of an R object  
+ 
+```{r obj1, echo = TRUE}
+str(cars)
+```
+
+
+## Recap & What's next?!  
+
+Create an R Object with `<-`  
+
+Many functions to help understand an R Object  
+
+ - `class()`  
+ - `typeof()`
+ - `str()`  
+
+## Recap & What's next?!  
+
+Create an R Object with `<-`  
+
+Many functions to help understand an R Object  
+
+ - `class()`  
+ - `typeof()`
+ - `str()`  
+
+Common data structures  
+
+1. Atomic Vector (1d)  
+2. Matrix (2d)  
+3. Array (nd) (not covered)  
+4. Data Frame (2d)  
+5. List (1d)  
+
+
+## Vector   
+
+1. Atomic Vector (1D group of elements with an ordering)   
+
+```{r vectorVis, echo = FALSE, fig.align='center', out.width = '650px'}
+knitr::include_graphics("img/vectorVisualF.png")
+```
+
+- Elements must be same 'type'  
+
+    + numeric (integer or double), character, or logical
+    
+
+## Vector   
+
+1. Atomic Vector (1D group of elements with an ordering)   
+  - Create with `c()` function ('combine')  
+```{r vecs}
 #vectors (1 dimensional) objects
-#all elements of the same 'type'
-x <- c(1, 3, 10, -20, sqrt(2))
-y <- c("cat", "dog", "bird", "floor")
+x <- c(17, 22, 1, 3, -3)
+y <- c("cat", "dog", "bird", "frog")
 x
 y
 ```
 
-## Objects and Common Classes    
+## Vector   
 
 - Many 'functions' output a numeric vector
-```{r,echo=TRUE,}
-1:20 / 20
-seq(from = 1, to = 10, by = 2)
-runif(4, min = 0, max = 1)
-```
-<!--seq and runif are functions. To use functions you call their name followed by parentheses.-->
 
-##Help Files  
+- Function concept: 
+
+```{r functionVis1, echo = FALSE, out.width = "800px", fig.align= 'center'}
+knitr::include_graphics("img/funVisual1F.png")
+```
+
+
+## Vector   
+
+- Many 'functions' output a numeric vector
+
+- Ex: `seq()` 
+
+    + Inputs = from, to, by (among others)  
+
+    + Output = a sequence of numbers
+
+```{r functionVis2, echo = FALSE, out.width = "800px", fig.align= 'center'}
+knitr::include_graphics("img/funVisual2F.png")
+```
+
+
+## Vector   
+
+`seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)),`
+`    length.out = NULL, along.with = NULL, ...)`
+
+```{r seq1}
+v <- seq(from = 1, to = 5, by = 1)
+v
+```
+
+
+## Vector   
+
+`seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)),`
+`    length.out = NULL, along.with = NULL, ...)`
+
+```{r seq2}
+v <- seq(from = 1, to = 5, by = 1)
+v
+str(v)
+```
+
+- `num` says it is numeric  
+
+- `[1:5]` implies one dimensional with elements 1, 2, 3, 4, 5
+
+
+## Vector    
+
+Shorthand `seq()` with `:`  
+
+```{r seq3}
+1:20 
+```
+
+
+## Vector    
+
+Shorthand `seq()` with `:`  
+
+- R generally does elementwise math
+
+```{r seq5}
+1:20/20
+1:20 + 1
+```
+
+
+
+## Help Files  
 
 - Functions are ubiquitous in R!  
 
-> - To find out about a function's arguments use `help()`  
+ - To find out about a function's arguments use `help()`  
 
-> - Understanding the help files is key to using code!
+ - Understanding the syntax in the help files is key!
 
-> - <ul>
-      <li> `help(seq)`  </li>
+> - Ex: Can create randomly generated values in any interval:
+    <ul>
       <li> `help(runif)` </li>
     </ul>
 
 <!--R functions can have arguments, some have defaults - others do not-->
 
-## Objects and Common Classes    
 
-1. Atomic Vector (a set of elements with an ordering)   
+## Vector   
+
+1. Atomic Vector (1D group of elements with an ordering)   
 
 - Vectors useful to know about  
 
-- Not usually useful for your data  
+- Not usually useful for a dataset 
 
-- Often 'building blocks' for other data types
+- Often consider as 'building blocks' for other data types
 
 
-## Objects and Common Classes    
+## Matrix   
 
 <ol start="2">
-  <li> Matrix
+  <li> Matrix (2D data structure) </li>
 </ol>
--  collection of vectors of the same **type and length**
-```{r,echo=TRUE}
-#populate vectors
-x <- rep(0.2, times = 6)
-y <- c(1, 3, 4, -1, 5, 6)
+- (think) columns are vectors of the same **type and length**  
+  
+```{r matrixVis, echo = FALSE, out.width = "500px", fig.align= 'center'}
+knitr::include_graphics("img/matrixVisualF.png")
 ```
 
-## Objects and Common Classes    
+## Matrix   
 
 <ol start="2">
-  <li> Matrix
+  <li> Matrix (2D data structure)</li>
 </ol>
--  collection of vectors of the same **type and length**
-```{r,echo=TRUE}
-#populate vectors
-x <- rep(0.2, times = 6)
-y <- c(1, 3, 4, -1, 5, 6)
+- (think) columns are vectors of the same **type and length**
 
+<div style = "float: left; width = 45%;">
+```{r popvec,echo=TRUE}
+#populate vectors
+x <- c(17, 3, 13, 11)
+y <- rep(-3, times = 4)
+z <- 1:4
+```
+</div>
+<div style = "float: left; width = 5%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+
+## Matrix   
+
+<ol start="2">
+  <li> Matrix (2D data structure) </li>
+</ol>
+- (think) columns are vectors of the same **type and length**
+
+<div style = "float: left; width = 45%;">
+```{r popvec2,echo=TRUE}
+#populate vectors
+x <- c(17, 3, 13, 11)
+y <- rep(-3, times = 4)
+z <- 1:4
+```
+</div>
+<div style = "float: left; width = 5%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style = "float: left; width = 45%;">
+```{r checktype, echo = TRUE}
 #check 'type'
 is.numeric(x)
 is.numeric(y)
+is.numeric(z)
 ```
+</div>
 
-## Objects and Common Classes    
+
+
+## Matrix   
 
 <ol start="2">
-  <li> Matrix
-</ol> 
--  collection of vectors of the same **type and length**
-```{r,echo=TRUE}
-#populate vectors
-x <- rep(0.2, times = 6)
-y <- c(1, 3, 4, -1, 5, 6)
+  <li> Matrix (2D data structure) </li>
+</ol>
+- (think) columns are vectors of the same **type and length**
 
+<div style = "float: left; width = 45%;">
+```{r popvec3,echo=TRUE}
+#populate vectors
+x <- c(17, 3, 13, 11)
+y <- rep(-3, times = 4)
+z <- 1:4
+```
+</div>
+<div style = "float: left; width = 5%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style = "float: left; width = 25%;">
+```{r checktype2, echo = TRUE}
+#check 'type'
+is.numeric(x)
+is.numeric(y)
+is.numeric(z)
+```
+</div>
+<div style = "float: left; width = 5%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style = "float: left; width = 20%;">
+```{r checklength, echo = TRUE}
 #check 'length'
 length(x)
 length(y)
+length(z)
 ```
+</div>
 
-## Objects and Common Classes    
+## Matrix   
 
 <ol start="2">
-  <li> Matrix
+  <li> Matrix (2D data structure) </li>
 </ol> 
--  collection of vectors of the same **type and length**
-```{r,echo=TRUE}
+- (think) columns are vectors of the same **type and length**
+
+- Create with `matrix()` function (see help)
+
+## Matrix   
+
+<ol start="2">
+  <li> Matrix (2D data structure) </li>
+</ol> 
+- (think) columns are vectors of the same **type and length**
+
+- Create with `matrix()` function (see help)
+
+```{r mat1,echo=TRUE}
 #populate vectors
-x <- rep(0.2, times = 6)
-y <- c(1, 3, 4, -1, 5, 6)
-#combine in a matrix (check help(matrix))
-matrix(c(x, y), ncol = 2)
+x <- c(17, 3, 13, 11)
+y <- rep(-3, times = 4)
+z <- 1:4
+#combine in a matrix
+matrix(c(x, y, z), ncol = 3)
 ```
 <!--Can have as many columns and/or rows as needed-->
 
-## Objects and Common Classes    
+
+## Matrix   
 
 <ol start="2">
-  <li> Matrix
-</ol> 
--  collection of vectors of the same **type and length**
-```{r,echo=TRUE}
-#populate vectors
-x <- rep(0.2, times = 6)
-y <- c(1, 3, 4, -1, 5, 6)
-#combine in a matrix (check help(matrix))
-matrix(c(x, y), nrow = 2, byrow = TRUE)
-```
-<!--Can have as many columns and/or rows as needed-->
-
-
-## Objects and Common Classes    
-
-<ol start="2">
-  <li> Matrix
+  <li> Matrix (2D data structure) </li>
 </ol>  
--  collection of vectors of the same **type and length**
-```{r,echo=TRUE}
-x <- c("Hi", "There", "!"); y <- c("a", "b", "c"); z <- c("One", "Two", "Three")
+- (think) columns are vectors of the same **type and length**
+
+- Create with `matrix()` function
+
+<div style = "float: left; width = 45%;">
+```{r mat2,echo=TRUE}
+x <- c("Hi", "There", "Friend", "!")
+y <- c("a", "b", "c", "d")
+z <- c("One", "Two", "Three", "Four")
 is.character(x)
-matrix(c(x, y, z), nrow = 3)
 ```
-<!--If asked, semi-colon can be used to put more than one piece of code on the same line-->
+</div>
+<div style = "float: left; width = 5%;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style = "float: left; width = 45%;">
+```{r mat3, echo = TRUE}
+matrix(c(x, y, z), nrow = 6)
+```
+</div>
 
 
-## Objects and Common Classes    
+
+## Matrix   
 
 <ol start="2">
-  <li> Matrix
+  <li> Matrix (2D data structure) </li>
 </ol>  
--  collection of vectors of the same **type and length**
+- (think) columns are vectors of the same **type and length**
 
-- Useful for some data  
+- Useful for some data but often some numeric and some character variables:
 
-- Often some variables with numbers, some with text  
-
-```{r, out.width = "600px",echo=FALSE}
+```{r dataset, out.width = "600px",echo=FALSE, fig.align='center'}
 knitr::include_graphics("img/dataset.png")
 ```
 
 
-## Objects and Common Classes  
+## Data Frame    
 
 <ol start="4">
-  <li> Data Frame
-</ol> 
-- collection (list) of vectors of the same **length**
-```{r,echo=TRUE}
+  <li> Data Frame (2D data structure) </li>
+</ol>  
+- collection (list) of *vectors* of the same **length**  
+
+```{r dfVis, echo = FALSE, out.width = "500px", fig.align= 'center'}
+knitr::include_graphics("img/dfVisualF.png")
+```
+
+
+## Data Frame    
+
+<ol start="4">
+  <li> Data Frame (2D data structure) </li>
+</ol>  
+- collection (list) of *vectors* of the same **length**  
+
+- Create with `data.frame()` function  
+
+```{r df1,echo=TRUE}
 x <- c("a", "b", "c", "d", "e", "f")
 y <- c(1, 3, 4, -1, 5, 6)
 z <- 10:15
@@ -400,16 +836,17 @@ data.frame(x, y, z)
 ```
 <!--Like a more flexible matrix-->
 
-## Objects and Common Classes  
+
+## Data Frame    
 
 <ol start="4">
-  <li> Data Frame
+  <li> Data Frame (2D data structure) </li>
 </ol> 
-- collection (list) of vectors of the same **length**
-```{r,echo=TRUE,eval=FALSE}
-x <- c("a", "b", "c", "d", "e", "f")
-y <- c(1, 3, 4, -1, 5, 6)
-z <- 10:15
+- collection (list) of *vectors* of the same **length**  
+
+- Create with `data.frame()` function
+
+```{r df2,echo=TRUE,eval=TRUE}
 data.frame(char = x, data1 = y, data2 = z)
 ```
 - char, data1, and data2 become the variable names for the data frame
@@ -420,45 +857,75 @@ Reserved words: if else repeat while function for in next break TRUE FALSE NULL 
 see ?make.names for more details-->
 
 
-## Objects and Common Classes  
+## Data Frame    
 
 <ol start="4">
-  <li> Data Frame
+  <li> Data Frame (2D data structure) </li>
 </ol> 
-- collection (list) of vectors of the same **length**
+- collection (list) of *vectors* of the same **length**
+
+- Create with `data.frame()` function
 
 - Perfect for most data sets!  
 
-- Most functions that read data in store it as a data frame  
+- Most functions that read 2D data store it as a data frame  
 
 
-## Objects and Common Classes    
+## List
 
 <ol start="5">
-  <li> List
+  <li> List (1D group of objects with ordering) </li>
 </ol> 
-- a vector that can have differing elements
-```{r,echo=TRUE}
-list("Hi", 1:3, rnorm(2), c("!", "?"))
+- a vector that can have differing elements  
+
+```{r listVis, echo = FALSE, out.width = "600px", fig.align= 'center'}
+knitr::include_graphics("img/listVisualF.png")
 ```
-<!--Still an ordered set of objects-->
 
-## Objects and Common Classes    
+
+## List
 
 <ol start="5">
-  <li> List
+  <li> List (1D group of objects with ordering) </li>
 </ol> 
 - a vector that can have differing elements
+
+- Create with `list()`
+
+```{r list1,echo=TRUE}
+list(1:3, rnorm(2), c("!", "?"))
+```
+
+
+## List
+
+<ol start="5">
+  <li> List (1D group of objects with ordering) </li>
+</ol> 
+
+- Add names to the list elements
+
+```{r list2,echo=TRUE}
+list(seq = 1:3, normVals = rnorm(2), punctuation = c("!", "?"))
+```
+
+
+## List
+
+<ol start="5">
+  <li> List (1D group of objects with ordering) </li>
+</ol> 
+- a vector that can have differing elements
+
+- Create with `list()`
 
 - More flexible than a Data Frame!
 
 - Useful for more complex types of data  
 
-<!--Perfect for use when you have data with a lot of information/variables-->
 
 ## Recap!
 
-Review:  
 
 Dimension | Homogeneous   | Heterogeneous
 --------- | ------------- | -------------
@@ -472,145 +939,132 @@ Dimension | Homogeneous   | Heterogeneous
 - Next up:  How do we access/change parts of our objects?  
 
 
+
 ## Activity 
 
 - [**Objects and Common Classes Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ObjCCActivity.html) available on web  
 
-- Work in small groups  
+- We'll send you to breakout rooms   
 
-- Ask questions!  TAs and I will float about the room  
+- One TA or instructor in each room to help out
 
 - Feel free to ask questions about anything you didn't understand as well!   
 
 
 
-
-## Attributes and Basic Data Manipulation
-
-- Want to know how to handle complex data sets 
-- R has many 'built-in' data sets  
-```{r, eval=FALSE}
-iris
-```
-
-
-## Attributes and Basic Data Manipulation
-
-- **What kind of object is iris?**
-
-
-## Attributes and Basic Data Manipulation
-
-- **What kind of object is iris?**
-
-- `str()` function can tell us (structure)
-```{r}
-str(iris)
-```
-
-
-## Attributes and Basic Data Manipulation
-- **What characteristics does iris have?**
-
-
-## Attributes and Basic Data Manipulation
-- **What characteristics does iris have?**
-- `attributes()` function can tell us metadata  
-    + Metadata = information about the data set  
-    + Returns a named list
-
-```{r, eval=F}
-attributes(iris)
-```
-
-
-## Attributes and Basic Data Manipulation
-```{r, echo=F}
-attributes(iris)
-```
-
-
 ## Basic Data Manipulation  
 - **How do we access different parts of our object?  **
 
 
 ## Basic Data Manipulation  
 - **How do we access different parts of our object?  **
+
 - For data may want    
-    + Data value  
-    + Just a column
-    + Multiple columns
-    + Just a row  
-    + Multiple rows  
-    + Access to values of an attribute  
+    + One element  
+    + Certain columns  
+    + Certain rows  
 
-
+ 
 ## Basic Data Manipulation  
-**Atomic Vectors**  
+**Atomic Vectors** (1D)  
 
-- Access elements of a vector using square brackets 
-```{r}
-letters #built in vector
-letters[10]
+- Return elements using square brackets `[]`   
+
+```{r indexVec}
+letters #built-in vector
 ```
+<div style="float: left; width: 45%;">
+```{r}
+letters[1] #R starts counting at 1!
+```
+</div>
+<div style = "float:left; width = 5%">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style = "float:left; width = 45%">
+```{r}
+letters[26]
+```
+</div>
 
 ## Basic Data Manipulation  
-**Atomic Vectors**  
+**Atomic Vectors** (1D)  
 
-- Can 'feed' R a vector of values to choose
-```{r}
+- Can 'feed' in a vector of indices to return  
+
+```{r indexVec2}
 letters[1:4]
 letters[c(5, 10, 15, 20, 25)]
 x <- c(1, 2, 5); letters[x]
 ```
 
-## Basic Data Manipulation  
-**Matrices**  
 
-- Access elements of a matrix using square brackets with a comma in between 
-- Notice the default row names and column names!
-```{r}
+## Basic Data Manipulation  
+**Atomic Vectors** (1D)  
+
+- Return elements using square brackets `[]`  
+
+- Can 'feed' in a vector of indices to return  
+
+- Use negative indices to return without  
+
+```{r indexVec3}
+letters[-(1:4)]
+x <- c(1, 2, 5); letters[-x]
+```
+
+<!-- note we aren't overwriting anything!-->
+
+
+## Basic Data Manipulation  
+**Matrices** (2D)  
+
+- Use square brackets with a comma `[ , ]`
+
+- Notice default row and column names!  
+
+```{r matindex}
 mat <- matrix(c(1:4, 20:17), ncol = 2)
 mat
 ```
 
 ## Basic Data Manipulation  
-**Matrices**  
+**Matrices** (2D)  
 
-- Access elements using square brackets with a comma 
+- Use square brackets with a comma `[ , ]`
 
 <div style="float: left; width: 45%;">
-```{r}
-mat[2, 2]
-mat[ , 1]
-mat[2, ]
+```{r matindex2}
+mat
+mat[c(2, 4), ]
 ```
 </div>
 <div style="float: right; width: 45%;">
-```{r}
-mat[2:4, 1]
-mat[c(2, 4), ]
+```{r matindex3}
+mat[, 1]
+mat[2, ]
+mat[2, 1]
 ```
 </div>
 <!--Note that R simplifies the result where possible.  That is, returns an atomic vector if you have only 1 dimension and a matrix if two.  Also, if you only give a single value in the [] then R uses the count of the value in the matrix.  Counts go down columns first.-->
 
 
 ## Basic Data Manipulation  
-**Matrices**    
+**Matrices** (2D)   
 
-- Can give columns names and use them for access  
+- Can give columns names
 
 - `help(matrix)` can show us how!  
 
 <!--Checkout the dimnames argument and see how to specify the names using a list.  Particularly that we don't want to give rownames so we can give a NULL (a special value in R that is used for undefined values- here giving no specification of row names).  ?Null for more info.  Then we just give a character vector for the column names-->
 
 ## Basic Data Manipulation  
-**Matrices**  
+**Matrices** (2D)  
 
-- Can give columns names and use them for access
+- Can use columns names to subset
 
 <div style="float: left; width: 60%;">
-```{r,eval=FALSE}
+```{r matindex4,eval=FALSE}
 mat <- matrix(c(1:4, 20:17), ncol = 2,
         ###<b>  
           dimnames = list(NULL,
@@ -619,7 +1073,7 @@ mat <- matrix(c(1:4, 20:17), ncol = 2,
         )
 mat
 ```
-```{r,echo=FALSE}
+```{r matindex5,echo=FALSE}
 mat<-matrix(c(1:4,20:17),ncol=2,
             dimnames=list(NULL,
               c("First","Second")))
@@ -627,7 +1081,7 @@ mat
 ```
 </div>
 <div style="float: right; width: 35%;">
-```{r}
+```{r matindex6}
 mat[, "First"]
 ```
 </div>
@@ -646,67 +1100,85 @@ mat[, "First"]
 <!-- ``` -->
 <!-- - dimnames a *special attribute* with its own function! -->
 
+## Basic Data Manipulation  
+**Matrices** (2D)  
+
+- Use square brackets with a comma `[ , ]`
+
+- Can use columns names to subset
+
+- Negative still removes but won't work with column name  
+
+```{r matindex7, error = TRUE}
+mat[-c(1,3), -"First"]
+```
+
+```{r matindex8, error = TRUE}
+mat[-c(1,3), "First"]
+```
+
 
 ## Basic Data Manipulation  
-**Matrices**  
+**Data Frames** (2D)  
 
-- What about the structure and attributes of matrices?
+- Consider 'built-in' `iris` data frame
 
-<div style="float: left; width:58%;">
-```{r}
-str(mat)
-```
-</div>
-<div style="float: right; width: 35%;">
-```{r}
-attributes(mat)
-```
-</div>
-<!-- dim is a useful attribute!-->
-
-
-## Basic Data Manipulation  
-**Data Frames**  
-
-- 'Built in' `iris` data frame
-```{r}
+```{r irisstr}
 str(iris)
 ```
 
-## Basic Data Manipulation  
-**Data Frames**  
 
-- Can access just like a matrix
-```{r}
+## Basic Data Manipulation  
+**Data Frames** (2D)  
+
+- Data Frame is 2D similar to a matrix - access similarly!
+
+- Use square brackets with a comma `[ , ]`
+
+```{r dfindex}
 iris[1:4, 2:4]
+```
+
+
+## Basic Data Manipulation  
+**Data Frames** (2D)  
+
+- Data Frame is 2D similar to a matrix - access similarly!
+
+- Use square brackets with a comma `[ , ]`
+
+```{r dfindex1b}
 iris[1, ]
 ```
 <!--Notice iris[1,] returns a data frame not a vector.  iris[,1] returns a vector.  This is due to that attributes associated with the columns but having none with the rows.  [  is actually a function call in R (everything is really) and the default argument on [ is drop=TRUE telling R to coerce whatever is left to the lowest possible dimension.  The attributes on the columns keep R from coercing to 1d.   iris[,1,drop=FALSE] returns a data frame with one column.  (Think of [,] as simplifying by default and [,,drop=F] as preserving.)--> 
 
 
 ## Basic Data Manipulation  
-**Data Frames**  
+**Data Frames** (2D)  
 
-- Can use variable names
-```{r}
+- Can use columns names to subset  
+
+```{r dfindex2}
 iris[ , c("Sepal.Length", "Species")]
 ```
 
 
 ## Basic Data Manipulation  
-**Data Frames**  
+**Data Frames** (2D)  
 
-- Dollar sign allows access to columns! (Returns a vector.)
-```{r}
+- Dollar sign allows easy access to a single column!  
+
+```{r dfindex3}
 iris$Sepal.Length
 ```
 
+
 ## Basic Data Manipulation  
-**Data Frames**  
+**Data Frames** (2D)  
 
-- Dollar sign allows access to columns! (Returns a vector.)
+- Dollar sign allows easy access to a single column!  
 
-- Most used method for accessing a data frame  
+- Most used method for accessing a single variable  
 
 - RStudio fills in options.  
     + Type `iris$`  
@@ -715,29 +1187,53 @@ iris$Sepal.Length
 
 
 ## Basic Data Manipulation  
-**Lists**  
+**Data Frames** (2D)  
 
-- Use double square brackets to get at list elements
-```{r}
+- Data Frame is 2D similar to a matrix - access similarly!
+
+- Use square brackets with a comma `[ , ]`
+
+- Can use columns names to subset  
+
+- Dollar sign allows easy access to a single column!  
+
+
+## Basic Data Manipulation  
+**Lists** (1D)  
+
+- Use single square brackets `[ ]` for multiple list elements  
+
+```{r listindex1}
 x <- list("HI", c(10:20), 1)
 x
 ```
 
 
 ## Basic Data Manipulation  
-**Lists**  
+**Lists** (1D)  
 
-- Use double square brackets to get at list elements
+- Use single square brackets `[ ]` for multiple list elements  
+
+```{r listindex1b}
+x <- list("HI", c(10:20), 1)
+x[2:3]
+```
+
+
+## Basic Data Manipulation  
+**Lists** (1D)  
+
+- Use double square brackets `[[ ]]` (or `[ ]`) for single list element
 
 <div style="float: left; width:40%;">
-```{r}
+```{r listindex2}
 x <- list("HI", c(10:20), 1)
+x[1]
 x[[1]]
-x[[3]]
 ```
 </div>
 <div style="float: right; width:50%;">
-```{r}
+```{r listindex3}
 x[[2]]
 x[[2]][4:5]
 ```
@@ -746,60 +1242,50 @@ x[[2]][4:5]
 
 
 ## Basic Data Manipulation  
-**Lists**  
+**Lists** (1D)  
 
-- If named list elements, can use $
-```{r}
+- If named list elements, can use $  
+
+```{r listindex4}
 x <- list("HI", c(10:20), 1)
 str(x)
-x <- list(First="Hi", Second=c(10:20), Third=1)
+x <- list(First = "Hi", Second = c(10:20), Third = 1)
 x$Second
 ```
 
 ## Basic Data Manipulation  
-**Data Frames**  
+**Lists & Data Frames**  
 
-- Connection:  Data Frame = List of equal length vectors 
-```{r}
+- Connection:  Data Frame = *List* of equal length vectors 
+```{r dflist}
+str(x)
 str(iris)
-iris[[2]]
 ```
 <!--Note that iris[2] will give you back the second column but returns a list of that column that retains its attributes. That is, you get back a data frame with that column.  (Think of [] as preserving structure and [[]] as simplifying structure if possible.)-->
 
-## Accessing Attributes  
+## Basic Data Manipulation  
+**Lists & Data Frames**   
 
-- Often want to change or modify attributes
+- Connection:  Data Frame = *List* of equal length vectors 
 
-```{r}
-str(attributes(iris))
+```{r dflist2}
+typeof(x)
+typeof(iris)
 ```
 
-- a list!
 
-## Accessing Attributes  
+## Basic Data Manipulation  
+**Lists & Data Frames**  
 
-- Often want to change or modify attributes
+- Connection:  Data Frame = *List* of equal length vectors 
 
-```{r}
-attributes(iris)$names
-attributes(iris)$names[1] <- "Sepal_Length"
-attributes(iris)$names
+```{r listindex5}
+iris[[2]]
 ```
-
-## Attributes and Basic Data Manipulation
-- Often want to change or modify attributes  
-
-- Most commonly modified attributes have 'helper' functions
-
-```{r}
-names(iris)
-names(iris)[2] <- "Sepal_Width"
-names(iris)
-```
-
 
 
 ## Partial Matching 
+**Lists & Data Frames**  
 
 With `[[` or `$` partial matching can be used  
 
@@ -809,6 +1295,7 @@ iris$Sp
 
 
 ## Partial Matching 
+**Lists & Data Frames**  
 
 With `[[` or `$` partial matching can be used  
 
@@ -817,30 +1304,41 @@ iris[["Petal.Len", exact = FALSE]]
 ```
 
 
+## Basic Data Manipulation  
+**Lists** (1D)  
+
+- Use single square brackets `[ ]` for multple list elements  
+
+- Use double square brackets `[[ ]]` (or `[ ]`) for single list element
+
+- If named list elements, can use $  
+
+
 
 ## Recap!
- - Attributes and Structure important to understand  
-    <ul>
-      <li> `attributes()`</li>
-      <li> `str()`</li>  
-    </ul>  
 
-> - Accessing common data structures  
+Dimension | Homogeneous   | Heterogeneous
+--------- | ------------- | -------------
+1d        | Atomic Vector | List
+2d        | Matrix        | Data Frame
+
+<br> 
+
+Basic access via
     <ul>
         <li> Atomic vectors - `x[ ]`</li>
         <li> Matrices - `x[ , ]`</li>  
         <li> Data Frames - `x[ , ]` or `x$name`</li>  
-        <li> Lists - `x[[ ]]` or `x$name`</li>
+        <li> Lists - `x[ ]`, `x[[ ]]`, or `x$name`</li>
     </ul>
     
     
 ## Activity 
 - [**Attributes and Basic Data Manipulation Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/AttrDataManipActivity.html) available on web  
 
-- Work in small groups  
+- We'll send you to breakout rooms   
 
-- Ask questions!  TAs and I will float about the room  
+- One TA or instructor in each room to help out
 
 - Feel free to ask questions about anything you didn't understand as well!   
-
 
