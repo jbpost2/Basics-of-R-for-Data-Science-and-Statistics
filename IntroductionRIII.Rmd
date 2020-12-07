@@ -16,32 +16,73 @@ library(haven)
 rm(iris)
 ```
 
-## What do we want to be able to do?
+## What is this course about?
 
-- Read in data 
+Basic use of R for reading, manipulating, and plotting data!
 
-- **Manipulate data**  
-
-- Plot data  
-
-- Summarize data  
-
-- Analyze data  
-<!--Don't want to get lost in the details.  What are our goals? what is the point of this?-->
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/chemical.txt">
+```{r step4a, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/rawData.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4a, fig.align = 'left', out.width = '30px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/readChemData.r">
+```{r step4b, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/ImportR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4b, fig.align = 'left', out.width = '30px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/summChemData.r">
+```{r step4c, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/SummarizeR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4c, fig.align = 'left', out.width = '30px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px dashed black;">
+```{r step4d, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/AnalysisR.png")
+```
+</div>
 
 
 ## Schedule    
 
-**Day 1**  
+**Day 2**  
 
-- Install R/R studio  
-- R Studio Interface
-- Classes and Objects    
-- Attributes and Basic Data Object Manipulation    
-- Reading in Data/Writing Out Data
 - **Logical Statements and Subsetting/Manipulating Data**
+- Numerical and Graphical Summaries
+- Basic Analyses 
 
 <!--For the rest of today and probably the start of tomorrow we will look at logical statements and subsetting/manipulating data.  Very useful!-->
+
+
+## Data manipulation idea  
+
+We may want to subset our full data set or create new data   
+
+- Grab only certain types of observations (**filter rows**)
+
+```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+knitr::include_graphics("img/filterVisualF.png")
+```
 
 
 ## Logical Statements
@@ -51,17 +92,16 @@ rm(iris)
 
 <div style="float: left; width: 45%;">
 ```{r}
-#Use of ==, !=, >=, <=, >, <
-"hi" == " hi"
+"hi" == " hi" #== is comparison
 "hi" == "hi"
-4 == 1
+4 >= 1
 ```
 </div>
 <div style="float: right; width: 45%;">
 ```{r}
-4 >= 3
 4 != 1
-"hi" != "hello"
+sqrt(3)^2  == 3
+dplyr::near(sqrt(3)^2, 3)
 ```
 </div>
 
@@ -82,6 +122,7 @@ is.numeric(10)
 ```{r}
 is.character("10")
 is.na(c(1:2, NA, 3))
+is.matrix(c("hello", "world"))
 ```
 </div>
 
@@ -89,67 +130,86 @@ is.na(c(1:2, NA, 3))
 
 - Useful for indexing a vector
 ```{r}
-iris <- tbl_df(iris)
+iris <- as_tibble(iris)
 iris
 ```
 
 
-## Logical Statements/Subsetting Data
+## Logical statements 
 
-- Useful for indexing a vector
-- Standard way for subsetting data (or use `subset` function)
+Goal: Subset rows or columns  
+
+- Consider the built-in `iris` dataframe
+
+```{r}
+head(iris)
+```
+
+
+## Logical statements 
+
+Goal: Subset rows or columns  
+
+- **logical statement** - useful for indexing an R object
+
+- Concept:
+    + Feed index a vector of `TRUE`/`FALSE`   
+    + R returns elements where `TRUE` 
+
+
 ```{r,eval=FALSE}
 iris[iris$Species == "setosa", ]
 ```
 
+
+## Logical statements 
+
 - Concept:
-    + Feed index a vector of `TRUE`/`FALSE` or `0`/`1` values  
-    + R returns elements where `TRUE` or `1` occurred
+    + Feed index a vector of `TRUE`/`FALSE`   
+    + R returns elements where `TRUE` 
 
-
-## Logical Statements/Subsetting Data
-
-- Useful for indexing a vector
 ```{r}
-##Obtain a vector that indicates which rows are "setosa" species
-iris$Species == "setosa"
+iris$Species == "setosa" #vector indicating setosa values
 ```
 
-## Logical Statements/Subsetting Data
 
-- Useful for indexing a vector
-- Standard way for subsetting data (or use `subset` function)
+## Logical statements 
+
+Goal: Subset rows or columns  
+
+- **logical statement** - useful for indexing an R object
+
 ```{r}
 iris[iris$Species == "setosa", ]
 ```
 
 
-## Logical Statements/Subsetting Data
+## Logical statements 
 
-- Useful for indexing a vector
-- Standard way for subsetting data (or use `subset` function)
+Goal: Subset rows or columns  
+
+- **logical statement** - useful for indexing an R object
+
+- Similarly, can use `subset` function  
+
 ```{r}
 subset(iris, Species == "setosa")
 ```
 
 
+## `dplyr`
 
-## Logical Statements/Subsetting Data
+Goal: Subset rows or columns  
 
-- Useful for indexing a vector
-- Optional way: `filter()` from `dplyr` (installed with `tidyverse`)
+- **logical statement** - useful for indexing an R object
+
+- Similarly, can use `filter` from `dplyr` (installed with `tidyverse`)
 
 ```{r}
 filter(iris, Species == "setosa")
 ```
 
 
-## Logical Statements/Subsetting Data
-
-```{r}
-filter(iris, Species != "setosa")
-```
-- We'll spend a good bit of time with dplyr in a bit!
 
 ## Implicit Data Change  
 **Aside: Coercion**
@@ -173,7 +233,7 @@ c(TRUE, FALSE) + 0
         * logical
         * integer
         * double
-        * character.
+        * character
 ```{r}
 #logical to character
 c(TRUE, "hi")
@@ -285,11 +345,446 @@ iris[(iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
 ```
 
 
-## Conditional Execution  
-**If then, If then else**
+## `tidyverse` for data manipulations
 
-- Often want to execute statements conditionally (say to create a new variable)  
-- `if` `then` else concept
+**Overview of dplyr and tidyr packages**
+
+- `dplry` package made for most standard data manipulation tasks    
+
+- `tidyr` package reshapes data  
+
+- Both part of `tidyverse`  
+
+- Make sure `library(tidyverse)` has been run!  
+ 
+
+## Tidyverse Syntax
+
+- Reason to prefer `dplyr` and packages from the `tidyverse` 
+
+> - Fast!
+
+> - Good defaults
+
+> - All packages have similar syntax!  All work on `tibbles` (data frames)
+
+> - Syntax:
+`function(tibble, actions, ...)`
+
+
+## `dplyr` 
+
+- Basic commands 
+    + `as_tibble()` - convert data frame to one with better printing  
+    + `filter()` - subset **rows**  
+    + `arrange()` - reorder **rows**  
+    + `select()` - subset **columns**  
+    + `rename()` - rename **columns**  
+    + `mutate()` - add newly created **column**  
+    + `transmute()` - create new variable  
+    + `group_by()` - group **rows** by a variable   
+    + `summarise()` - apply basic function to data  
+
+
+## `dplyr` 
+
+`as_tibble()` - convert data frame to one with better printing and no simplification
+
+- Just 'wrap' data frame
+
+```{r,eval=TRUE}
+#install.packages("Lahman")
+library(Lahman)
+head(Batting, n = 4) #look at just first 4 observations
+```
+
+
+
+## `dplyr` 
+
+```{r}
+Batting <- as_tibble(Batting)
+Batting
+```
+
+- If data read in with `haven`, `readxl`, or `readr` probably in this format!
+
+
+## `dplyr`
+
+`filter()` - subset **rows**
+
+- Use `filter()` to obtain only PIT data
+```{r}
+filter(Batting, teamID == "PIT")
+```
+
+
+## `dplyr`
+
+`filter()` - subset **rows**
+
+- Multiple filters
+```{r}
+filter(Batting, teamID == "PIT" & yearID == 2000)
+```
+
+
+## `dplyr`
+
+`arrange()` - reorder **rows**
+
+```{r}
+#reorder by teamID
+arrange(Batting, teamID)
+```
+
+
+## `dplyr`
+
+`arrange()` - reorder **rows**
+
+```{r}
+#get secondary arrangement as well
+arrange(Batting, teamID, G)
+```
+
+
+## `dplyr`
+
+`arrange()` - reorder **rows**
+
+```{r}
+#descending instead
+arrange(Batting, teamID, desc(G))
+```
+
+
+
+## Data manipulation idea  
+
+We may want to subset our full data set or create new data   
+
+- Look at only certain variables (**select columns**)  
+    
+```{r, echo = FALSE, fig.align='center', out.width = "400px"}
+knitr::include_graphics("img/selectVisualF.png")
+```
+
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- Often only want select variables (saw `$` and `[ , ]`)
+- `select()` function has same syntax as other `dplyr` functions!
+
+```{r}
+#Choose a single column by name
+select(Batting, X2B)
+```
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- Often only want select variables (saw `$` and `[ , ]`)
+- `select()` function has same syntax as other `dplyr` functions!
+
+```{r}
+#Choose a single column by name
+select(Batting, playerID, X2B)
+```
+
+
+## Aside: Piping or Chaining
+
+- Applying multiple functions: nesting hard to parse!
+- Piping or Chaining with `%>%` operator helps
+
+```{r}
+arrange(select(filter(Batting, teamID == "PIT"), playerID, G, X2B), desc(X2B))
+```
+
+
+## Aside: Piping or Chaining
+
+- Applying multiple functions: nesting hard to parse!
+- Piping or Chaining with `%>%` operator helps
+
+```{r}
+Batting %>% filter(teamID == "PIT") %>% select(playerID, G, X2B) %>% arrange(desc(X2B)) 
+```
+
+
+## Aside: Piping or Chaining
+
+- Generically, pipe does the following
+
+`x %>% f(y)` turns into `f(x,y)`  
+
+`x %>% f(y) %>% g(z)` turns into `g(f(x, y), z)`  
+
+- Can be used with functions outside the tidyverse if this structure works!    
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns between
+Batting %>% select(X2B:HR)
+```
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns containing
+Batting %>% select(contains("X"))
+```
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#all columns starting with
+Batting %>% select(starts_with("X"))
+```
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- Many ways to select variables 
+
+```{r}
+#multiple selections
+Batting %>% select(starts_with("X"), ends_with("ID"), G)
+```
+
+
+## `dplyr`
+
+`select()` - subset **columns**
+
+- May want to reorder variables
+
+```{r}
+#reorder
+Batting %>% select(playerID, HR, everything())
+```
+
+
+## `dplyr`
+
+`rename()` - rename variables
+
+```{r}
+#rename our previous
+Batting %>% 
+  select(starts_with("X"), ends_with("ID"), G) %>% 
+  rename("Doubles" = X2B, "Triples" = X3B)
+```
+
+
+
+## `dplyr`
+
+[Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+- Basic commands 
+    + `as_tibble()` - convert data frame to one with better printing
+    + `filter()` - subset **rows**
+    + `arrange()` - reorder **rows**
+    + `select()` - subset **columns**
+
+- Many `joins` to combine tibbles too! (Similar to SQL)
+
+
+
+
+## Data manipulation idea  
+
+We may want to subset our full data set or create new data   
+
+- Create new variables
+
+```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+knitr::include_graphics("img/createVarVisualF.png")
+```
+
+ 
+## Creating New Variables  
+
+Given a data frame and an appropriate length vector (a new variable), you can use `cbind` (column bind) to add the variable to the dataframe 
+
+```{r}
+temp <- cbind(iris, extra = rep("a", 150))
+str(temp)
+```
+
+
+ 
+## Creating New Variables  
+
+Or simply add as a named (list) element!  
+
+```{r}
+iris$extra <- rep("a", 150)
+str(iris)
+```
+
+
+
+## Creating New Variables  
+
+Better method: use `dplyr`!
+
+- `mutate()` - add newly created **column(s)** to current data frame 
+
+- `transmute()` - create new data frame with created variable(s)  
+
+
+
+## Creating New Variables  
+
+Better method: use `dplyr`!
+
+- `mutate()` - add newly created **column(s)** to current data frame 
+
+- `transmute()` - create new data frame with created variable(s)  
+
+- Syntax:  
+
+`mutate(data, newVarName = functionOfData, newVarName2 = functionOfData, ...)`  
+
+
+
+## Creating New Variables  
+
+- Consider a data set on movie ratings  
+
+```{r,eval=TRUE}
+library(fivethirtyeight)
+fandango
+```
+
+
+## Creating New Variables  
+
+- `mutate()` - add newly created **column(s)** to current data frame 
+
+```{r}
+##Create an average rottentomatoes score variable
+fandango %>% mutate(avgRotten = (rottentomatoes + rottentomatoes_user)/2)
+```
+
+
+## Creating New Variables  
+
+- `mutate()` - add newly created **column(s)** to current data frame 
+
+```{r}
+#can't see it!
+fandango %>% mutate(avgRotten = (rottentomatoes + rottentomatoes_user)/2) %>% 
+  select(film, year, avgRotten, everything())
+```
+
+
+## Creating New Variables  
+
+- `mutate()` - add newly created **column(s)** to current data frame 
+
+- Add more than one variable
+
+```{r}
+fandango %>% 
+  mutate(avgRotten = (rottentomatoes + rottentomatoes_user)/2, 
+         avgMeta = (metacritic_norm + metacritic_user_nom)/2) %>%
+  select(film, year, avgRotten, avgMeta, everything())
+```
+
+
+
+## Creating New Variables  
+
+- `transmute()` - create new data frame with created variable(s)  
+
+```{r}
+#transmute will keep the new variable(s) only
+fandango %>% transmute(avgRotten = (rottentomatoes + rottentomatoes_user)/2)
+```
+
+
+## Creating New Variables  
+
+- `transmute()` - create new data frame with created variable(s)  
+
+```{r}
+#transmute will keep the new variable(s) only
+fandango %>% transmute(avgRotten = (rottentomatoes + rottentomatoes_user)/2, 
+                       avgMeta = (metacritic_norm + metacritic_user_nom)/2) 
+```
+
+
+
+## Creating New Variables  
+
+`mutate` and `transmute` can also use 'window' functions  
+
+ - Functions that take a vector of values and return another vector of values (see [Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf))
+ 
+```{r}
+fandango %>% select(rottentomatoes) %>% mutate(cumulativeSum = cumsum(rottentomatoes))
+```
+
+
+
+## Creating New Variables  
+
+`mutate` and `transmute` can also use some statistical functions
+ 
+```{r}
+fandango %>% select(rottentomatoes) %>% 
+  mutate(avg = mean(rottentomatoes), sd = sd(rottentomatoes))
+```
+
+## Creating New Variables  
+
+`mutate` and `transmute` can also use some statistical functions
+
+- `group_by` to create summaries for groups (more on this later)
+ 
+```{r}
+fandango %>% select(year, rottentomatoes) %>% 
+  group_by(year) %>% mutate(avg = mean(rottentomatoes), sd = sd(rottentomatoes))
+```
+
+
+
+## Creating New Variables  
+**Conditional Execution with If then, If then else**
+
+- Often want to execute statements conditionally to create a variable
+
+- `if` `then` `else` syntax
+
+<div style="float: left; width: 45%;">
 ```{r,eval=FALSE}
 if (condition) {
   then execute code
@@ -302,12 +797,10 @@ if (condition) {
   execute this code
 }
 ```
+</div>
 
-## Conditional Execution  
-**If then, If then else**
 
-- Often want to execute statements conditionally (say to create a new variable)  
-- `if` `then` else concept
+<div style="float: right; width: 45%;">
 ```{r,eval=FALSE}
 #Or more if statements
 if (condition) {
@@ -321,6 +814,7 @@ if (condition) {
   execute this code
 }
 ```
+</div>
 
 
 ## Conditional Execution  
@@ -389,106 +883,103 @@ if (a < 10){
 ```
 
 
-## Manipulating Data
 
-- Logical statments great for data filtering    
+## Creating New Variables  
+**Conditional Execution with If then, If then else**
 
-> - Quite useful for creating new variables too    
+- Consider built-in data set `airquality`  
 
-> - Issue: `if` condition can only take in a single comparison  
+    + daily air quality measurements in New York  
+    
+    + from May (Day 1) to September (Day 153) in 1973  
+    
 
-> - Create new variable for **Large Setosa** flowers
+## Creating New Variables  
+**Conditional Execution with If then, If then else**
 
+- Consider built-in data set `airquality`  
 
-## Manipulating Data
-
-- Logical statments great for data filtering    
-
- - Quite useful for creating new variables too    
-
- - Issue: `if` condition can only take in a single comparison  
-
- - Create new variable for **Large Setosa** flowers
-
-```{r,error=TRUE}
-if ((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) &
-      (iris$Species == "setosa")) {
-   "Large Setosa"
-}
+```{r}
+airquality <- as_tibble(airquality)
+airquality
 ```
 
-## Manipulating Data
 
-- Logical statments great for data filtering    
+## Creating New Variables  
+**Conditional Execution with If then, If then else**
 
-- Quite useful for creating new variables too    
+Want to code a wind category variable    
 
-- `ifelse()` is **vectorized** if statement (see help)  
+ + high wind days (wind $\geq$ 15mph)  
+ + windy days     (10mph $\leq$ wind < 15mph)  
+ + lightwind days (6mph $\leq$ wind < 10mph)  
+ + calm days      (wind $\leq$ 6mph)
 
-- Returns a vector
+
+## Creating New Variables  
+**Conditional Execution with If then, If then else**
+
+Want to code a wind category variable    
+
+Issue: `if(condition)` can only take in a single comparison  
+
+```{r, error = TRUE, message = TRUE, warning = TRUE}
+if(airquality$Wind >= 15) { 
+  "High Wind"
+  }
+```
+
+
+
+## Creating New Variables  
+**Conditional Execution with If then, If then else**
+
+Want to code a wind category variable    
+
+ + high wind days (15mph $\leq$ wind)  
+ + windy days     (10mph $\leq$ wind < 15mph)  
+ + lightwind days (6mph $\leq$ wind < 10mph)  
+ + calm days      (wind $\leq$ 6mph)  
+
+- `ifelse()` is a vectorized version of `if then else`
+
+- Syntax
 
 ```{r,eval=FALSE}
-#syntax
 ifelse(vector_condition, if_true_do_this, if_false_do_this)
 ```
 
-## Manipulating Data
 
-- Create new variable for **Large Setosa** flowers
-```{r,error=TRUE}
-ifelse((iris$Petal.Length > 1.5) & (iris$Petal.Width > 0.3) & 
-         (iris$Species == "setosa"), "L-S", "NotL-S")
-```
+## Creating New Variables  
+**Vectorized if else**
 
-
-## Manipulating Data
-
-
-- `dplry` has a nice function called `transmute()`  
 ```{r}
-transmute(iris, Size = ifelse(
-	(Petal.Length > 1.5) & (Petal.Width > 0.3) & (Species == "setosa"), "LS", "NotLS")
-	)
+ifelse(airquality$Wind >= 15, "HighWind",
+          ifelse(airquality$Wind >= 10, "Windy",
+                 ifelse(airquality$Wind >= 6, "LightWind", "Calm")))
 ```
 
-## Manipulating Data
 
-- `dplry` function `mutate()` does the same but *adds variable to existing data frame*
+
+## Creating New Variables  
+**Vectorized if else**
+
+- Can use with `transmute()` or `mutate()` 
+
 ```{r}
-mutate(iris, Size = ifelse(
-	(Petal.Length > 1.5) & (Petal.Width > 0.3) & (Species == "setosa"), "LS", "NotLS")
-	)
+mutate(airquality, status = ifelse(airquality$Wind >= 15, "HighWind",
+                                ifelse(airquality$Wind >= 10, "Windy",
+                                       ifelse(airquality$Wind >= 6, "LightWind", "Calm")))
+)
 ```
 
 
-## Recap!
-**Logical Operators**
-
-- `&` 'and'  
-
-- `|` 'or'  
-
-- `if (condition) { ... }`  
-
-- `if (condition) { ... } else if (condition) { ... }`  
-
-- `ifelse(vector_condition,result_if_true,result_if_false)`  
 
 
-## Subsetting/Manipulating Data
-**Overview of dplyr package**
-
-- `dplry` package made for most standard data manipulation tasks    
-
-- Part of `tidyverse`  
-
-- Make sure `library(tidyverse)` has been run  
- 
- 
 ## `dplyr` package
 
 - Basic commands 
-    + `tbl_df()` - convert data frame to one with better printing
+    + `as_tibble()` - convert data frame to one with better printing
     + `filter()` - subset **rows**
     + `arrange()` - reorder **rows**
     + `select()` - subset **columns**
@@ -498,248 +989,6 @@ mutate(iris, Size = ifelse(
     + `summarise()` - apply basic function to data
     + `left_join()`, `right_join()`, `inner_join()`, `full_join()` - commands to combine multiple data frames
 
-
-## Tidyverse Syntax
-
-- Reason to prefer `dplyr` and packages from the `tidyverse` 
-
-> - Fast!
-
-> - Good defaults
-
-> - All packages have similar syntax!  All work on `tibbles` (data frames)
-
-> - Syntax: function(data.frame, actions, ...)
-
-
-## Subsetting/Manipulating Data
-`tbl_df()` - convert data frame to one with better printing
-
-- If data read in with haven, readxl, or readr probably in this format!
-- Just 'wrap' data frame
-
-```{r,eval=FALSE}
-#install.packages("Lahman")
-library(Lahman)
-head(Batting, n = 4) #look at just first 4 observations
-```
-
-## Subsetting/Manipulating Data
-`tbl_df()` - convert data frame to one with better printing
-
-```{r,eval=TRUE,echo=FALSE}
-library(Lahman)
-```
-```{r}
-head(Batting, n = 4) #look at just first 4 observations
-```
-
-## Subsetting/Manipulating Data
-
-```{r}
-Batting <- tbl_df(Batting)
-Batting
-```
-
-## Subsetting/Manipulating Data
-`filter()` - subset **rows**
-
-- Use `filter()` to obtain only PIT data
-```{r}
-filter(Batting, teamID == "PIT")
-```
-
-## Subsetting/Manipulating Data
-`filter()` - subset **rows**
-
-- Multiple filters
-```{r}
-filter(Batting, teamID == "PIT" & yearID == 2000)
-```
-
-## Subsetting/Manipulating Data
-`arrange()` - reorder **rows**
-
-```{r}
-#reorder by teamID
-arrange(Batting, teamID)
-```
-
-## Subsetting/Manipulating Data
-`arrange()` - reorder **rows**
-
-```{r}
-#get secondary arrangement as well
-arrange(Batting, teamID, G)
-```
-
-## Subsetting/Manipulating Data
-`arrange()` - reorder **rows**
-
-```{r}
-#descending instead
-arrange(Batting, teamID, desc(G))
-```
-
-
-## Subsetting/Manipulating Data
-**Piping or Chaining**
-
-- Applying multiple functions: nesting hard to parse!
-- Piping or Chaining with `%>%` operator helps
-
-```{r}
-arrange(filter(Batting, teamID == "PIT"), desc(G))
-```
-
-## Subsetting/Manipulating Data
-**Piping or Chaining**
-
-- Applying multiple functions: nesting hard to parse!
-- Piping or Chaining with `%>%` operator helps
-
-```{r}
-Batting %>% filter(teamID == "PIT") %>% arrange(desc(G))
-```
-
-## Subsetting/Manipulating Data
-**Piping or Chaining**
-
-- Applying multiple functions: nesting hard to parse!
-- Piping or Chaining with `%>%` operator helps
-- If `dplyr` or `magrittr` package loaded, can use with other functions
-```{r}
-a<-runif(n = 10)
-a
-```
-
-## Subsetting/Manipulating Data
-**Piping or Chaining**
-
-```{r}
-#silly example
-a %>% quantile()
-a %>% quantile() %>% range()
-```
-
-
-## Subsetting/Manipulating Data
-`select()` - subset **columns**
-
-- Often only want select variables (saw `$` and `[ , ]`)
-- `select()` function has same syntax as other `dplyr` functions!
-
-```{r}
-#Choose a single column by name
-Batting %>% select(X2B)
-```
-
-## Subsetting/Manipulating Data
-`select()` - subset **columns**
-
-- Many ways to select variables 
-
-```{r}
-#all columns between
-Batting %>% select(X2B:HR)
-```
-
-## Subsetting/Manipulating Data
-`select()` - subset **columns**
-
-- Many ways to select variables 
-
-```{r}
-#all columns containing
-Batting %>% select(contains("X"))
-```
-
-
-## Subsetting/Manipulating Data
-`select()` - subset **columns**
-
-- Many ways to select variables 
-
-```{r}
-#all columns starting with
-Batting %>% select(starts_with("X"))
-```
-
-
-## Subsetting/Manipulating Data
-`select()` - subset **columns**
-
-- Many ways to select variables 
-
-```{r}
-#all columns ending with
-Batting %>% select(ends_with("ID"))
-```
-
-## Subsetting/Manipulating Data
-`mutate()` - add newly created **column**  
-
-`transmute()` - create new variable
-
-```{r}
-##Create an Extra Base Hits variable
-Batting %>% mutate(ExtraBaseHits = X2B + X3B + HR)
-```
-
-## Subsetting/Manipulating Data
-`mutate()` - add newly created **column**  
-
-`transmute()` - create new variable
-
-```{r}
-#can't see it!
-Batting %>% mutate(ExtraBaseHits = X2B + X3B + HR) %>% select(ExtraBaseHits)
-```
-
-
-## Subsetting/Manipulating Data
-`mutate()` - add newly created **column**  
-
-`transmute()` - create new variable
-
-```{r}
-#transmute will keep the new variable only
-Batting %>% transmute(ExtraBaseHits = X2B + X3B + HR)
-```
-
-## Subsetting/Manipulating Data
-
-- Basic data summarizations often done by groups  
-
-- Average score by Age group  
-
-- Median income by Education level  
-
-- Number of participants for each Race  
-
-
-## Subsetting/Manipulating Data
-`group_by()` - group **rows** by a variable  
-
-`summarise()` - apply basic function to data
-
-- Summarization - find avg \# of doubles (X2B) 
-- Remove `NA`'s
-- `NA` = Not Available (R's missing data indicator)
-```{r}
-#average # of doubles for all players in data set
-Batting %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
-```
-
-## Subsetting/Manipulating Data
-`group_by()` - group **rows** by a variable  
-
-`summarise()` - apply basic function to data
-
-- Summarization - find avg \# of doubles (X2B) *by team*  (explore this idea more later)
-```{r}
-Batting %>% group_by(teamID) %>% summarise(AvgX2B = mean(X2B, na.rm = TRUE))
-```
 
 ## Subsetting/Manipulating Data  
 
@@ -953,7 +1202,7 @@ inner_join(a, b,
 ## Overview of `dplyr` package [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 - Basic commands 
-    + `tbl_df()` - convert data frame to one with better printing
+    + `as_tibble()` - convert data frame to one with better printing
     + `filter()` - subset **rows**
     + `arrange()` - reorder **rows**
     + `select()` - subset **columns**
@@ -967,9 +1216,8 @@ inner_join(a, b,
 ## Activity 
 - [**Manipulating Data Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ManipulateActivity.html) available on web  
 
-- Work in small groups  
+- We'll send you to breakout rooms   
 
-- Ask questions!  TAs and I will float about the room  
+- One TA or instructor in each room to help out
 
-- Feel free to ask questions about anything you didn't understand as well!   
-
+- Feel free to ask questions about anything you didn't understand as well! 

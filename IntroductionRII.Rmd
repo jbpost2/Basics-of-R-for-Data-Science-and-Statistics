@@ -10,24 +10,61 @@ logo: img/logo.png
 ---
 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE}
-options(dplyr.print_min = 5)
-options(tibble.print_min = 5)
 library(tidyverse)
 library(haven)
+options(dplyr.print_min = 5)
+options(tibble.print_min = 5)
+library(knitr)
+opts_chunk$set(message = FALSE, cache = TRUE, warning = FALSE)
+library(RSQLite)
+library(methods)
 ```
 
-## What do we want to be able to do?
+## What is this course about?
 
-- **Read in data**  
+Basic use of R for reading, manipulating, and plotting data!
 
-- **Manipulate data**  
-
-- Plot data  
-
-- Summarize data  
-
-- Analyze data  
-<!--Don't want to get lost in the details.  What are our goals? what is the point of this?-->
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/chemical.txt">
+```{r step4a, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/rawData.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4a, fig.align = 'left', out.width = '30px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/readChemData.r">
+```{r step4b, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/ImportR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4b, fig.align = 'left', out.width = '30px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px solid black;">
+<a href = "https://www4.stat.ncsu.edu/~online/datasets/summChemData.r">
+```{r step4c, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/SummarizeR.png")
+```
+</a>
+</div>
+<div style = "float: left;">
+```{r arrow4c, fig.align = 'left', out.width = '30px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/arrow.png")
+```
+</div>
+<div style = "float: left;border:1px dashed black;">
+```{r step4d, fig.align = 'left', out.width = '205px', out.height = "249px", eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/AnalysisR.png")
+```
+</div>
 
 
 ## Schedule    
@@ -39,7 +76,6 @@ library(haven)
 - Classes and Objects    
 - Attributes and Basic Data Object Manipulation    
 - **Reading in Data/Writing Out Data**    
-- **Logical Statements and Subsetting/Manipulating Data**  
 
 <!--Next we'll take up getting data into R from external sources.  Then we'll really dive into manipulating it, creating new variables, subsetting by different conditions.  These will all help us to summarize the data nicely and make some beautiful plots.-->
 
@@ -54,73 +90,334 @@ library(haven)
 
 > - From other statistical software, Ex: [SPSS formatted](https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav) data or [SAS data sets](https://github.com/jbpost2/DataScienceR/blob/master/datasets/smoke2003.sas7bdat)   
 
-> - From a database  
+> - JSON or XML data (often from a database or API)
 
-> - From an Application Programming Interface (API)
-  
-> - Many ways to read in the data... How to choose?  
+## Importing Delimited Data: Standard R Methods
 
-
-## Reading in Data/Writing Out Data
-
- - Possible methods to read data  
-    <ul>
-      <li> Base R (what comes installed)</li>  
-      <li> Use an R 'package'</li>
-    </ul>
-    
+ - When you open R a few `packages` are loaded
+ 
 > - R package  
+    <ul>
+      <li> Collection of functions/datasets/etc. in one place</li>  
+      <li> Packages exist to do almost anything</li>  
+      <li> [List of CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) approved packages on R's website</li>  
+      <li> Plenty of other packages on places like GitHub</li>
+    </ul>
+
+
+## Importing Delimited Data: Standard R Methods
+
+ - When you open R a few `packages` are loaded
+ 
+```{r loadR, fig.align = 'center', out.width = "250px", echo = FALSE}
+include_graphics("img/loadR.png")
+```
+
+ - `utils` package has *family* of `read.` functions ready for use!  
+ 
+ 
+## Importing Delimited Data: Standard R Methods
+
+Function and purpose:
+
+Type of Delimeter           | Function   
+--------------------------- | -----------------
+Comma                       | `read.csv()`
+Semicolon (`,` for decimal) | `read.csv2()`
+Tab                         | `read.delim()`
+White Space/General         | `read.table(sep = "")`  
+
+
+> - Each function requires a **path** to the file  
+
+
+## Reading a .csv File  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- How does R locate the file?  
+
+
+## Path to File   
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- How does R locate the file?  
+
+    + Can give *full path name*  
+    
+        * ex: C:/repos/DataScienceR/datasets/neuralgia.csv  
+        * ex: C:\\\\repos\\\\DataScienceR\\\\datasets\\\\neuralgia.csv  
+
+```{r pathVis, fig.align = 'center', out.width = "450px", echo = FALSE}
+knitr::include_graphics("img/pathVis.png")
+```
+
+
+
+## Reading a .csv File  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- Use full local path  
+
+```{r readCSVhidden, echo = FALSE, eval = TRUE}
+neuralgiaData <- read.csv("https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv")
+```
+
+```{r readCSV, echo = TRUE, eval = FALSE}
+neuralgiaData <- read.csv(
+           "C:/repos/DataScienceR/datasets/neuralgia.csv"
+           )
+```
+
+```{r printCSV}
+head(neuralgiaData)
+```
+
+
+## Working Directory  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- Using full local path not recommended!  
+
+    + Can't share code without changing path...
+    
+    
+
+## Working Directory  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- Using full local path not recommended!  
+
+    + Can't share code without changing path...
+    
+- Can change *working directory*  
+<ul>
+    <li> Folder where R 'looks' for files</li>
+    <li> Supply **relative** path </li>
+</ul>
+
+
+
+## Working Directory  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- Using full local path not recommended!  
+
+    + Can't share code without changing path...
+    
+- Can change *working directory*  
+<ul>
+    <li> Folder where R 'looks' for files</li>
+    <li> Supply **relative** path </li>
+</ul>
+
+```{r getwd}
+getwd()
+```
+
+
+## Working Directory  
+
+- Can change *working directory*  
+
+    + Via code
+
+```{r setwd1,eval=FALSE}
+setwd("C:/repos/DataScienceR/datasets")
+#or
+setwd("C:\\repos\\DataScienceR\\datasets")
+```
+<!--Double slash needed because \ is an escape character in R so \\ is really read as \-->
+
+
+## Working Directory  
+
+- Can change *working directory*  
+
+    + Via code
+ 
+    + Via menus
+
+```{r setwd2, out.width = "800px",echo=FALSE}
+knitr::include_graphics("img/setwd.png")
+```
+
+
+## Reading a .csv File  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+```{r readCSVrel, eval = FALSE}
+neuralgiaData <- read.csv("datasets/neuralgia.csv")
+```
+
+- Note: `../` drops down a folder
+
+> - As long others have the same folder structure, can share code with no path change needed!
+
+
+
+
+## Reading a .csv File  
+
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
+
+- R can pull from URLs as well!
+
+```{r readCSV2, eval = TRUE}
+neuralgiaData <- read.csv("https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv")
+head(neuralgiaData)
+```
+
+
+## Reading a .csv File  
+
+`read.csv()` function 
+
+Tell R where the file lives via:  
+
+<ul>
+  <li> a full local path (not recommended)  </li>
+  <li> a relative path  </li>
+  <ul>
+    <li> can set the working directory with `setwd()`  </li>
+  </ul>
+  <li> pulling from URL</li>
+</ul>
+
+
+## Aside: RStudio Project
+
+- Often have many files associated with an analysis  
+
+- With multiple analyses things get cluttered...  
+
+
+## Aside: RStudio Project
+
+- Often have many files associated with an analysis  
+
+- With multiple analyses things get cluttered...  
+
+- Want to associate different  
+<ul>
+   <li> environments </li>
+   <li> histories </li>
+   <li> working directories </li>
+   <li> source documents </li>
+</ul> 
+with each analysis
+
+> - Can use "Project" feature in R Studio  
+
+
+## Aside: RStudio - Project
+
+- Easy to create!  Use an existing folder or create one:
+
+```{r project.png, out.width = "600px",echo=FALSE, fig.align = 'center'}
+knitr::include_graphics("img/project.png")
+```
+
+- Easily switch between analyses!  
+
+- Create one for today's lesson  
+
+- Swap between projects using menu in top right
+
+
+## Reading Delimited Data  
+
+- Functions from `read.` family work well  
+
+- Concerns:  
+
+    + (formerly, prior to R 4.0) poor default function behavior
+    
+         * strings were read as `factors`  
+
+
+## Reading Delimited Data  
+
+- Functions from `read.` family work well  
+
+- Concerns:  
+
+    + poor default function behavior
+    
+         * (formerly, prior to R 4.0) strings are read as `factors`  
+         
+         * row & column names can be troublesome
+    
+    + Slower processing  
+    
+    + (Slightly) different behavior on different computers  
+    
+
+
+## Aside: R Packages
+
+- R package  
     <ul>
       <li> Collection of functions in one place</li>  
       <li> Packages exist to do almost anything</li>  
       <li> [List of CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) approved packages on R's website</li>  
       <li> Plenty of other packages on places like GitHub</li>
     </ul>
+    
+> - "[TidyVerse](http://tidyverse.org/)" - collection of R packages that share common philosophies and are designed to work together!  
 <!--Many packages do the same thing.  Some just do it better than others.  Often hard to pick the best one.-->    
 
 
-## Reading in Data/Writing Out Data
+## Aside: R Packages
 
 - First time using a package  
-    + Must install package (download)  
-    + Can use code or menus
-```{r,eval=FALSE}
+    + Must install package (download files)  
+    + Can use code or menus 
+    
+```{r install1, eval=FALSE}
 install.packages("readr")
 #can do multiple packages at once
 install.packages(c("readr", "readxl", "haven", "DBI", "httr"))
 ```
 
-## Reading in Data/Writing Out Data
+
+## Aside: R Packages
 
 - First time using a package  
-    + Must install package (download)  
+    + Must install package (download files)  
     + Can use code or menus
 
-```{r, out.width = "800px",echo=FALSE}
+```{r install2, out.width = "800px",echo=FALSE, fig.align='center'}
 knitr::include_graphics("img/packages.png")
 ```
 
 <!--Can also install them from local sources and stuff like that but that isn't usually required unless you are behind a firewall of some kind that keeps R from accessing the internet.-->
     
 
-## Reading in Data/Writing Out Data
+## Aside: R Packages
 
-- Once 'installed' on computer, never need to install again (unless you update R)  
+- Only install once!  
 
-- **Each session** read the package in using `library()` or `require()`
+- **Each session**: read in package using `library()` or `require()`
 
-```{r}
+```{r libreq1}
 library("readr")
 require("haven")
 ```
 
-## Reading in Data/Writing Out Data
+## Aside: R Packages
 
 - Difference - if no package  
      + `library()` throws an error
      + `require()` returns FALSE
 
-```{r,error=TRUE,warning=TRUE}
+```{r libreq2,error=TRUE,warning=TRUE}
 library("notAPackage")
 require("notAPackage")
 ```
@@ -130,511 +427,317 @@ Of course, there are ways to load packages by default into your r workspace.  Go
        "mypackage1","mypackage2", ... [etc.]))-->
 
 
-## Reading in Data/Writing Out Data
-- Many packages to read in data  
+## Aside: R Packages  
+
+- Many packages to do things in R  
 
 > - How to choose?  
      <ul>
        <li> Want 'fast' code</li>  
        <li> Want 'easy' syntax</li>  
        <li> Good default settings on functions</li>  
+       <li> Nice set of examples and vignettes</li>  
      </ul> 
      
-> - Base R has reasonable defaults and syntax but functions are slow  
-
-> - "[TidyVerse](http://tidyverse.org/)" - collection of R packages that share common philosophies and are designed to work together!  
-    <ul>
-       <li>Very efficient code</li>
-    </ul>
+> - Enter: TidyVerse
 
 
-## Reading in Data/Writing Out Data
-**Reading in a comma separated value (.csv) file**
+## Aside: R Packages  
 
-- Let's install the `tidyverse` package  
+- Install the `tidyverse` package  
 
-```{r, eval=FALSE}
+```{r tidy, eval=FALSE}
 install.packages("tidyverse")
 ```
 
 
 
-## Reading in Data/Writing Out Data
-**Reading in a comma separated value (.csv) file**
+## Aside: R Packages  
 
-- Let's install the `tidyverse` package  
+- Install the `tidyverse` package  
 
-```{r, eval=FALSE}
+```{r tidy2, eval=FALSE}
 install.packages("tidyverse")
 ```
 
-- Load library
-```{r}
+- Load library  
+
+```{r loadTidy, message = TRUE}
 library(tidyverse)
 ```
 
-- Once library loaded, check `help(read_csv)`
-- Want to read in scores.csv file using `read_csv()`
+- Once library loaded, check `help(filter)`  
 
-<!--Note: There are two conflicts.  This just means functions that are named the same thing.  R uses the most recently loaded function and "masks" the old ones.  You can access specific package functions using "::" for instance, stats::filter(...) will call the filter function that has been masked.
-
-Focus on file argument as everything else has defaults.  Notice a path must be given...-->
+<!--Note: There are two conflicts.  This just means functions that are named the same thing.  R uses the most recently loaded function and "masks" the old ones.  You can access specific package functions using "::" for instance, stats::filter(...) will call the filter function that has been masked.-->
 
 
+## Aside: R Packages  
 
+- Can call functions without loading full library with `::`  
 
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
+- If not specified, most recently loaded package takes precedent
 
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
-    + Can give file *full path name*  
-        * ex: E:/Other/DataScienceR/datasets/data.txt  
-        * ex: E:\\\\Other\\\\DataScienceR\\\\datasets\\\\data.txt  
-
-
-
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
-    + Can give file *full path name*  
-        * ex: E:/Other/DataScienceR/datasets/data.txt  
-        * ex: E:\\\\Other\\\\DataScienceR\\\\datasets\\\\data.txt  
-
-    + Can change *working directory*  
-        * Folder on computer usually
-        * Where R 'looks' for files
-        * Supply abbreviated path name
-
-```{r}
-getwd()
+```{r readCSVex, eval = TRUE}
+dplyr::filter(neuralgiaData, Treatment == "P")
 ```
 
 
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
-    + Can change *working directory*  
+## Aside: R Packages  
+
+Install packages first (download it)  
+
+ - Can do more than one at a time  
+ 
+Load package with `require()` or `library()`  
+
+ - Call without loading using `::`  
+ 
+
+## Reading Delimited Data  
+
+We'll use the `tidyverse`!
+
+Function and purpose:
+
+Type of Delimeter           | `utils` Function        | `readr` Function 
+--------------------------- | ----------------------- | ---------
+Comma                       | `read.csv()`            | `read_csv()`
+Semicolon (`,` for decimal) | `read.csv2()`           | `read_csv2()`
+Tab                         | `read.delim()`          | `read_tsv()`
+General                     | `read.table(sep = "")`  | `read_delim()`
+White Space                 | `read.table(sep = "")`  | `read_table()` `read_table2()`
 
 
+## Reading Delimited Data  
 
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
-    + Can change *working directory*  
-    + Via code
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
 
-```{r,eval=FALSE}
-setwd("E:\\Other\\DataScienceR")
-#or
-setwd("E:/Other/DataScienceR")
-```
-<!--Double slash needed because \ is an escape character in R so \\ is really read as \-->
-
-
-## Reading in Data/Writing Out Data  
-- How does R locate the file?  
-    + Can change *working directory*  
-    + Via menus
-
-```{r, out.width = "800px",echo=FALSE}
-knitr::include_graphics("img/setwd.png")
-```
-
-
-## Reading in Data/Writing Out Data
-**Reading in a comma separated value (.csv) file**
-
-- Often, create a folder with all files for your project  
-
-- Set working directory to that folder  
-
-- Read in data  
-
-
-## Aside: RStudio - Project
-
-- Often have many files associated with each analysis  
-
-- Keeping different undertakings separate can be difficult!
-
-- Can use "Project" feature in R Studio  
-
-> - Provides straightforward way to divide your work into multiple contexts.  Each with their own:    
-    <ul>  
-      <li> Working directory</li>
-      <li> Workspace</li>  
-      <li> History</li>  
-      <li> Source documents</li>  
-    </ul>
-
-
-## Aside: RStudio - Project
-
-- Easy to create!  
-
-```{r project.png, out.width = "600px",echo=FALSE}
-knitr::include_graphics("../img/project.png")
-```
-
-- Can save workspace, etc. and pick up right where you left off!
-
-
-## Reading in Data/Writing Out Data
-**Reading in a comma separated value (.csv) file**
-
-- To avoid dealing with downloading files, we'll pull straight from the web
-
-```{r,eval=FALSE,echo=TRUE}
-scoreData <- read_csv(file = "https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/scores.csv")
-```
-
-```{r,eval=TRUE,echo=FALSE}
-scoreData<-read_csv(file="https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/scores.csv")
+```{r readCSVex2, eval = TRUE, message = TRUE}
+neuralgiaData2 <- readr::read_csv("https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv")
 ```
 
 
+## Reading Delimited Data  
 
-## Reading in Data/Writing Out Data
+- Let's read in the '[neuralgia.csv](https://www4.stat.ncsu.edu/~online/datasets/neuralgia.csv)' file  
 
-```{r,echo=TRUE}
-scoreData
+```{r viewData}
+neuralgiaData2
 ```
 
 
-## Reading in Data/Writing Out Data
-**Reading in a comma separated value (.csv) file**
+## Reading Delimited Data  
 
 - Notice: fancy printing!  
-- tidyverse data frames are special class
-- Printing method optimal
 
-```{r}
-attributes(scoreData)$class
+- Checking column type is a basic data validation step  
+
+- `tidyverse` data frames are called `tibbles`  
+
+```{r class}
+class(neuralgiaData2)
 ```
 
 
-## Reading in Data/Writing Out Data
-**Reading in a comma separated value (.csv) file**
+## `tibbles`  
 
-- Notice: fancy printing!  
-- tidyverse data frames are special class
-- Printing method optimal
+- Behavior slightly different than a standard `data frame`.  No simplification!  
 
-```{r}
-attributes(scoreData)$class
+```{r simplify}
+neuralgiaData[,1]
+neuralgiaData2[,1]
 ```
+
+
+## `tibbles`  
+
+- Behavior slightly different than a standard `data frame`.  No simplification!  
+
+- Use either `pull()` or `$`
+
+```{r pull}
+pull(neuralgiaData2, 1) #or pull(neuralgiaData2, Treatment)
+neuralgiaData2$Treatment 
+```
+
+
+## Reading Delimited Data  
 
  - How did R determine the column types?
 
+```{r helpcsv, eval = FALSE}
+help(read_csv)
+```
+
+> - Other useful inputs:  
+<ul>
+  <li> `skip = 0`</li>
+  <li> `col_names = TRUE`</li>
+  <li> `na = c("", "NA")` </li>
+</ul>
 <!--check the help on read_csv again.  See col_types.  Checks first 1000 rows of data and figures out character or numeric.  Notice you can read columns in using specifications.  For instance could specify week as integer and use date or date time when applicable.
 --> 
 
 
-## Reading in Data/Writing Out Data  
-  
-- Checking column type is a basic data validation step
-- Check out scoresStub.csv  
-- Look at season column type!
+## Reading Delimited Data  
 
-```{r,echo=TRUE,eval=FALSE}
-scoreStub <- read_csv("https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/scoresStub.csv")
-```
+- Reading *clean* delimited data pretty easy!  
 
-```{r,echo=FALSE}
-scoreStub<-read_csv("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/scoresStub.csv")
-```
+- Let's read in the '[chemical.txt](https://www4.stat.ncsu.edu/~online/datasets/chemical.txt)' file (space delimited)  
+
+> - `read_table2()` allows multiple white space characaters between entries  
 
 
-## Reading in Data/Writing Out Data  
+## Reading Delimited Data  
 
-```{r}
-scoreStub
-```
+- Reading *clean* delimited data pretty easy!  
 
+- Let's read in the '[chemical.txt](https://www4.stat.ncsu.edu/~online/datasets/chemical.txt)' file (space delimited)  
 
-----
+- `read_table2()` allows multiple white space characaters between entries  
 
-- Can now make pretty plots (covered tomorrow)  
-```{r}
-ggplot(data = scoreData, aes(x = day, y = AFinal)) + geom_boxplot()
-```
-
-## Quick Aside: `factors`  
-
-- Base R `read.csv()`  
-    + Reads character variables as `factors`  
-    
-> - Factor - special class of vector  
-    <ul>
-      <li> Great for variable with finite number of classes (**levels**) </li>
-      <li> Ex: day or week</li>
-    </ul>
-
-
-## Quick Aside: `factors`  
-
-- Base R `read.csv()`  
-    + Reads character variables as `factors`  
-    
-- Factor - special class of vector  
-    <ul>
-      <li> Great for variable with finite number of classes (**levels**) </li>
-      <li> Ex: day or week</li>
-    </ul>
-    
-```{r}
-#overwrite day column with factor version
-scoreData$day <- as.factor(scoreData$day)
-levels(scoreData$day)
-```
-
-## Quick Aside: `factors`    
-- Factor - Can now reorder (useful when plotting)  
-    + Use `ordered` function on a *factor* to order the levels
-
-```{r}
-scoreData$day <- ordered(scoreData$day, 
-                  levels = c("Wed","Thu","Fri","Sat","Sun","Mon","Tue"))
-
-levels(scoreData$day)
-```
-
-----
-
-- Plot with reordered levels (remove F, T, W)
-
-```{r,echo=FALSE}
-ggplot(data = filter(scoreData, day %in% c("Mon", "Sat", "Sun", "Thu")),aes(x=day,y=AFinal))+geom_boxplot()
+```{r readSpace}
+read_table2("https://www4.stat.ncsu.edu/~online/datasets/chemical.txt")
 ```
 
 
-## Reading in Data/Writing Out Data
-**Reading in any delimited file**
 
-- Read in umps.txt file (a '>' delimited file)
+## Reading Delimited Data  
+
+- Reading *clean* delimited data pretty easy!  
+
+- Let's read in the '[crabs.txt](https://www4.stat.ncsu.edu/~online/datasets/crabs.txt)' file (tab delimited)  
+
+
+
+## Reading Delimited Data  
+
+- Reading *clean* delimited data pretty easy!  
+
+- Let's read in the '[crabs.txt](https://www4.stat.ncsu.edu/~online/datasets/crabs.txt)' file (tab delimited)  
+
+```{r readTab}
+read_tsv("https://www4.stat.ncsu.edu/~online/datasets/crabs.txt")
+```
+
+
+## Reading Delimited Data  
+
+- Reading *clean* delimited data pretty easy!  
+
+- Let's read in the '[umps2012.txt](https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt)' file ('>' delimited)  
+
 - Notice no column names provided  
-    + Year Month Day Home Away HPUmpire  
 
-> - Use `read_delim()` (check help!)
+     + Year Month Day Home Away HPUmpire  
 
 
-----
+## Reading Delimited Data  
 
-```{r,eval=FALSE}
-umpData <- read_delim("https://raw.githubusercontent.com/
-                    jbpost2/DataScienceR/master/datasets/umps2012.txt", 
-                    delim = ">",
-### <b>
-     col_names = c("Year", "Month", "Day", "Home", "Away", "HPUmpire")
-### </b>
-)
-```
+- Reading *clean* delimited data pretty easy!  
 
-```{r,echo=FALSE}
-umpData<-read_delim("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/umps2012.txt",delim=">",
-          col_names=c("Year","Month","Day","Home","Away","HPUmpire"))
+- Let's read in the '[umps2012.txt](https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt)' file ('>' delimited)  
+
+- Notice no column names provided  
+
+     + Year Month Day Home Away HPUmpire  
+
+```{r readGeneral}
+read_delim("https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt", delim = ">",
+           col_names = c("Year", "Month", "Day", "Home", "Away", "HPUmpire"))
 ```
 
 
-## Reading in Data/Writing Out Data
-```{r}
-umpData
-```
+## Reading Fixed Field & Tricky Non-Standard Data
 
-## Reading in Data/Writing Out Data
-**Reading in any delimited file**
-
-- Functions from *readr* and their purpose
-
-Delimiter     | Function   
-------------- | -----------------------------
-comma ','     | read_csv() 
-tab           | read_tsv() 
-space ' '     | read_table()
-semi-colon ';'| read_csv2() 
-other         | read_delim(...,delim = ,...)
-
-<!--Note read_table() will do any number of spaces between columns.  read_csv2() is common in countries where , is used as a decimal so ; is used as the delimieter-->
-
-
-## Reading in Data/Writing Out Data
-**Fixed field data**
-
-- Open the cigarettes.txt file: Read using `read_fwf()`
-
- - Can specify columns in many ways
-
-```{r,eval=FALSE,echo=TRUE}
-#a guess based on reading a few columns
-cigData <- read_fwf("https://raw.githubusercontent.com/jbpost2/
-                  DataScienceR/master/datasets/cigarettes.txt",
-### <b>
-                  col_positions =
-                      fwf_empty("https://raw.githubusercontent.com/jbpost2/
-                             DataScienceR/master/datasets/cigarettes.txt",
-                 col_names = c("brand", "tar", "nicotine", "weight", "co"))
-###</b>
-)
-```
-
-```{r,eval=TRUE,echo=FALSE,message=FALSE}
-#a guess based on reading a few columns
-cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
-       fwf_empty("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",
-                 col_names = c("brand", "tar", "nicotine", "weight", "co")))
-```
-
-
-
-## Reading in Data/Writing Out Data
-```{r}
-cigData
-```
-
-## Reading in Data/Writing Out Data
-**Fixed field data**
-
-- Must skip first line!
-
-```{r,eval=FALSE}
-#need to skip first line!
-cigData<-read_fwf("https://raw.githubusercontent.com/
-                  jbpost2/DataScienceR/master/datasets/cigarettes.txt",
-                  col_positions = fwf_empty("https://raw.githubusercontent.com/jbpost2/
-                       DataScienceR/master/datasets/cigarettes.txt",
-                 col_names = c("brand", "tar", "nicotine", "weight", "co")),
-### <b>
-       skip = 1
-### </b>
-)
-```
-
-```{r,echo=FALSE,message=FALSE}
-#need to skip first line!
-cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
-       fwf_empty("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",
-                 col_names = c("brand", "tar", "nicotine", "weight", "co")),skip=1)
-```
-
-## Reading in Data/Writing Out Data
-```{r}
-cigData
-```
-
-
-## Reading in Data/Writing Out Data
-**Fixed field data**
-
-- Can specify columns in many ways
-
-```{r,eval=FALSE}
-#another option
-cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/
-                   DataScienceR/master/datasets/cigarettes.txt",
-                   col_positions =
-  ### <b>
-                                 fwf_widths(c(17, 5, 9, 6, NA),
-  ### </b>
-                col_names = c("brand", "tar", "nicotine", "weight", "co")),
-                    skip = 1
-  )
-```
-
-```{r,echo=FALSE,message=FALSE}
-#another option
-cigData<-read_fwf("https://raw.githubusercontent.com/jbpost2/DataScienceR/master/datasets/cigarettes.txt",col_positions=
-       fwf_widths(c(17,5,9,6,NA),
-                  col_names = c("brand", "tar", "nicotine", "weight", "co")),
-       skip=1)
-```
-
-```{r, out.width = "600px",echo=FALSE}
-knitr::include_graphics("img/fwfdata.png")
-```
-
-## Reading in Data/Writing Out Data
-
-**Other useful functions for tricky data** 
-
+- read_fwf()  
+     + reads in data where entries are very structured  
+     
 - read_file()
      + reads an entire file into a single string
 
 - read_lines() 
      + reads a file into a character vector with one element per line  
 
-- Usually parse with `regular expressions`   
+- Usually parse the last two with `regular expressions` :(
 
 
-## Reading in Data/Writing Out Data
-**Excel Data**
+## Next Up!
 
-- Read in censusEd.xlsx  
+- Read data from other sources
 
-- Unfortunately can't xlsx from gitHub easily
+Type of file       | Package   | Function   
+------------------ | --------- | -----------------
+Delimited          | `readr`   | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim()`
+Excel (.xls,.xlsx) | `readxl`  | `read_excel()`
+SAS (.sas7bdat)    | `haven`   | `read_sas()`
+SPSS (.sav)        | `haven`   | `read_spss()`
 
-- Download [censusEd.xlsx](https://github.com/jbpost2/DataScienceR/blob/master/datasets/censusEd.xlsx?raw=true)
+<br> 
 
-- Place in folder called 'datasets' in working directory
+- Basics for JSON, databases, and APIs
 
 
-## Reading in Data/Writing Out Data
-**Excel Data**
+## Excel Data
 
-- Read in censusEd.xls  
-- Using `read_excel()` from `readxl` package 
-    + Reads both xls and xlsx files
-    + Detects format from extension given
-    + Specify sheet with name or integers (or NULL for 1st)  
-    
-```{r}
+- Read in [censusEd.xlsx](https://www4.stat.ncsu.edu/~online/datasets/censusEd.xlsx)  
+
+- Use `read_excel()` from `readxl` package!  
+
+
+
+## Excel Data
+
+- Read in [censusEd.xlsx](https://www4.stat.ncsu.edu/~online/datasets/censusEd.xlsx)  
+
+- Use `read_excel()` from `readxl` package!  
+
+    + Reads both xls and xlsx files  
+
+    + Detects format from extension given  
+
+    + Can't pull from web though!  
+
+
+## Excel Data
+
+```{r, warning = FALSE}
+#install package if necessary
 library(readxl)
-#just first sheet
-edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A")
-```
-
-## Reading in Data/Writing Out Data
-```{r}
+#reads first sheet by default
+edData <- read_excel("datasets/censusEd.xlsx")
 edData
 ```
 
 
-## Reading in Data/Writing Out Data
-**Excel Data**
+## Excel Data
 
-- Using `read_excel()` from `readxl` package 
-    + Specify sheet with name or integers (or `NULL` for 1st)  
-    + Look at sheets available
+- Read in [censusEd.xlsx](https://www4.stat.ncsu.edu/~online/datasets/censusEd.xlsx)  
+
+- Use `read_excel()` from `readxl` package!    
+
+    + Specify sheet with name or integers (or `NULL` for 1st) using `sheet =`  
+
+    + Can look at sheets available
 
 ```{r}
 excel_sheets("datasets/censusEd.xlsx")
 ```
 
-
-## Reading in Data/Writing Out Data
-**Excel Data**
-
-- Using `read_excel()` from `readxl` package 
-    + Specify cells with contiguous range 
-    
-```{r,eval=FALSE}
-library(readxl)
-#just first sheet
-edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A", 
-                   ### <b>
-                   range = cell_cols("A:D")
-                   ### </b>
-                   )
+```{r, eval = FALSE}
+read_excel("datasets/censusEd.xlsx", sheet = "EDU01D")
 ```
-```{r,echo=FALSE}
-library(readxl)
-#just first sheet
+
+
+## Excel Data
+
+- Use `read_excel()` from `readxl` package!    
+
+    + Specify cells with contiguous range with `range =`  
+    
+```{r}
 edData <- read_excel("datasets/censusEd.xlsx", sheet = "EDU01A", 
                    range = cell_cols("A:D"))
-```
-
-
-## Reading in Data/Writing Out Data
-```{r}
 edData
 ```
 
@@ -656,84 +759,99 @@ Using `read_excel()` from `readxl` package
         <ul> <li> `range = "R1C2:R2C5"`</ul> </li>
       
       
-## Reading in Data/Writing Out Data
-**SPSS Data**
-
-- SPSS data has extension ".sav"  
-- Read in bodyFat.sav  
-- Use `read_spss()` from `haven` package  
-- Not many options!
-
-```{r,eval=FALSE}
-library(haven)
-bodyFatData <- read_spss("https://github.com/jbpost2/
-                      DataScienceR/blob/master/datasets/
-                      bodyFat.sav?raw=true.sav")
-```
-```{r,echo=FALSE}
-library(haven)
-bodyFatData<-read_spss("https://github.com/jbpost2/DataScienceR/blob/master/datasets/bodyFat.sav?raw=true.sav")
-```
-      
-## Reading in Data/Writing Out Data
-```{r,eval=FALSE}
-bodyFatData
-```
-```{r,echo=FALSE}
-print(bodyFatData, n = 5)
-```
-
-
-## Reading in Data/Writing Out Data
-**SAS Data**
+## SAS Data
 
 - SAS data has extension '.sas7bdat' 
 
-- Read in smoke2003.sas7bdat  
+- Read in [smoke2003.sas7bdat](https://www4.stat.ncsu.edu/~online/datasets/smoke2003.sas7bdat)  
 
-- Use `read_sas()` from haven package  
+> - Use `read_sas()` from `haven` package  
+
+> - Not many options!
+
+
+
+## SAS Data
+
+- SAS data has extension '.sas7bdat' 
+
+- Read in [smoke2003.sas7bdat](https://www4.stat.ncsu.edu/~online/datasets/smoke2003.sas7bdat)  
+
+- Use `read_sas()` from `haven` package  
 
 - Not many options!
 
-```{r,eval=FALSE}
-smokeData <- read_sas("https://github.com/jbpost2/
-                    DataScienceR/blob/master/datasets/
-                    smoke2003.sas7bdat?raw=true")
-```
-```{r,echo=FALSE}
-smokeData<-read_sas("https://github.com/jbpost2/DataScienceR/blob/master/datasets/smoke2003.sas7bdat?raw=true")
-```
-
-
-## Reading in Data/Writing Out Data
-```{r}
+```{r,eval=TRUE}
+#install if necessary
+library(haven)
+smokeData <- read_sas("https://www4.stat.ncsu.edu/~online/datasets/smoke2003.sas7bdat")
 smokeData
 ```
 
-## Reading in Data/Writing Out Data
-**SAS Data**
+
+
+## SAS Data
 
 - Note: Variables had SAS labels. Don't show on print!  
 
-    + Will show on View(smokeData) (or click on data from environment)  
+    + Will show on `View(smokeData)` (or click on data from environment)  
     
 ```{r}
 str(smokeData)
 ```
     
-## Reading in Data/Writing Out Data
-**SAS Data**  
+    
+## SAS Data
 
 - Note: Variables had SAS labels.  Don't show on print!  
 
-    + Will show on View(smokeData) (or click on data from environment)  
+    + Will show on `View(smokeData)` (or click on data from environment)  
     + Can access via
 
 ```{r}
 attr(smokeData$SDDSRVYR, "label")
 ```
 
-## Reading in Data/Writing Out Data
+
+## SPSS Data  
+
+- SPSS data has extension ".sav"  
+
+- Read in [bodyFat.sav](https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav)  
+
+> - Use `read_spss()` from `haven` package  
+
+> - Not many options!
+
+
+## SPSS Data  
+
+- SPSS data has extension ".sav"  
+
+- Read in [bodyFat.sav](https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav)  
+
+- Use `read_spss()` from `haven` package  
+
+- Not many options!
+```{r,eval=TRUE}
+bodyFatData <- read_spss("https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav")
+bodyFatData
+```
+
+
+## Recap
+
+- Reading Data  
+
+Type of file       | Package   | Function   
+------------------ | --------- | -----------------
+Delimited          | `readr`   | `read_csv()`, `read_tsv()`, `read_table()`, `read_delim()`
+Excel (.xls,.xlsx) | `readxl`  | `read_excel()`
+SAS (.sas7bdat)    | `haven`   | `read_sas()`
+SPSS (.sav)        | `haven`   | `read_spss()`
+
+
+## Writing Out Data
 **Writing Data**
 
 - Usually write to .csv (or other delimiter)
@@ -743,7 +861,7 @@ attr(smokeData$SDDSRVYR, "label")
  
 ```{r,eval=FALSE}
 write_csv(x = smokeData,
-          path = "E:/Other/DataScienceR/datasets/output/smokeData.csv")
+          path = "C:/repos/DataScienceR/datasets/smokeData.csv")
 ```
 <!-- Note: Lose lables here... would need to write a function to grab them and then output them to the data set as an extra row. Or create a different data set to hold them.-->
 
@@ -759,200 +877,363 @@ write_csv(x = smokeData,
 
 ```{r,eval=FALSE}
 write_csv(x = bodyFatData,
-          path = "E:/Other/DataScienceR/datasets/smokeData.csv",
+          path = "C:/repos/DataScienceR/datasets/smokeData.csv",
           append = TRUE)
 ```
    
-## Recap
-
-- Reading Data
-
-Type of file       | Package   | Function   
------------------- | --------- | -----------------
-Delimited          | `readr`   | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim(...,delim = ,...)`
-Excel (.xls,.xlsx) | `readxl`  | `read_excel`
-SPSS (.sav)        | `haven`   | `read_spss`
-SAS (.sas7bdat)    | `haven`   | `read_sas`
-
-<br>
-
-- Write data with `write_csv()` from readr  
 
 
-## APIs  
+## Resources for Other Data Sources  
 
-Application Program Interface (API)  
+**JSON** - JavaScript Object Notation  
 
-- set of subroutine definitions, communication protocols, and tools for building software  
+- Used widely across the internet and databases  
 
-- Basically a protocol for computers to talk to one another  
+- Can represent usual 2D data or heirarchical data
 
-- Just need to understand the language!  
+
+
+## Resources for Other Data Sources  
+
+**JSON** - JavaScript Object Notation  
+
+- Uses key-value pairs  
+
+```{r, eval = FALSE}
+{  
+  {  
+    "name": "Barry Sanders"  
+    "games" : 153  
+    "position": "RB"  
+  },  
+  {  
+    "name": "Joe Montana"  
+    "games": 192  
+    "position": "QB"  
+  }  
+} 
+```
+
+
+## Resources for Other Data Sources  
+
+**JSON** - JavaScript Object Notation  
+
+Three major R packages 
+
+1. `rjson`  
+
+2. `RJSONIO`  
+
+3. `jsonlite`  
+
+    + many nice features 
+    
+    + a little slower implementation  
+
+
+
+## Resources for Other Data Sources  
+
+**JSON** - JavaScript Object Notation  
+
+[`jsonlite`](https://www.rdocumentation.org/packages/jsonlite/versions/1.6) basic functions:
+
+Function    | Description
+----------- | --------------------------------------------------
+`fromJSON`  | Reads JSON data from file path or character string. Converts and simplfies to R object  
+`toJSON`    | Writes R object to JSON object  
+`stream_in` | Accepts a *file connection* - can read streaming JSON data
+
+
+## Resources for Other Data Sources  
+
+**APIs** - Application Programming Interfaces
+
+A defined method for asking for information from a computer  
 
 - Useful for getting data  
 
-Ex: [Census API](https://api.census.gov/data.html)
+- Useful for allowing others to run your model without a GUI (like Shiny)  
 
-- Usually need to get a key (sometimes a username and password)
+> - Many open APIs, just need key  
+
+> - Often just need to construct proper URL
 
 
-## APIs  
+## Resources for Other Data Sources  
 
-Very few APIs are out there for R as compared to say python  
+**APIs** - Quick Example
 
-- Some R packages exist such as `censusapi` (you can get your own census key [here](https://api.census.gov/data/key_signup.html)) 
+- Query Harry Potter database https://www.potterapi.com/
 
-```{r, message = FALSE}
-library(censusapi)
-apis <- listCensusApis()
-head(apis)
+- Get key in top right (sign up for account)
+
+```{r, fig.align = 'center', echo = FALSE, out.width="800px"}
+knitr::include_graphics("img/HPAPI.png")
 ```
 
-## APIs  
 
-`getCensus()`  
+## Resources for Other Data Sources  
 
-- makes an API call to a given Census API and returns a data frame  
+**APIs** - Quick Example
 
-- most census APIs require (among other things)  
+- Query Harry Potter database https://www.potterapi.com/
 
-    + name - API name given by Census (“acs5” or “timeseries/bds/firms”)  
+- Documentation:  
 
-    + vintage - dataset year  
-
-    + vars - list of variable names to get  
-
-    + region - geography level to return, like state or county
-
-
-## APIs  
-
-Follow vignette example of getting uninsured rates by income group using the Small Area Health Insurance Estimates API, which provides detailed annual state-level and county-level estimates of health insurance rates.
-
-- name = sahie  
-
-- vintage is time for this api (time = 2016 will be used)  
-
-- vars/region we'll look at the list of available values  
-
-
-##APIs (List of vars)
+    + All routes need to be prefixed with https://www.potterapi.com/v1/  
+    
+    + GET request: /spells returns all spells 
+    
+    + Key goes on the end  
 
 ```{r}
-sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie", type = "variables")
+baseURL <- "https://www.potterapi.com/v1/"
+value <- "spells?"
+key <- "key=$2a$10$UMvDCH.93fa2KOjKbJYkOOPMNzdzQpJ0gMnVEtcHzW5Ic04HUmcsa"
+URL <- paste0(baseURL, value, key)
+#spellData <- RCurl::getURL(URL) #Website currently down...
 ```
 
-Partial list  
 
-```{r, echo = FALSE, out.width = "800px"}
-knitr::include_graphics("../img/censusAPI.png")
+
+## Resources for Other Data Sources  
+
+**APIs** - Quick Example
+
+- Query Harry Potter database https://www.potterapi.com/
+
+- Default response format is JSON 
+
+
+
+
+## Resources for Other Data Sources  
+
+**APIs** - Quick Example
+
+- Query Harry Potter database https://www.potterapi.com/
+
+- Default response format is JSON 
+
+```{r, warning = FALSE, message = FALSE, eval = FALSE}
+spellDataDF <- jsonlite::fromJSON(spellData)
+as_tibble(spellDataDF)
 ```
 
-## APIs  
-
-Variables we'll get from that list  
-
-- IPRCAT: Income Poverty Ratio Category  
-
-- IPR_DESC: Income Poverty Ratio Category Description  
-
-- PCTUI_PT: Percent Uninsured in Demographic Group for Selected Income Range, Estimate  
-
-- NAME: Name of the geography returned (e.g. state or county name)  
 
 
-## APIs (List of Region option)
 
-```{r}
-listCensusMetadata(name = "timeseries/healthins/sahie", type = "geography")
+## Resources for Other Data Sources  
+
+**APIs** - Application Programming Interfaces
+
+Access in R  
+
+ - Article [here](https://www.programmableweb.com/news/how-to-access-any-restful-api-using-r-language/how-to/2017/07/21) discusses accessing APIs generically with R  
+
+ - Same website gives a [list of APIs](https://www.programmableweb.com/category/all/apis)
+
+
+
+## Resources for Other Data Sources  
+
+**Databases** 
+
+- Collection of data, usually a bunch of (related) 2D tables  
+
+
+## Resources for Other Data Sources  
+
+Example database structure
+
+```{r, out.width = "550px", echo = FALSE, fig.align='center', fig.cap= "Source: oreilly.com"}
+knitr::include_graphics("img/lahman.jpg")
 ```
 
-- us, county, or state can be requested
 
-##APIs  
+## Resources for Other Data Sources  
 
-Call some data (ask the api for it)  
+**Databases** 
 
-- uninsured rate by income group at the national level  
+- Collection of data, usually a bunch of (related) 2D tables  
+
+- Relational Database Management System (RDBMS) controls how users interact  
+
+> - Structured Query Language (SQL) - language used by RDBMS 
+
+
+## Resources for Other Data Sources  
+
+**Databases** 
+
+- Collection of data, usually a bunch of 2D tables  
+
+- Relational Database Management System (RDBMS) controls how users interact  
+
+- Structured Query Language (SQL) - language used by RDBMS 
+
+<ul>
+<ul>
+  <li> Used to obtain data from tables  </li>
+  
+  <li>  Used to combine data from separate tables ('keys' relate tables)</li>
+     
+  <li>  Used to manipulate and create variables, structure and edit databases, etc.</li>
+</ul>
+</ul>
+
+
+
+## Resources for Other Data Sources  
+
+**Databases** 
+
+Many popular RDBMS, some free some proprietary (often referred to as databases...)
+ 
+ - Oracle - most popular (cross platform)  
+ 
+ - SQL Server - Microsoft product  
+ 
+ - DB2 - IBM product  
+ 
+ - MySQL (open source) - Not as many features but popular  
+ 
+ - PostgreSQL (open source)  
+ 
+[Basic SQL language](http://www.sqltutorial.org/sql-cheat-sheet/) constant across all - features differ  
+
+
+
+## Resources for Other Data Sources  
+
+**Databases** - Common flow in R  
+
+1. Connect to the database with `DBI::dbConnect()`  
+  - Need appropriate R package for database backend  
+     + `RSQLite::SQLite()` for RSQLite  
+     + `RMySQL::MySQL()` for RMySQL  
+     + `RPostgreSQL::PostgreSQL()` for RPostgreSQL  
+     + `odbc::odbc()` for Open Database Connectivity   
+     + `bigrquery::bigquery()` for google's bigQuery
+
 
 ```{r, eval = FALSE}
-getCensus(name = "timeseries/healthins/sahie",
-    vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-    region = "us:*", 
-    time = 2016, key = "your_key_here")
+con <- DBI::dbConnect(RMySQL::MySQL(), 
+  host = "hostname.website",
+  user = "username",
+  password = rstudioapi::askForPassword("DB password")
+)
 ```
 
 
-```{r, echo = FALSE}
-getCensus(name = "timeseries/healthins/sahie",
-    vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-    region = "us:*", 
-    time = 2016, key = "e267f117801b2ef741e54620602b0903c5f4d3c8")
+
+## Resources for Other Data Sources  
+
+**Databases** - Common flow in R  
+
+1. Connect to the database with `DBI::dbConnect()`  
+  - Need appropriate R package for database backend  
+  
+<ol start="2">
+<li> Use `tbl()` to reference a table in the database  </li>
+</ol>
+
+```{r, eval = FALSE}
+tbl(con, "name_of_table")
 ```
 
 
-##APIs  
+## Resources for Other Data Sources  
 
-Call some data (ask the api for it)  
+**Databases** - Common flow in R  
 
-- uninsured rate by income group for each state  
+1. Connect to the database with `DBI::dbConnect()`  
+  - Need appropriate R package for database backend  
+  
+<ol start="2">
+<li> Use `tbl()` to reference a table in the database  </li>  
+<li> Query the database with `SQL` or `dplyr/dbplyr` (we'll learn `dplyr` soon!) </li>  
+</ol>
 
-```{r}
-sahie_states <- getCensus(name = "timeseries/healthins/sahie",
-    vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-    region = "state:*", 
-    time = 2016, key = "e267f117801b2ef741e54620602b0903c5f4d3c8")
-head(sahie_states)
+
+## Resources for Other Data Sources  
+
+**Databases** - Common flow in R  
+
+1. Connect to the database with `DBI::dbConnect()`  
+  - Need appropriate R package for database backend  
+  
+<ol start="2">
+<li> Use `tbl()` to reference a table in the database  </li>  
+<li> Query the database with `SQL` or `dplyr/dbplyr` (we'll learn `dplyr` soon!) </li>  
+<li> Disconnect from database with `dbDisconnect()`  </li>  
+</ol>
+
+
+
+
+## Resources for Other Data Sources  
+
+**Databases** - Quick Example  
+
+- Connect to Google's BigQuery database  
+
+
+```{r, eval = FALSE}
+#devtools::install_github("r-dbi/bigrquery")
+library(DBI)
+con <- dbConnect(
+  bigrquery::bigquery(),
+  project = "publicdata",
+  dataset = "samples",
+  billing = "your-project-id-here"
+  )
 ```
 
 
-## What Does `censusapi` Do?  
 
-Creates the correct call to the API (similar to examples we saw)   
+## Resources for Other Data Sources  
 
-`   constructURL <- function(name, vintage) {`  
-`        if (is.null(vintage)) {`  
-`            apiurl <- paste("https://api.census.gov/data", name, sep = "/")`  
-`        }`  
-`        else {`  
-`            apiurl <- paste("https://api.census.gov/data", vintage, name, sep = "/")`  
-`        }`  
-`        lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))`  
-`        if (lastchar == "?" | lastchar == "/") {`  
-`            apiurl <- substr(apiurl, 1, nchar(apiurl) - 1)`  
-`        }`  
-`        apiurl`  
-`    }`
+**Databases** - Quick Example  
 
+- Connect to Google's BigQuery database  
 
-## API Access in R  
+```{r, eval = FALSE}
+dbListTables(con)
+natality <- tbl(con, "natality")
 
-Article [here](https://www.programmableweb.com/news/how-to-access-any-restful-api-using-r-language/how-to/2017/07/21) discusses accessing APIs generically with R  
+natality %>%
+  select(starts_with("mother"), year, cigarette_use, weight_pounds) %>% 
+  collect()
 
-Same website gives a [list of APIs](https://www.programmableweb.com/category/all/apis)
+dbDisconnect(con)
+```
+
+- More about [R Studio and Databases](https://db.rstudio.com/)
 
 
-##Recap  
+## Recap 
 
-Many sources of data  
+- Read data from other sources
 
-- flat delimited files  
+Type of file       | Package   | Function   
+------------------ | --------- | -----------------
+Delimited          | `readr`   | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim()`
+Excel (.xls,.xlsx) | `readxl`  | `read_excel()`
+SAS (.sas7bdat)    | `haven`   | `read_sas()`
+SPSS (.sav)        | `haven`   | `read_spss()`
 
-- Excel  
+<br> 
 
-- APIs  
-
-- Databases (not covered here)   
-
-- Web scraping (not covered here)  
-
-Need to know how to bring data in and manipulate it for analysis!  
+- Resources for JSON, databases, and APIs
 
 ## Activity 
 - [**Reading/Writing Data Activity** instructions](http://www4.stat.ncsu.edu/~post/DataScienceR/ReadWriteActivity.html) available on web  
 
-- Work in small groups  
+- We'll send you to breakout rooms   
 
-- Ask questions!  TAs and I will float about the room  
+- One TA or instructor in each room to help out
 
-- Feel free to ask questions about anything you didn't understand as well!   
+- Feel free to ask questions about anything you didn't understand as well! 
