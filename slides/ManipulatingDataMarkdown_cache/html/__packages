@@ -11,7 +11,5 @@ forcats
 haven
 knitr
 htmlwidgets
-leaflet
 Lahman
 fivethirtyeight
-microbenchmark
