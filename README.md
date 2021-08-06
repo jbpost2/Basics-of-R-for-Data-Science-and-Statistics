@@ -1,5 +1,7 @@
 # Basics of R for Data Science and Statistics  
 
+<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html"><button type="button">Course Files Page</button></a> 
+
 ## Course Summary
 
 This course introduces the powerful and popular R statistical software through the RStudio integrated development environment.  R is fully developed programming language and one of the major platforms for doing data science.  This course covers frequently used data structures, importing raw data, common data manipulations, summary statistics, and data visualizations through the suite of packages called the tidyverse.
