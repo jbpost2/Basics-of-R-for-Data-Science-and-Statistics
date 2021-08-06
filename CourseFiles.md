@@ -7,6 +7,9 @@ Course Files
 
 </head>
 
+<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Workshop
+Home</button></a>
+
 Below you’ll find the presentation files for the course and the
 exercises we’ll do during the hands on sessions.
 
@@ -34,7 +37,7 @@ bottom of the page!
 
 <div class="row">
 
-<div style="width: 50%;float: left;">
+<div style="width: 33%;float: left;">
 
     <center>
       <span class="fa-stack fa-4x">
@@ -52,7 +55,7 @@ bottom of the page!
 
 </div>
 
-<div style="width: 50%;float: right;">
+<div style="width: 33%;float: left;">
 
     <center>
       <span class="fa-stack fa-4x">
@@ -70,7 +73,7 @@ bottom of the page!
 
 </div>
 
-<div style="width: 50%;float: right;">
+<div style="width: 33%;float: right;">
 
     <center>
       <span class="fa-stack fa-4x">
@@ -99,11 +102,11 @@ run the code without typing it out. Below you’ll find .R scripts with
 just the R code from the notes (notice that there is some extra stuff as
 we often use R code to bring in images and things like that).
 
--   <a href = "https://raw.githubusercontent.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/main/slides/BasicsReadingData.R" target = "download">
+-   <a href = "https://raw.githubusercontent.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/master/slides/BasicsReadingData.R" target = "download">
     R Basics & Reading Data R code</a>
--   <a href = "https://raw.githubusercontent.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/main/slides/ManipulatingDataMarkdown.R" target = "download">
+-   <a href = "https://raw.githubusercontent.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/master/slides/ManipulatingDataMarkdown.R" target = "download">
     Markdown & Manipulating Data R code</a>
--   <a href = "https://raw.githubusercontent.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/main/slides/SummarizingData.R" target = "download">
+-   <a href = "https://raw.githubusercontent.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/master/slides/SummarizingData.R" target = "download">
     Summarizing Data R code</a>
 
 <hr style="    border: 0;
@@ -178,7 +181,7 @@ we often use R code to bring in images and things like that).
     <center>
             <span class="fa-stack fa-4x">
                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                    <a href="https://github.com/jbpost2/TeachingWithR/raw/main/cheatsheets/rstudio-ide.pdf" target="_blank">
+                    <a href="https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/cheatsheets/rstudio-ide.pdf" target="_blank">
                       <i class="fa fa-building fa-stack-1x fa-inverse"></i></a>
             </span>
             <h4 class="service-heading">
@@ -193,11 +196,11 @@ we often use R code to bring in images and things like that).
     <center>
         <span class="fa-stack fa-4x">
             <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                <a href="https://github.com/jbpost2/TeachingWithR/raw/main/cheatsheets/data-import.pdf" target="_blank">
-              <i class="fa fa-book fa-stack-1x fa-inverse"></i></a>
+                <a href="https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/cheatsheets/base-r.pdf" target="_blank">
+              <i class="fa fa-gears fa-stack-1x fa-inverse"></i></a>
         </span>
         <h4 class="service-heading">
-                Data Import
+                Base R
         </h4>
     </center>
 
@@ -208,11 +211,11 @@ we often use R code to bring in images and things like that).
     <center>
         <span class="fa-stack fa-4x">
             <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                <a href="https://github.com/jbpost2/TeachingWithR/raw/main/cheatsheets/rmarkdown-reference.pdf" target="_blank">
-              <i class="fa fa-bell fa-stack-1x fa-inverse"></i></a>
+                <a href="https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/cheatsheets/data-import.pdf" target="_blank">
+              <i class="fa fa-book fa-stack-1x fa-inverse"></i></a>
         </span>
         <h4 class="service-heading">
-                RMarkdown
+                Data Import
         </h4>
     </center>
 
@@ -229,9 +232,24 @@ we often use R code to bring in images and things like that).
 <div style="width: 33%;float: left;">
 
     <center>
+        <span class="fa-stack fa-4x">
+            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                <a href="https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/cheatsheets/rmarkdown-reference.pdf" target="_blank">
+              <i class="fa fa-bell fa-stack-1x fa-inverse"></i></a>
+        </span>
+        <h4 class="service-heading">
+                RMarkdown
+        </h4>
+    </center>
+
+</div>
+
+<div style="width: 33%;float: left;">
+
+    <center>
             <span class="fa-stack fa-4x">
                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                    <a href="https://github.com/jbpost2/TeachingWithR/raw/main/cheatsheets/data-transformation.pdf" target="_blank">
+                    <a href="https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/cheatsheets/data-transformation.pdf" target="_blank">
                       <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i></a>
             </span>
             <h4 class="service-heading">
@@ -246,26 +264,11 @@ we often use R code to bring in images and things like that).
     <center>
         <span class="fa-stack fa-4x">
             <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                <a href="https://github.com/jbpost2/TeachingWithR/raw/main/cheatsheets/data-visualization-2.1.pdf" target="_blank">
+                <a href="https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/cheatsheets/data-visualization-2.1.pdf" target="_blank">
               <i class="fa fa-anchor fa-stack-1x fa-inverse"></i></a>
         </span>
         <h4 class="service-heading">
                 Data Visualization
-        </h4>
-    </center>
-
-</div>
-
-<div style="width: 33%;float: left;">
-
-    <center>
-        <span class="fa-stack fa-4x">
-            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                <a href="https://github.com/jbpost2/TeachingWithR/raw/main/cheatsheets/shiny.pdf" target="_blank">
-              <i class="fa fa-gears fa-stack-1x fa-inverse"></i></a>
-        </span>
-        <h4 class="service-heading">
-                Shiny
         </h4>
     </center>
 
@@ -284,8 +287,7 @@ we often use R code to bring in images and things like that).
 Justin teaches the following three courses for [Data
 Matters](https://datamatters.org/), a week-long series of one and
 two-day courses aimed at students and professionals in business,
-research, and government. The material is open to anyone. Feel free to
-use these materials for any educational purpose!
+research, and government.
 
 <hr>
 <h4>
@@ -295,9 +297,29 @@ of R for Data Science and Statistics</a>
 
 </h4>
 
-This course covers the material in the first set of notes (R Basics,
-RMarkdown, & the tidyverse) in quite a bit more detail. All of the
-source materials are available on the corresponding github site as well.
+The course provides a modern introduction to the R through the extremely
+popular suite of packages called the tidyverse. A rough outline is given
+below:
+
+Day 1:
+
+    Basics of how R stores data
+
+    R Packages and the tidyverse
+
+    Reading data from common formats into R (readr package)
+
+    Using R Markdown for reproducibility (rmarkdown and knitr packages)
+
+    Common data manipulations and creating new variables (dplyr package)
+
+Day 2:
+
+    Reshaping data for summarizing and modeling (tidyr package)
+
+    Types of data and numeric summaries (including across groups)
+
+    Creating publication ready graphs (ggplot2 package)
 
 <hr>
 <h4>
@@ -307,11 +329,16 @@ R Programs</a>
 
 </h4>
 
-This course introduces common programming techniques that can improve
-the efficiency of your R programs. These techniques include the use of
-loops and vectorized functions to avoid repeated sections of code. To
-really take R programs to the next level, we see how to write custom
-functions that will help to streamline code.
+The course provides a brief overview of R data structures followed by
+the following topics:
+
+    Loops in R
+
+    Vectorized functions (apply family of functions)
+
+    How R functions work
+
+    Function writing
 
 <hr>
 <h4>
@@ -321,14 +348,17 @@ for Automating Workflow & Sharing Work</a>
 
 </h4>
 
-The course provides participants an introduction to utilizing R for
-writing reproducible reports and presentations that easily embed R
-output, using online repositories and version control software for
-collaboration, creation of basic websites using R, and the development
-of interactive dashboards and web applets.
+Students will learn about the following topics:
 
-I am in the process of updating this material. It will be ready by the
-first week of August (since that is when I have to teach it :).
+    The R Markdown language
+
+    How to automate reports with R Markdown
+
+    Use of git and github for collaboration and version control
+
+    Basic creation of websites through Markdown and github
+
+    R Shiny web apps
 
 <hr>
 <h4>
@@ -350,5 +380,5 @@ topics useful for data processing & exploration.
 
 <br>
 
-<a href = "https://jbpost2.github.io/TeachingWithR/"><button type="button">Workshop
+<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Workshop
 Home</button></a>
