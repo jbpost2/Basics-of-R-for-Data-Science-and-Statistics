@@ -7,7 +7,7 @@ Course Files
 
 </head>
 
-<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Workshop
+<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Course
 Home</button></a>
 
 Below you’ll find the presentation files for the course and the
@@ -303,23 +303,23 @@ below:
 
 Day 1:
 
-    Basics of how R stores data
+-   Basics of how R stores data
 
-    R Packages and the tidyverse
+-   R Packages and the tidyverse
 
-    Reading data from common formats into R (readr package)
+-   Reading data from common formats into R (readr package)
 
-    Using R Markdown for reproducibility (rmarkdown and knitr packages)
+-   Using R Markdown for reproducibility (rmarkdown and knitr packages)
 
-    Common data manipulations and creating new variables (dplyr package)
+-   Common data manipulations and creating new variables (dplyr package)
 
 Day 2:
 
-    Reshaping data for summarizing and modeling (tidyr package)
+-   Reshaping data for summarizing and modeling (tidyr package)
 
-    Types of data and numeric summaries (including across groups)
+-   Types of data and numeric summaries (including across groups)
 
-    Creating publication ready graphs (ggplot2 package)
+-   Creating publication ready graphs (ggplot2 package)
 
 <hr>
 <h4>
@@ -332,13 +332,13 @@ R Programs</a>
 The course provides a brief overview of R data structures followed by
 the following topics:
 
-    Loops in R
+-   Loops in R
 
-    Vectorized functions (apply family of functions)
+-   Vectorized functions (apply family of functions)
 
-    How R functions work
+-   How R functions work
 
-    Function writing
+-   Function writing
 
 <hr>
 <h4>
@@ -350,15 +350,15 @@ for Automating Workflow & Sharing Work</a>
 
 Students will learn about the following topics:
 
-    The R Markdown language
+-   The R Markdown language
 
-    How to automate reports with R Markdown
+-   How to automate reports with R Markdown
 
-    Use of git and github for collaboration and version control
+-   Use of git and github for collaboration and version control
 
-    Basic creation of websites through Markdown and github
+-   Basic creation of websites through Markdown and github
 
-    R Shiny web apps
+-   R Shiny web apps
 
 <hr>
 <h4>
@@ -377,8 +377,39 @@ devoted to basic RStudio IDE, data wrangling, visualization, and other
 topics useful for data processing & exploration.
 
 <hr>
+<h4>
+
+<a href = "https://bookdown.org/yihui/rmarkdown/" target = "_blank"> R
+Markdown: The Definitive Guide</a>
+
+</h4>
+
+This books has almost everything you could want to know about using R
+Markdown.
+
+<hr>
+<h4>
+
+<a href = "https://r4ds.had.co.nz/" target = "_blank">R for Data
+Science</a>
+
+</h4>
+
+A commonly used introduction to the tidyverse.
+
+<hr>
+<h4>
+
+<a href = "https://ggplot2-book.org/" target = "_blank">ggplot2: elegant
+graphics for data analysis</a>
+
+</h4>
+
+A book on using the ggplot2 package for plotting.
+
+<hr>
 
 <br>
 
-<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Workshop
+<a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Course
 Home</button></a>
