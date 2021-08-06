@@ -600,7 +600,7 @@ knitr::include_graphics("../img/selectVisualF.png")
 
 ```{r}
 #Choose a single column by name
-select(Batting, X2B)
+select(myBatting, X2B)
 ```
 
 
@@ -611,7 +611,7 @@ select(Batting, X2B)
 
 ```{r}
 #Choose a single column by name
-select(Batting, playerID, X2B)
+select(myBatting, playerID, X2B)
 ```
 
 
@@ -621,7 +621,7 @@ select(Batting, playerID, X2B)
 - Piping or Chaining with `%>%` operator helps
 
 ```{r}
-arrange(select(filter(Batting, teamID == "PIT"), playerID, G, X2B), desc(X2B))
+arrange(select(filter(myBatting, teamID == "PIT"), playerID, G, X2B), desc(X2B))
 ```
 
 
@@ -631,7 +631,7 @@ arrange(select(filter(Batting, teamID == "PIT"), playerID, G, X2B), desc(X2B))
 - Piping or Chaining with `%>%` operator helps
 
 ```{r}
-Batting %>% 
+myBatting %>% 
   filter(teamID == "PIT") %>% 
   select(playerID, G, X2B) %>% 
   arrange(desc(X2B)) 
