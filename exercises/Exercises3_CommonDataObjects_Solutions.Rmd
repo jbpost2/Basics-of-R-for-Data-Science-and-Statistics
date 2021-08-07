@@ -1,8 +1,7 @@
 ---
 title: "Exercises 3 - Common Data Objects Solutions"
 output:
-  github_document:
-    df_print: paged
+  github_document
 ---
 
 ## 3.1 Vectors

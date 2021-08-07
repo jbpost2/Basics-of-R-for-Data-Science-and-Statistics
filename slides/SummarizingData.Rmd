@@ -515,6 +515,8 @@ aggregate(uptake ~ Treatment + conc, data = CO2, FUN = summary)
 
 ## Quick Examples  
  
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 9 - Numeric Summaries
+
  
 ## Where are we at?  
 
@@ -944,6 +946,8 @@ General `ggplot` things:
 
 ## Quick Examples  
 
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 10 - Bar Plots
+
 
 ## `ggplot2` Plotting: Numeric Variables    
 
@@ -1185,4 +1189,5 @@ General `ggplot` things:
 
 ## Quick Examples
 
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 11 - ggplot
 

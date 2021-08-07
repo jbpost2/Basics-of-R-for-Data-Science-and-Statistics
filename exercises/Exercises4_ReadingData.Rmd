@@ -1,30 +1,34 @@
 ---
-title: "Exercises 3 - Common Data Objects"
+title: "Exercises 4 - Reading Data"
 output:
-  github_document:
-    df_print: paged
+  github_document
 ---
 
-## 3.1 Vectors
+## 4.1 Read data contained in an R package.
 
-1) Create a vector `vec` with elements 2, 4, 6, ..., 12. 
+1) Load the `dcData` and `tidyverse` packages. Use the 
+  - Note: `dcData` is installed from GitHub, so it requires an extra step.        - `devtools::install_github("mdbeckman/dcData")`
+  - this might take a while (30+ sec?) depending on your Internet connection
+  After loading in the `dcData` package, read the `BabyNames` data from `dcData` into your R environment using the `data()` function as follows:  
+  `data(BabyNames)`  
+Now you should see the `BabyNames` object in the Environment pane  
+    - Double click the object name to open a spreadsheet View  
+    - Spreadsheet view includes basic sorting capability!  
 
+<hr> 
 
-2) Write code to see the 1st, 3rd, and 5th elements of `vec` in the console.
+## 4.2 Read a .csv file from the web
 
-3) You can exclude elements from a vector by using a '`-`' sign in front of their indices. Utilize the `length()` function to see the `vec` object in the console without its last element.
+The file "BabyNameSupp.csv" includes a few years of more recent data to augment the `BabyNames` data. The file can be downloaded straight to R from the link here:  
 
+https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv  
 
-## 3.2 Subsetting data frames
+Read this file in using `read_csv()` from the `readr` package.  Save the data as an object called `BabyNamesSupp`.
 
-1) The `iris` dataframe is a built-in R object.  Write code to show the 4th column of the `iris` dataset in the console (there are many ways to do this!).
+Note: Reading the data **will** produce a warning message!  Read the warning message carefully; what seems to have gone wrong?
 
-
-2) Write code to see just the first five rows and just the `Species` and `Sepal.Width` columns of the `iris` object in the console.
-
-
-3) Write code to see `iris` dataset in the console with the columns displayed in alphabetical order.  This can be done using the `sort()` function.  Use the result of `sort(colnames(iris))` along with `[]` to select the columns in alphabetical order.
-
+- Open the spreadsheet view to investigate `BabyNamesSupp`  
+- Can you confirm what seems to have gone wrong during the data intake?
 
 <hr>
 

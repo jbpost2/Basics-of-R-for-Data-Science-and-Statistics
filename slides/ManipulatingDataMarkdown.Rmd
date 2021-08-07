@@ -389,7 +389,7 @@ knitr::include_graphics("../img/knit.png")
 
 ## Quick Examples  
 
-
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 5 - Markdown
 
 ## `tidyverse` for data manipulations
 
@@ -729,7 +729,7 @@ myBatting %>%
 
 ## Quick Examples  
 
-
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 6 - dplyr
 
 
 ## Data manipulation idea  
@@ -988,6 +988,7 @@ myAirquality
 
 ## Quick Examples  
 
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 7 - Creating Variables
 
 ## Reshaping Data  
 
@@ -1132,4 +1133,4 @@ chicagoData %>%
 
 ## Quick Examples  
 
-
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 8 - tidyr

@@ -156,20 +156,50 @@ we often use R code to bring in images and things like that).
 
 ##### Markdown & Manipulating Data
 
--   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html">
-    Exercises 4 - Reading Data</a> (Solutions:
-    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html">
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises5_Markdown.html">
+    Exercises 5 - Markdown</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises5_Markdown_Solutions.html">
     HTML</a>,
-    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd">
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises5_Markdown_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises6_dplyr.html">
+    Exercises 6 - dplyr</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises6_dplyr_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises6_dplyr_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises7_CreatingVariables.html">
+    Exercises 7 - Creating Variables</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises7_CreatingVariables_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises7_CreatingVariables_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises8_tidyr.html">
+    Exercises 8 - tidyr</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises8_tidyr_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises8_tidyr_Solutions.Rmd">
     Rmd</a>)
 
 ##### Summarizing Data
 
--   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html">
-    Exercises 4 - Reading Data</a> (Solutions:
-    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html">
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises9_NumericSummaries.html">
+    Exercises 9 - Numeric Summaries</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises9_NumericSummaries_Solutions.html">
     HTML</a>,
-    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd">
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises9_NumericSummaries_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises10_BarPlots.html">
+    Exercises 10 - Bar Plots</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises10_BarPlots_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises10_BarPlots_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises11_ggplot.html">
+    Exercises 11 - ggplot </a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises11_ggplot_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises11_ggplot_Solutions.Rmd">
     Rmd</a>)
 
 <hr style="    border: 0;
