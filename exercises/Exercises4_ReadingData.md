@@ -24,7 +24,7 @@ The file “BabyNameSupp.csv” includes a few years of more recent data to
 augment the `BabyNames` data. The file can be downloaded straight to R
 from the link here:
 
-<https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv>
+<https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/datasets/BabyNamesSupp.csv>
 
 Read this file in using `read_csv()` from the `readr` package. Save the
 data as an object called `BabyNamesSupp`.
