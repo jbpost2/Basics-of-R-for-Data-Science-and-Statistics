@@ -122,19 +122,20 @@ It may help to have just the R code from the slides so you can easily run the co
 ```
 #### Exercise Sets
 
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_1_Exercises.html" target = "download"> Part 1 (RStudio IDE)</a>
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_2_Exercises.html" target = "download"> Part 2 (Data intake)</a>
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_3_Exercises.html" target = "download"> Part 3 (R Markdown)</a>\
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_4_Exercises.html" target = "download"> Part 4 (Data wrangling)</a>\
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_5_Exercises.html" target = "download"> Part 5 (Data visualization)</a>
+##### R Basics & Reading Data
 
-#### Partial Solutions
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises1_RStudio.html"> Exercises 1 - RStudio</a> (Solutions: <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises1_RStudio_Solutions.html"> HTML</a>, <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises1_RStudio_Solutions.Rmd"> Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises2_Objects.html"> Exercises 2 - Objects</a> (Solutions: <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises2_Objects_Solutions.html"> HTML</a>, <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises2_Objects_Solutions.Rmd"> Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises3_CommonDataObjects.html"> Exercises 3 - Common Data Objects</a> (Solutions: <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises3_CommonDataObjects_Solutions.html"> HTML</a>, <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises3_CommonDataObjects_Solutions.Rmd"> Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html"> Exercises 4 - Reading Data</a> (Solutions: <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html"> HTML</a>, <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd"> Rmd</a>)
 
--   Part 1 ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_1_Solutions.Rmd); [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_1_Solutions.html))
--   Part 2 ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_2_Solutions.Rmd); [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_2_Solutions.html))
--   Part 3 ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_3_Solutions.Rmd); [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_3_Solutions.html))
--   Part 4 ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_4_Solutions.Rmd); [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_4_Solutions.html))
--   Part 5 ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_5_Solutions.Rmd); [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_5_Solutions.html))
+##### Markdown & Manipulating Data
+
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html"> Exercises 4 - Reading Data</a> (Solutions: <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html"> HTML</a>, <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd"> Rmd</a>)
+
+##### Summarizing Data
+
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html"> Exercises 4 - Reading Data</a> (Solutions: <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html"> HTML</a>, <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd"> Rmd</a>)
 
 ```{=html}
 <hr style="    border: 0;
@@ -217,6 +218,7 @@ It may help to have just the R code from the slides so you can easily run the co
         </h4>
     </center>
 :::
+
 ::: {style="width: 33%;float: left;"}
     <center>
             <span class="fa-stack fa-4x">
@@ -265,24 +267,23 @@ The course provides a modern introduction to the R through the extremely popular
 
 Day 1:
 
-- Basics of how R stores data
+-   Basics of how R stores data
 
-- R Packages and the tidyverse
+-   R Packages and the tidyverse
 
-- Reading data from common formats into R (readr package)
+-   Reading data from common formats into R (readr package)
 
-- Using R Markdown for reproducibility (rmarkdown and knitr packages)
+-   Using R Markdown for reproducibility (rmarkdown and knitr packages)
 
-- Common data manipulations and creating new variables (dplyr package)
+-   Common data manipulations and creating new variables (dplyr package)
 
 Day 2:
 
-- Reshaping data for summarizing and modeling (tidyr package)
+-   Reshaping data for summarizing and modeling (tidyr package)
 
-- Types of data and numeric summaries (including across groups)
+-   Types of data and numeric summaries (including across groups)
 
-- Creating publication ready graphs (ggplot2 package)
-
+-   Creating publication ready graphs (ggplot2 package)
 
 <hr>
 
@@ -294,14 +295,13 @@ Day 2:
 
 The course provides a brief overview of R data structures followed by the following topics:
 
-- Loops in R
+-   Loops in R
 
-- Vectorized functions (apply family of functions)
+-   Vectorized functions (apply family of functions)
 
-- How R functions work
+-   How R functions work
 
-- Function writing
-
+-   Function writing
 
 <hr>
 
@@ -313,16 +313,15 @@ The course provides a brief overview of R data structures followed by the follow
 
 Students will learn about the following topics:
 
-- The R Markdown language
+-   The R Markdown language
 
-- How to automate reports with R Markdown
+-   How to automate reports with R Markdown
 
-- Use of git and github for collaboration and version control
+-   Use of git and github for collaboration and version control
 
-- Basic creation of websites through Markdown and github
+-   Basic creation of websites through Markdown and github
 
-- R Shiny web apps
-
+-   R Shiny web apps
 
 <hr>
 
@@ -342,7 +341,7 @@ This eBook (link)[<https://dtkaplan.github.io/DataComputingEbook/>] by Danny Kap
 
 </h4>
 
-This books has almost everything you could want to know about using R Markdown.  
+This books has almost everything you could want to know about using R Markdown.
 
 <hr>
 
@@ -352,7 +351,7 @@ This books has almost everything you could want to know about using R Markdown.
 
 </h4>
 
-A commonly used introduction to the tidyverse.  
+A commonly used introduction to the tidyverse.
 
 <hr>
 
@@ -362,16 +361,10 @@ A commonly used introduction to the tidyverse.
 
 </h4>
 
-A book on using the ggplot2 package for plotting.  
+A book on using the ggplot2 package for plotting.
 
 <hr>
 
 <br>
 
 <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/"><button type="button">Course Home</button></a>
-
-
-
-
-
-

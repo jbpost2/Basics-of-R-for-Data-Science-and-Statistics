@@ -127,34 +127,50 @@ we often use R code to bring in images and things like that).
 
 #### Exercise Sets
 
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_1_Exercises.html" target = "download">
-    Part 1 (RStudio IDE)</a>
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_2_Exercises.html" target = "download">
-    Part 2 (Data intake)</a>
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_3_Exercises.html" target = "download">
-    Part 3 (R Markdown)</a>  
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_4_Exercises.html" target = "download">
-    Part 4 (Data wrangling)</a>  
--   <a href = "https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_5_Exercises.html" target = "download">
-    Part 5 (Data visualization)</a>
+##### R Basics & Reading Data
 
-#### Partial Solutions
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises1_RStudio.html">
+    Exercises 1 - RStudio</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises1_RStudio_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises1_RStudio_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises2_Objects.html">
+    Exercises 2 - Objects</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises2_Objects_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises2_Objects_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises3_CommonDataObjects.html">
+    Exercises 3 - Common Data Objects</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises3_CommonDataObjects_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises3_CommonDataObjects_Solutions.Rmd">
+    Rmd</a>)
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html">
+    Exercises 4 - Reading Data</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd">
+    Rmd</a>)
 
--   Part 1
-    ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_1_Solutions.Rmd);
-    [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_1_Solutions.html))
--   Part 2
-    ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_2_Solutions.Rmd);
-    [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_2_Solutions.html))
--   Part 3
-    ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_3_Solutions.Rmd);
-    [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_3_Solutions.html))
--   Part 4
-    ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_4_Solutions.Rmd);
-    [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_4_Solutions.html))
--   Part 5
-    ([Rmd](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_5_Solutions.Rmd);
-    [html](https://jbpost2.github.io/TeachingWithR/exercises/TeachingR_Part_5_Solutions.html))
+##### Markdown & Manipulating Data
+
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html">
+    Exercises 4 - Reading Data</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd">
+    Rmd</a>)
+
+##### Summarizing Data
+
+-   <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData.html">
+    Exercises 4 - Reading Data</a> (Solutions:
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.html">
+    HTML</a>,
+    <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/exercises/Exercises4_ReadingData_Solutions.Rmd">
+    Rmd</a>)
 
 <hr style="    border: 0;
     height: 2px;

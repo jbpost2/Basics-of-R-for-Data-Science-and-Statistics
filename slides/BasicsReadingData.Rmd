@@ -205,19 +205,8 @@ Four main 'areas'
 
 ## Quick Example  
 
-- Go to File >> New File >> R Script  
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 1 - RStudio
 
-- Type `View(cars)` (note capital `V`), `plot(cars)`, and `hist(iris$Sepal.Length)` on separate lines
-
-- Submit these to console using button or hot key  
-
-- Use the `Help` tab to learn about R functions  
-    - Type `help(hist)` in the console
-
-- Visit “RStudio >> Tools >> Global Options” and locate the following:
-
-    Pane Layout, Rainbow parenthesis, Soft-wrap, Show margin (set to 80), Highlight selected line, Show whitespace characters
-    
     
 ## R Objects and Classes  
 
@@ -372,9 +361,9 @@ str(cars)
 - `class()`, `typeof()`, and `str()` help understand your object
 
 
-## Quick Examples  
+## Quick Example  
 
-- In your R script...
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 2 - Objects
     
     
 ## Data Objects   
@@ -1036,6 +1025,8 @@ Basic access via
 
 ## Quick Examples  
 
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 3 - Common Data Objects
+
 
 
 ## Reading Raw Data Into R
@@ -1591,6 +1582,7 @@ knitr::include_graphics("../img/tidyverse.png")
 
 ## Quick Examples  
 
+- Go to the <a href = "https://jbpost2.github.io/Basics-of-R-for-Data-Science-and-Statistics/CourseFiles.html">course files page</a> and try Exercise 4 - Reading Data
 
 
 ## Resources for Other Data Sources  

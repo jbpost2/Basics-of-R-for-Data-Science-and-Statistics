@@ -1,0 +1,219 @@
+---
+title: "What's in a Name?? (Part 5 Solutions)"
+subtitle: "TeachingWithR workshop presented at USCOTS"
+author: "Matthew Beckman & Justin Post"
+date: "June 25, 2021"
+output:
+  github_document:
+    df_print: paged
+---
+
+<hr> 
+
+Here, we join an analysis already in progress...  
+
+- Part 1 (RStudio IDE Scavenger Hunt) has been omitted from the following analysis. 
+- Part 2 (Import Data), Part 3 (R Markdown), and Part 4 (Data Wrangling) have been blended for the purposes of our investigation
+- **Part 5 Exercises Follow**
+
+<hr> 
+
+# Names to be investigated
+
+<hr> 
+
+We're investigating the popularity of names in the US each year. Matt has chosen to investigate the names of each person in his immediate family: Matthew, Sarah, Eden, Jack, and Hazel.  They're his favorite people, and also his favorite names!  He's feeling torn about how to include his son Jack in the analysis. Jack's legal name is "Jon" but he is nearly always called "Jack"--the spelling of "Jon" honors Scandinavian heritage on both sides of the family, and the nickname "Jack" specifically honors his great-grandfather.  
+
+Some famous persons by each name of the family include: 
+
+- Sarah Jessica Parker
+- Eden Hazard
+- Jack (Jackie) Robinson
+- Hazel Findlay
+- Richard Stallman.  Seriously, the first hit of an Internet search for "famous Matthew" was Richard Stallman (!) whose given name is... Matthew.  "Matthew the Apostle" (Matt's namesake) was third on that particular list: <https://playback.fm/people/first-name/matthew>
+
+
+This document was last modified `r lubridate::now()`.
+
+<hr> 
+
+# Summaries of Name Popularity
+
+<hr> 
+
+```{r include=FALSE}
+# libraries
+library(tidyverse)
+library(dcData)
+
+# data intake
+data("BabyNames", package = "dcData")
+
+BabyNamesSupp <- 
+  read_csv("https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv",  
+           col_types = cols(sex = col_character()))  
+
+BabyNames2020 <- 
+  read_csv("https://jbpost2.github.io/TeachingWithR/datasets/yob2020.txt", 
+           col_names = FALSE, col_types = cols(X2 = col_character())) %>%
+  rename(name = X1, sex = X2, count = X3) %>%  
+  mutate(year = 2020) 
+
+# Combine data sources
+BabyNamesFull <- bind_rows(BabyNames, BabyNamesSupp, BabyNames2020)
+
+```
+
+
+According to US Social Security data from 1880 through 2020, "Matthew" was the most frequently occurring name in the family.  
+
+```{r}
+# vector of names
+beckmans <- c("Matthew", "Sarah", "Eden", "Jack", "Hazel")
+
+BabyNamesFull %>%
+    filter(name %in% beckmans) %>%                   
+    group_by(name) %>%                               
+    summarise(total = sum(count, na.rm = TRUE)) %>%  
+    arrange(desc(total))
+
+```
+
+
+We also learned that "Eden" was more balanced between the two sexes when compared to the other names in the family.
+
+
+```{r}
+BabyNamesFull %>%
+    filter(name %in% beckmans) %>%
+    group_by(name, sex) %>%                          # Task 4.2.3
+    summarise(total = sum(count, na.rm = TRUE)) %>%  # Task 4.2.3
+    arrange(name)
+```
+
+Matt joined Penn State University in 2015, and coincidentally his son Jack was born earlier that year.  Interestingly, the name "Jack" was more popular than "Sarah" in 2015, despite the fact that "Sarah" had been far more common when all years had been combined.  Perhaps more surprisingly, the name "Hazel" was nearly as common as "Sarah" in that year!  
+
+
+```{r}
+BabyNamesFull %>%
+    filter(name %in% beckmans, year == 2015) %>%
+    group_by(name) %>%
+    summarise(total = sum(count, na.rm = TRUE)) %>% 
+    arrange(desc(total))
+
+BabyNamesFull %>%
+    filter(name %in% beckmans, year == 2015) %>%
+    group_by(name, sex) %>%
+    summarise(total = sum(count, na.rm = TRUE)) %>% 
+    arrange(name)
+
+```
+
+
+<hr> 
+
+# Part 5. Graph it
+
+<hr> 
+
+We want to create a graph that highlights the change in popularity among the names you have chosen over the years.
+
+- **Task 1:** sketch (by hand) the plot you plan to make
+    - note which variables are aligned to various aesthetics of your plot 
+    - does your plot include multiple layers?  
+
+- **Task 2:** is your data set aligned to the intended features of this plot?  
+    - do you need to summarise or mutate the data before creating the plot you have in mind?
+    - do you need to filter the data to show a desired subset, or will all rows of the data be included? 
+    - when data are aligned to the needs of your plot, we sometimes call this a "glyph-ready" data set
+
+- **Task 3:** run `esquisse::esquisser(GlyphReadyDataSet)` to draft a plot
+    - `esquisser( )` allows you to prototype various plot features, and then view the corresponding `ggplot2` code for your plot
+    - When you are satisfied, copy the R code and paste into Rmd code chunk 
+    - run the R code chunk to reproduce your plot in R Markdown
+    - modifiy the plot code as needed to better align with the plot you intend (i.e., the one you sketched by hand).
+    - ideally, you'll soon skip the `esquisser( )` step as you get moer comfortable with the `ggplot2` framework
+
+- **Task 4:** clean up axis labels, add a title, etc if you have not already done so.
+
+- **Task 5** (Challenge): add a layer to somehow display overall birth trend for context
+
+- **Task 6** (Challenge): plot the trend for each name as a relative frequency, rather than raw counts
+
+<hr> 
+
+### Solution
+
+```{r}
+#library(esquisse)
+
+# Task 5.1 My sketch was a line chart of name popularity over time 
+# variable mapping:
+#    x-position: year
+#    y-position: frequency
+#    line color: name
+
+# Task 5.2
+BeckmanNamesLine <- 
+    BabyNamesFull %>%
+    filter(name %in% beckmans) %>%
+    group_by(name, year) %>%
+    summarise(total = sum(count))
+
+# Task 5.3 
+# esquisse::esquisser(BeckmanNamesLine)
+ggplot(BeckmanNamesLine) +
+ aes(x = year, y = total, colour = name) +
+ geom_line(size = 1L) +
+ scale_color_hue() +
+ theme_minimal() 
+
+
+# Task 5.4
+TotalBabies <- 
+    BabyNamesFull %>%
+    group_by(year) %>%
+    summarise(totalBorn = sum(count, na.rm = TRUE))
+
+
+# Task 5.5 (Challenge)
+# add context propotional to total births each year to the plot
+ggplot(BeckmanNamesLine) +
+    geom_line(aes(x = year, y = total, colour = name)) +
+    geom_line(data = TotalBabies, aes(x = year, y = totalBorn * 0.02), 
+              linetype = "dashed", alpha = 0.3, ) + 
+    ggtitle(label = "Popularity Trend of Names in the Beckman Family (1880 - 2020)", 
+            subtitle = "Trend proportional to total births per year shown for context.\n(Source: US Social Security Administration)") + 
+    ylab("Frequency") + 
+    xlab("Year")
+
+
+# Task 5.6 (Challenge) 
+BeckmanNamesRF <- 
+    BabyNamesFull %>%
+    group_by(year) %>%                    # groups for subsequent mutate()
+    mutate(annualTotal = sum(count)) %>%  # new column for yearly totals
+    ungroup() %>%                         
+    filter(name %in% beckmans) %>%
+    group_by(name, year) %>%              # new groups for subsequent summarise()
+    summarise(prop = sum(count) / annualTotal)
+
+ggplot(BeckmanNamesRF) +
+    geom_line(aes(x = year, y = prop, colour = name)) +
+    ggtitle(label = "Popularity Trend of Names in the Beckman Family (1880 - 2020)", 
+            subtitle = "(Source: US Social Security Administration)") + 
+    ylab("Relative Proportion") + 
+    xlab("Year")
+
+```
+
+
+<hr>
+
+
+<br>
+
+<a href = "https://jbpost2.github.io/TeachingWithR/CourseFiles.html"><button type="button">Course Files Page</button></a> 
+
+
+
