@@ -8,7 +8,7 @@ We’ll continue to work on the same .Rmd file from the previous exercise.
 # 11.1
 
 1.  Use the data object created by the code below to create a line plot
-    (via \`geom\_line()) that looks like the one below.
+    (via `geom_line()`) that looks like the one below.
 
 ``` r
 names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")
