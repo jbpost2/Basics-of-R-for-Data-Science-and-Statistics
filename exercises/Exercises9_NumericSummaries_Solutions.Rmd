@@ -1,47 +1,51 @@
 ---
-title: "Exercises 4 - Reading Data Solutions"
+title: "Exercises 9 - Numeric Summaries Solutions"
 output:
   github_document
 ---
 
-## 4.1 Read data contained in an R package.
-
-1) Load the `dcData` and `tidyverse` packages. Use the 
-  - Note: `dcData` is installed from GitHub, so it requires an extra step.        - `devtools::install_github("mdbeckman/dcData")`
-  - this might take a while (30+ sec?) depending on your Internet connection
-  After loading in the `dcData` package, read the `BabyNames` data from `dcData` into your R environment using the `data()` function as follows:  
-  `data(BabyNames)`  
-Now you should see the `BabyNames` object in the Environment pane  
-    - Double click the object name to open a spreadsheet View  
-    - Spreadsheet view includes basic sorting capability!  
-
-```{r}
-# devtools::install_github("mdbeckman/dcData")
-
-library(tidyverse)  # this actually loads a group of packages all at once
-library(dcData)     
-data(BabyNames)
-#or
-data("BabyNames", package = "dcData")
-```
+We'll continue to work on the same .Rmd file from the previous exercise.    
 
 <hr> 
 
-## 4.2 Read a .csv file from the web
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(dcData)
 
-The file "BabyNameSupp.csv" includes a few years of more recent data to augment the `BabyNames` data. The file can be downloaded straight to R from the link here:  
+data("BabyNames", package = "dcData")
+BabyNamesSupp <- 
+  read_csv("https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv",
+           col_types = cols(sex = col_character()))  # fixes `sex`
+BabyNamesFull <- bind_rows(BabyNames, BabyNamesSupp)
+```
 
-https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv  
+## 9.1 Summarize Counts
 
-Read this file in using `read_csv()` from the `readr` package.  Save the data as an object called `BabyNamesSupp`.
-
-Note: Reading the data **will** produce a warning message!  Read the warning message carefully; what seems to have gone wrong?
-
-- Open the spreadsheet view to investigate `BabyNamesSupp`  
-- Can you confirm what seems to have gone wrong during the data intake?
+1. We'll consider the names of interest we had from before.  Filter the data to only include those names then group the data by name and sex.  Now use `summarize()` to create a new variable called total that is the sum of the counts (remove `NA`'s with `na.rm = TRUE`). 
 
 ```{r}
-BabyNamesSupp <- read_csv("https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv")
+names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")
+BabyNamesFull %>%
+    filter(name %in% names) %>%
+    group_by(name, sex) %>%                          
+    summarise(total = sum(count, na.rm = TRUE)) 
+```
+
+2. Filter the `BabyNamesFull` data object to only include rows where the `count` is more than 50000.  Save this as an R object.  Then, create a contingency table to count the number of times each name appears. 
+
+```{r}
+temp <- BabyNamesFull %>%
+  filter(count >50000)
+table(temp$name)
+```
+
+3. Let's investigate the total number of names in each year.  Group the data by year and find the sum of the count variable.  Once you've done that, run `summary()` on the total counts.
+
+```{r}
+temp <- BabyNamesFull %>% 
+  group_by(year) %>%
+  summarize(total = sum(count))
+summary(temp$total)
 ```
 
 <hr>

@@ -1,34 +1,44 @@
 ---
-title: "Exercises 4 - Reading Data"
+title: "Exercises 10 - Bar Plots"
 output:
   github_document
 ---
 
-## 4.1 Read data contained in an R package.
+We'll continue to work on the same .Rmd file from the previous exercise.    
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(dcData)
 
-1) Load the `dcData` and `tidyverse` packages. Use the 
-  - Note: `dcData` is installed from GitHub, so it requires an extra step.        - `devtools::install_github("mdbeckman/dcData")`
-  - this might take a while (30+ sec?) depending on your Internet connection
-  After loading in the `dcData` package, read the `BabyNames` data from `dcData` into your R environment using the `data()` function as follows:  
-  `data(BabyNames)`  
-Now you should see the `BabyNames` object in the Environment pane  
-    - Double click the object name to open a spreadsheet View  
-    - Spreadsheet view includes basic sorting capability!  
+data("BabyNames", package = "dcData")
+BabyNamesSupp <- 
+  read_csv("https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv",
+           col_types = cols(sex = col_character()))  # fixes `sex`
+BabyNamesFull <- bind_rows(BabyNames, BabyNamesSupp)
+```
 
 <hr> 
 
-## 4.2 Read a .csv file from the web
+1. Filter the data by the names of interest we have, group the data by name, and find the total counts using the code below:
 
-The file "BabyNameSupp.csv" includes a few years of more recent data to augment the `BabyNames` data. The file can be downloaded straight to R from the link here:  
+```{r}
+names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")
+barData <- BabyNamesFull %>%
+  filter(name %in% names) %>% 
+  group_by(name) %>%
+  summarise(total = sum(count))
+```
 
-https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv  
+2. Use the data object created to create a bar plot with names on the x-axis and the total count on the y-axis.  You'll need to specify both the x and y variables  and change the statistic to "identity" in the `geom_bar()` function.  
 
-Read this file in using `read_csv()` from the `readr` package.  Save the data as an object called `BabyNamesSupp`.
+3.  Use the data object created by the code below to create a filled bar plot with the sex variable denoting the coloring of columns.
 
-Note: Reading the data **will** produce a warning message!  Read the warning message carefully; what seems to have gone wrong?
+```{r}
+barDataSex <- BabyNamesFull %>%
+  filter(name %in% c("Shannon", "Lindsay", "Avery")) %>% 
+  group_by(name, sex) %>%
+  summarise(total = sum(count))
+```
 
-- Open the spreadsheet view to investigate `BabyNamesSupp`  
-- Can you confirm what seems to have gone wrong during the data intake?
 
 <hr>
 

@@ -1,52 +1,44 @@
 ---
-title: "Exercises 10 - Bar Plots Solutions"
+title: "Exercises 11 - ggplot"
 output:
   github_document
 ---
 
-## 10
+We'll continue to work on the same .Rmd file from the previous exercise.    
 
-Recall the Lahman package that has data about baseball players. Consider the "Master" data set. Write R code to do the following:
+<hr> 
 
-1. Convert the Master data set to a tibble
-```{r}
-library(Lahman)
-myMaster <- as_tibble(Master)
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(dcData)
+
+data("BabyNames", package = "dcData")
+BabyNamesSupp <- 
+  read_csv("https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv",
+           col_types = cols(sex = col_character()))  # fixes `sex`
+BabyNamesFull <- bind_rows(BabyNames, BabyNamesSupp)
 ```
 
-2. Create a table that gives the frequency of players by birth months.
-```{r}
-table(myMaster$birthMonth)
-```
+# 11.1 
 
-3. Create a table that gives the proportion of players by birth months. (Proportion = # in category/total #)
-```{r}
-tab <- table(myMaster$birthMonth)
-tab <- tab / sum(tab)
-tab
-```
+1. Use the data object created by the code below to create a line plot (via `geom_line()) that looks like the one below.
 
-4. Create a bar chart of the player birth month frequencies. Give the plot appropriate labels.
-```{r}
-g <- ggplot(myMaster %>% drop_na(birthMonth), aes(x = as.factor(birthMonth)))
-g + geom_bar() + 
-	labs(x = "Birth Month", title = "Bar Graph of Player Birth Month") +
-	scale_x_discrete(labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
-```
-
-5. Create a two-way contingency table that gives the frequencies of how the player bats ("bats") and the way the player throws ("throws").
 
 ```{r}
-twoWayTable <- table(myMaster$bats, myMaster$throws)
-twoWayTable
+names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")
+lineData <- BabyNamesFull %>%
+  filter(name %in% names) %>% 
+  group_by(name, year) %>%
+  summarise(total = sum(count))
 ```
 
-6. Create a stacked bar chart of the player bat and throw preferences. Give the plot appropriate labels.
-
-```{r}
-g <- ggplot(myMaster %>% drop_na(bats, throws), aes(x = bats))
-g + geom_bar(aes(fill = throws)) + labs(title = "Bar Graph of Handedness and Batting Style")
+```{r, echo = FALSE}
+ggplot(lineData) +
+ aes(x = year, y = total, color = name) +
+ geom_line() +
+ scale_color_hue()
 ```
+
 
 <hr>
 
