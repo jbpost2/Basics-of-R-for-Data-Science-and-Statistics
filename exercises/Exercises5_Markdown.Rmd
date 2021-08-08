@@ -1,36 +1,59 @@
 ---
-title: "Exercises 4 - Reading Data"
+title: "Exercises 5 - Markdown"
 output:
   github_document
 ---
 
-## 4.1 Read data contained in an R package.
+We'll be continuing from a previous exercise.  The code we'll need is below.  
 
-1) Load the `dcData` and `tidyverse` packages. Use the 
-  - Note: `dcData` is installed from GitHub, so it requires an extra step.        - `devtools::install_github("mdbeckman/dcData")`
-  - this might take a while (30+ sec?) depending on your Internet connection
-  After loading in the `dcData` package, read the `BabyNames` data from `dcData` into your R environment using the `data()` function as follows:  
-  `data(BabyNames)`  
-Now you should see the `BabyNames` object in the Environment pane  
-    - Double click the object name to open a spreadsheet View  
-    - Spreadsheet view includes basic sorting capability!  
+```{r message=FALSE, warning=FALSE}
+# packages
+library(tidyverse)  
+library(dcData)     
+# data intake
+data("BabyNames", package = "dcData")
+
+BabyNamesSupp <- read_csv("https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv")
+```
 
 <hr> 
 
-## 4.2 Read a .csv file from the web
+# 5.1 Update the yaml Header
 
-The file "BabyNameSupp.csv" includes a few years of more recent data to augment the `BabyNames` data. The file can be downloaded straight to R from the link here:  
+Create a new .Rmd file (using File --> New File --> R Markdown then choose HTML as the output type).  
 
-https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv  
+1. "Knit" the document to render the initial HTML document.  This will require you to save the .Rmd file.  
 
-Read this file in using `read_csv()` from the `readr` package.  Save the data as an object called `BabyNamesSupp`.
+2. Update yaml header as necessary to include an informative title, author name, & relevant date.  
+    - "Knit" to verify the update
+    - In general, Knit very often as you get the hang of the new tools!
 
-Note: Reading the data **will** produce a warning message!  Read the warning message carefully; what seems to have gone wrong?
 
-- Open the spreadsheet view to investigate `BabyNamesSupp`  
-- Can you confirm what seems to have gone wrong during the data intake?
+# 5.2 Writing some Markdown!
 
-<hr>
+After the YAML header and after the first R code chunk, replace the text with the following (which includes a header and a list):  
+
+> # Investigating Names  
+We'll be investigating the popularity of names in the US each year. The names of interest are:
+- Justin  
+- Alexander  
+- Jacob  
+- Anderson  
+- George  
+
+Knit this document to see the changes!  
+
+<hr> 
+
+# 5.3 Write Some Code Chunks!
+
+1. In the first code chunk (pre-made in the document), read in the `tidyverse` and `dcData` packages using two `library()` function calls.
+
+2. Create a 2nd R code chunk below the text from 5.2 and place the code that reads in the two names data sets (given above).
+
+3. Delete the rest of the pre-made text and code below and knit the document.
+
+<hr> 
 
 <br>
 

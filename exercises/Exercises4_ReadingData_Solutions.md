@@ -48,7 +48,7 @@ The file “BabyNameSupp.csv” includes a few years of more recent data to
 augment the `BabyNames` data. The file can be downloaded straight to R
 from the link here:
 
-<https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv>
+<https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv>
 
 Read this file in using `read_csv()` from the `readr` package. Save the
 data as an object called `BabyNamesSupp`.
@@ -61,7 +61,7 @@ warning message carefully; what seems to have gone wrong?
     intake?
 
 ``` r
-BabyNamesSupp <- read_csv("https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv")
+BabyNamesSupp <- read_csv("https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv")
 ```
 
     ## 
@@ -74,13 +74,13 @@ BabyNamesSupp <- read_csv("https://jbpost2.github.io/TeachingWithR/datasets/Baby
     ## )
 
     ## Warning: 84619 parsing failures.
-    ##   row col           expected actual                                                                 file
-    ## 19208 sex 1/0/T/F/TRUE/FALSE      M 'https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv'
-    ## 19209 sex 1/0/T/F/TRUE/FALSE      M 'https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv'
-    ## 19210 sex 1/0/T/F/TRUE/FALSE      M 'https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv'
-    ## 19211 sex 1/0/T/F/TRUE/FALSE      M 'https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv'
-    ## 19212 sex 1/0/T/F/TRUE/FALSE      M 'https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv'
-    ## ..... ... .................. ...... ....................................................................
+    ##   row col           expected actual                                                                                                           file
+    ## 19208 sex 1/0/T/F/TRUE/FALSE      M 'https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv'
+    ## 19209 sex 1/0/T/F/TRUE/FALSE      M 'https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv'
+    ## 19210 sex 1/0/T/F/TRUE/FALSE      M 'https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv'
+    ## 19211 sex 1/0/T/F/TRUE/FALSE      M 'https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv'
+    ## 19212 sex 1/0/T/F/TRUE/FALSE      M 'https://github.com/jbpost2/Basics-of-R-for-Data-Science-and-Statistics/raw/master/datasets/BabyNamesSupp.csv'
+    ## ..... ... .................. ...... ..............................................................................................................
     ## See problems(...) for more details.
 
 <hr>

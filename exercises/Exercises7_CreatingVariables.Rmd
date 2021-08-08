@@ -1,34 +1,20 @@
 ---
-title: "Exercises 4 - Reading Data"
+title: "Exercises 7 - Creating Variables"
 output:
   github_document
 ---
 
-## 4.1 Read data contained in an R package.
-
-1) Load the `dcData` and `tidyverse` packages. Use the 
-  - Note: `dcData` is installed from GitHub, so it requires an extra step.        - `devtools::install_github("mdbeckman/dcData")`
-  - this might take a while (30+ sec?) depending on your Internet connection
-  After loading in the `dcData` package, read the `BabyNames` data from `dcData` into your R environment using the `data()` function as follows:  
-  `data(BabyNames)`  
-Now you should see the `BabyNames` object in the Environment pane  
-    - Double click the object name to open a spreadsheet View  
-    - Spreadsheet view includes basic sorting capability!  
+We'll continue to work on the same .Rmd file from the previous exercise.    
 
 <hr> 
 
-## 4.2 Read a .csv file from the web
+## 7.1 Create a New Variable
 
-The file "BabyNameSupp.csv" includes a few years of more recent data to augment the `BabyNames` data. The file can be downloaded straight to R from the link here:  
+1. Write a brief note using Markdown syntax that mentions we'll be investigating the name George in more detail and that we'll be creating a new variable that represents the change year to year.  
 
-https://jbpost2.github.io/TeachingWithR/datasets/BabyNamesSupp.csv  
+2. Use the `BabyNamesFull` data object and filter the data to only contain observations where `sex` is `M` and the name is `George`.  
 
-Read this file in using `read_csv()` from the `readr` package.  Save the data as an object called `BabyNamesSupp`.
-
-Note: Reading the data **will** produce a warning message!  Read the warning message carefully; what seems to have gone wrong?
-
-- Open the spreadsheet view to investigate `BabyNamesSupp`  
-- Can you confirm what seems to have gone wrong during the data intake?
+3. Create a new variable using `mutate()` that is the difference from year to year for the `count` variable.  This can be done using the `lag()` function via `count-lag(count)`.  Call this variable `diff`.
 
 <hr>
 

@@ -557,6 +557,13 @@ filter(myBatting, (G > 20) & (yearID == 2015))
 ```
 
 
+## `filter()` - subset rows or columns  
+
+- `%in%` to choose any observations within a certain set
+
+```{r}
+filter(myBatting, teamID %in% c("ATL", "PIT", "WSH"))
+```
 
 ## `arrange()` - reorder **rows**
 
