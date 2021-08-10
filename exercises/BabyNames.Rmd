@@ -94,9 +94,10 @@ BabyNamesFull %>%
 Now let's look at a contingency table of all names that occurred more than 50000 times in a given year.  This will let us know how often the names have been really popular in a given year.
 
 ```{r}
-temp <- BabyNamesFull %>%
-  filter(count >50000)
-table(temp$name)
+BabyNamesFull %>%
+  filter(count >50000) %>% 
+  pull(name) %>%
+  table()
 ```
 
 
@@ -104,10 +105,46 @@ table(temp$name)
 Let’s investigate the total number of names in each year. We'll group the data by year and find the sum of the count variable.  This will let us know how many babies have been born across the years.  
 
 ```{r}
-temp <- BabyNamesFull %>% 
+BabyNamesFull %>% 
   group_by(year) %>%
-  summarize(total = sum(count))
-temp
-summary(temp$total)
+  summarize(total = sum(count)) %>%
+  pull(total) %>%
+  summary()
+```
+
+## Visuals of the Data
+
+Ok, now let's visualize the number of times the five names of interest we have show up!
+
+First, we can create a summary data set that has the number of times each one shows.
+
+```{r}
+names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")
+barData <- BabyNamesFull %>%
+  filter(name %in% names) %>% 
+  group_by(name) %>%
+  summarise(total = sum(count))
+barData
+```
+
+Next, we can use `geom_bar()` to plot this and look at it in a nicer way.
+
+```{r}
+ggplot(barData) +
+ geom_bar(stat = "identity", aes(x = name, y = total)) 
+```
+
+Now let's do the same thing but fill the plot by the sex variable.
+
+```{r}
+barDataSex <- BabyNamesFull %>%
+  filter(name %in% c("Shannon", "Lindsay", "Avery")) %>% 
+  group_by(name, sex) %>%
+  summarise(total = sum(count))
+```
+
+```{r, echo = FALSE}
+ggplot(barDataSex) +
+ geom_bar(stat = "identity", aes(x = name, y = total, fill = sex)) 
 ```
 

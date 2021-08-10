@@ -34,7 +34,8 @@ Create a new .Rmd file (using File --> New File --> R Markdown then choose HTML 
 After the YAML header and after the first R code chunk, replace the text with the following (which includes a header and a list):  
 
 > # Investigating Names  
-We'll be investigating the popularity of names in the US each year. The names of interest are:
+We'll be investigating the popularity of names in the US each year. The names of interest are:  
+
 - Justin  
 - Alexander  
 - Jacob  

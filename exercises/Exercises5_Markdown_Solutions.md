@@ -48,11 +48,13 @@ with the following (which includes a header and a list):
 > # Investigating Names
 >
 > We’ll be investigating the popularity of names in the US each year.
-> The names of interest are: - Justin  
-> - Alexander  
-> - Jacob  
-> - Anderson  
-> - George
+> The names of interest are:
+
+-   Justin  
+-   Alexander  
+-   Jacob  
+-   Anderson  
+-   George
 
 Knit this document to see the changes!
 
