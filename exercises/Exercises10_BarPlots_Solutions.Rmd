@@ -19,27 +19,40 @@ BabyNamesSupp <-
 BabyNamesFull <- bind_rows(BabyNames, BabyNamesSupp)
 ```
 
-# 11.1 
 
-1. Use the data object created by the code below to create a line plot (via `geom_line()) that looks like the one below.
+1. Filter the data by the names of interest we have, group the data by name, and find the total counts using the code below:
 
 
 ```{r}
 names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")
-lineData <- BabyNamesFull %>%
+barData <- BabyNamesFull %>%
   filter(name %in% names) %>% 
-  group_by(name, year) %>%
+  group_by(name) %>%
+  summarise(total = sum(count))
+```
+
+
+
+2. Use the data object created to create a bar plot with names on the x-axis and the total count on the y-axis.  You'll need to specify both the x and y variables  and change the statistic to "identity" in the `geom_bar()` function.  
+
+```{r, echo = FALSE}
+ggplot(barData) +
+  geom_bar(stat = "identity", aes(x = name, y = total)) 
+```
+
+3.  Use the data object created by the code below to create a filled bar plot with the sex variable denoting the coloring of columns.
+
+```{r}
+barDataSex <- BabyNamesFull %>%
+  filter(name %in% c("Shannon", "Lindsay", "Avery")) %>% 
+  group_by(name, sex) %>%
   summarise(total = sum(count))
 ```
 
 ```{r, echo = FALSE}
-ggplot(lineData) +
- aes(x = year, y = total, color = name) +
- geom_line() +
- scale_color_hue()
+ggplot(barDataSex) +
+ geom_bar(stat = "identity", aes(x = name, y = total, fill = sex)) 
 ```
-
-
 <hr>
 
 <br>
