@@ -21,6 +21,11 @@ barData <- BabyNamesFull %>%
     both the x and y variables and change the statistic to “identity” in
     the `geom_bar()` function.
 
+``` r
+ggplot(barData) +
+  geom_bar(stat = "identity", aes(x = name, y = total)) 
+```
+
 ![](Exercises10_BarPlots_Solutions_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 3.  Use the data object created by the code below to create a filled bar
@@ -34,6 +39,11 @@ barDataSex <- BabyNamesFull %>%
 ```
 
     ## `summarise()` has grouped output by 'name'. You can override using the `.groups` argument.
+
+``` r
+ggplot(barDataSex) +
+ geom_bar(stat = "identity", aes(x = name, y = total, fill = sex)) 
+```
 
 ![](Exercises10_BarPlots_Solutions_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 <hr>

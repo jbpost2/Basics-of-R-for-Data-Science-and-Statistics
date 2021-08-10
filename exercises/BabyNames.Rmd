@@ -116,7 +116,7 @@ BabyNamesFull %>%
 
 Ok, now let's visualize the number of times the five names of interest we have show up!
 
-First, we can create a summary data set that has the number of times each one shows.
+First, we can create a summary data set that has the number of times each one shows.  
 
 ```{r}
 names <- c("Justin", "George", "Alexander", "Jacob", "Anderson")

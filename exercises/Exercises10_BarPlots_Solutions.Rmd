@@ -35,7 +35,7 @@ barData <- BabyNamesFull %>%
 
 2. Use the data object created to create a bar plot with names on the x-axis and the total count on the y-axis.  You'll need to specify both the x and y variables  and change the statistic to "identity" in the `geom_bar()` function.  
 
-```{r, echo = FALSE}
+```{r}
 ggplot(barData) +
   geom_bar(stat = "identity", aes(x = name, y = total)) 
 ```
@@ -49,7 +49,7 @@ barDataSex <- BabyNamesFull %>%
   summarise(total = sum(count))
 ```
 
-```{r, echo = FALSE}
+```{r}
 ggplot(barDataSex) +
  geom_bar(stat = "identity", aes(x = name, y = total, fill = sex)) 
 ```
