@@ -1,5 +1,5 @@
 ---
-title: "Exercises 11 - ggplot"
+title: "Exercises 10 - Bar Plots"
 output:
   github_document
 ---

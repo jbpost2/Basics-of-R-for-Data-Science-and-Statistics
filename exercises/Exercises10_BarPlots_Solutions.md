@@ -1,4 +1,4 @@
-Exercises 11 - ggplot
+Exercises 10 - Bar Plots
 ================
 
 We’ll continue to work on the same .Rmd file from the previous exercise.

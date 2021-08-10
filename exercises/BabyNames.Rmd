@@ -148,3 +148,19 @@ ggplot(barDataSex) +
  geom_bar(stat = "identity", aes(x = name, y = total, fill = sex)) 
 ```
 
+## Names over time
+
+Ok, now let's look at how our names have changed in popularity over time.
+
+```{r}
+lineData <- BabyNamesFull %>%
+  filter(name %in% names) %>% 
+  group_by(name, year) %>%
+  summarise(total = sum(count))
+
+## `summarise()` has grouped output by 'name'. You can override using the `.groups` argument.
+
+ggplot(lineData) +
+ geom_line(aes(x = year, y = total, color = name)) 
+```
+
